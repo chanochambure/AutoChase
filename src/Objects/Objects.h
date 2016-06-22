@@ -6,6 +6,7 @@
     #include "Encryptor.h"
     #include "Mixer.h"
     #include "Display.h"
+    #include "Timer.h"
     #include "Input.h"
     #include "Font.h"
 

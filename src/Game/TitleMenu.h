@@ -55,17 +55,17 @@ class TitleMenu
         #ifdef GAME_DEMO
         void demo_start()
         {
-            input->clear_key_status();
-            input->clear_events();
             if(timer.get_time()>=GAME_DEMO_WAIT_TIME)
             {
+                input->clear_key_status();
+                input->clear_events();
                 start_Demo();
                 timer.stop();
                 timer.clear();
                 timer.play();
+                input->clear_key_status();
+                input->clear_events();
             }
-            input->clear_key_status();
-            input->clear_events();
         }
         #endif // GAME_DEMO
 };
@@ -86,13 +86,15 @@ bool start_title_menu()
             #ifdef GAME_DEMO
             title.demo_start();
             #endif // GAME_DEMO
-            input->get_event();
-            if(input->get_display_status() or (*input)[MENU_CANCEL])
-                exit_program=1;
-            if((*input)[MENU_SELECT])
-                return 1;
-            if(input->get_timer_event())
-                title.draw();
+            if(input->get_event())
+            {
+                if(input->get_display_status() or (*input)[MENU_CANCEL])
+                    exit_program=1;
+                if((*input)[MENU_SELECT])
+                    return 1;
+                if(input->get_timer_event())
+                    title.draw();
+            }
         }
     }
     return 0;

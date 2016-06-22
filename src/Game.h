@@ -4,7 +4,7 @@
 //DEBUG OPTIONS
     #define GAME_DEBUG
     #ifdef GAME_DEBUG
-        #define GAME_DEBUG_TIME 10
+        #define GAME_DEBUG_TIME 3
     #endif // GAME_DEBUG
 
 //DEMO OPTIONS
@@ -60,6 +60,7 @@ void destroy_all()
     destroy_loader();
     destroy_fonts();
     destroy_input();
+    destroy_timer();
     destroy_display();
     destroy_log();
 }
@@ -71,6 +72,7 @@ void init_all()
         destroy_log();
     #endif // GAME_DEBUG
     init_display();
+    init_timer();
     init_input();
     init_fonts();
     init_loader();
@@ -105,8 +107,8 @@ void save_interface_options()
 {
     interface_option_file.clear_file();
     interface_option_file.insert_line(0,2);
-    interface_option_file[0]=encryptor_files->encrypt(to_string(_screen_size_x)+'$'+to_string(_screen_size_y)+'$'+to_string(_screen_mode)+'$');
-    interface_option_file[1]=encryptor_files->encrypt(to_string(_audio_volume*10)+'$'+to_string(language_map)+'$');
+    interface_option_file[0]=encryptor_files->encrypt(LL::to_string(_screen_size_x)+'$'+LL::to_string(_screen_size_y)+'$'+LL::to_string(_screen_mode)+'$');
+    interface_option_file[1]=encryptor_files->encrypt(LL::to_string(_audio_volume*10)+'$'+LL::to_string(language_map)+'$');
     interface_option_file.save();
 }
 

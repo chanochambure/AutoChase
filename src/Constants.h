@@ -32,7 +32,7 @@
     #define _REALSIZEX 1250.0
     #define _REALSIZEY 700.0
 //DISPLAY TYPE
-    int _GAME_FULLSCREEN=ALLEGRO_FULLSCREEN;
+    int _GAME_FULLSCREEN=ALLEGRO_FULLSCREEN_WINDOW;
     int _GAME_WINDOWED=ALLEGRO_WINDOWED;
 
 //INPUT CONSTANTS
@@ -70,8 +70,8 @@
     //IMAGES
         #define LOGO_IMAGE_PATH "Data/Image/Logo.png"
     //VIDEO
-        #define LL_LOGO_VIDEO_PATH  "Data/Video/LL_Logo.ogg"
-        #define OPENING_VIDEO_PATH  "Data/Video/Opening.ogg"
-        #define DEMO_VIDEO_PATH     "Data/Video/Demo.ogg"
+        #define LL_LOGO_VIDEO_PATH  "Data/Video/LL_Logo.ogv"
+        #define OPENING_VIDEO_PATH  "Data/Video/Opening.ogv"
+        #define DEMO_VIDEO_PATH     "Data/Video/Demo.ogv"
 
 #endif // CONSTANTS_INCLUDE_H_INCLUDED

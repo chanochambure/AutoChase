@@ -115,7 +115,7 @@ class InterfaceOptionsMenu
             volume_options.set_color(WHITE);
             volume_options.set_flag(ALLEGRO_ALIGN_CENTER);
             volume_options.set_pos((_REALSIZEX/2),(2*_REALSIZEY/3)+(2*comic_24C->get_size()));
-            volume_options=to_string(volume_option);
+            volume_options=LL::to_string(volume_option);
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_LANGUAGE_TOTAL_OPTIONS;++i)
             {
                 language_options[i].set_font(comic_16C);
@@ -165,7 +165,7 @@ class InterfaceOptionsMenu
                 case _INTERFACE_OPTIONS_MENU_AUDIO_VOLUME:
                     {
                         volume_option=volume_option-(volume_option>0);
-                        volume_options=to_string(volume_option);
+                        volume_options=LL::to_string(volume_option);
                     }
                     break;
                 case _INTERFACE_OPTIONS_MENU_LANGUAGE:
@@ -200,7 +200,7 @@ class InterfaceOptionsMenu
                 case _INTERFACE_OPTIONS_MENU_AUDIO_VOLUME:
                     {
                         volume_option=volume_option+(volume_option<10);
-                        volume_options=to_string(volume_option);
+                        volume_options=LL::to_string(volume_option);
                     }
                     break;
                 case _INTERFACE_OPTIONS_MENU_LANGUAGE:

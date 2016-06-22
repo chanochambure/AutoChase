@@ -72,11 +72,13 @@ class Loader
             while(!exit_program and status>0)
             {
                 status=FINAL_STATUS-timer.get_time();
-                input->get_event();
-                if(input->get_display_status())
-                    exit_program=1;
-                if(input->get_timer_event())
-                    draw();
+                if(input->get_event())
+                {
+                    if(input->get_display_status())
+                        exit_program=1;
+                    if(input->get_timer_event())
+                        draw();
+                }
             }
             status=0;
             timer.stop();

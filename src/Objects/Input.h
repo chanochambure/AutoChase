@@ -3,22 +3,17 @@
 
 //Input Object
 LL_AL5::Input* input=nullptr;
-LL_AL5::Timer* timer=nullptr;
 
 //Key Controls
 LL_AL5::KeyControl* menu;
 
 void init_input()
 {
-    //TIMER
-        timer=new LL_AL5::Timer;
-        timer->set_speed_seconds(_FPS);
-        timer->create();
-        timer->start();
     //INPUT
         input=new LL_AL5::Input;
         input->keyboard_on();
         input->register_display(*screen);
+        input->register_timer(*timer);
     //KEY CONTROL
         menu=new LL_AL5::KeyControl;
         menu->add_key(MENU_LEFT,ALLEGRO_KEY_LEFT);
@@ -36,10 +31,7 @@ void destroy_input()
         delete(menu);
     if(input)
         delete(input);
-    if(timer)
-        delete(timer);
     input=nullptr;
-    timer=nullptr;
     menu=nullptr;
 }
 
