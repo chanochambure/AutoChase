@@ -27,3 +27,8 @@
 *.exe
 *.out
 *.app
+
+#Another FORMATS
+*.cbp
+*.depend
+*.layout
