@@ -10,7 +10,7 @@ class Loader
         double status;
         LL_AL5::Image logo;
         LL_AL5::Text load;
-        LL::Chronometer timer;
+        LL::Chronometer chrono;
     public:
         Loader()
         {
@@ -49,11 +49,11 @@ class Loader
         {
             input->clear_key_status();
             input->clear_events();
-            timer.play();
+            chrono.play();
             status=0;
             while(!exit_program and status<FINAL_STATUS)
             {
-                status=timer.get_time();
+                status=chrono.get_time();
                 input->get_event();
                 if(input->get_display_status())
                     exit_program=1;
@@ -61,17 +61,17 @@ class Loader
                     draw();
             }
             status=FINAL_STATUS;
-            timer.stop();
+            chrono.stop();
         }
         void finish_load()
         {
             input->clear_key_status();
             input->clear_events();
-            timer.play();
+            chrono.play();
             status=FINAL_STATUS;
             while(!exit_program and status>0)
             {
-                status=FINAL_STATUS-timer.get_time();
+                status=FINAL_STATUS-chrono.get_time();
                 if(input->get_event())
                 {
                     if(input->get_display_status())
@@ -81,7 +81,7 @@ class Loader
                 }
             }
             status=0;
-            timer.stop();
+            chrono.stop();
         }
         void init_message(string message)
         {

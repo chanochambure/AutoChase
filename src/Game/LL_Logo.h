@@ -5,8 +5,6 @@ class LL_Logo
 {
     private:
         LL_AL5::Video logo;
-        double duration=0;
-        LL::Chronometer timer;
     public:
         LL_Logo()
         {
@@ -23,16 +21,14 @@ class LL_Logo
             {
                 screen->set_real_size(logo.get_size_x(),logo.get_size_y());
                 logo.start();
-                timer.play();
             }
         }
         bool status()
         {
-            return (duration+0.5)>timer.get_time();
+            return logo.is_playing();
         }
         void draw()
         {
-            duration=logo.get_video_position();
             screen->clear();
             screen->draw(&logo);
             screen->refresh();
@@ -40,9 +36,9 @@ class LL_Logo
         void error()
         {
             #ifdef GAME_DEBUG
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
             #else
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             exit_program=1;
             #endif // GAME_DEBUG
         }
@@ -50,7 +46,6 @@ class LL_Logo
         {
             if(load_status())
                 logo.stop();
-            timer.stop();
             screen->set_real_size(_REALSIZEX,_REALSIZEY);
         }
 };

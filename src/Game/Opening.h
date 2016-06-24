@@ -5,8 +5,6 @@ class Opening
 {
     private:
         LL_AL5::Video opening;
-        double duration=0;
-        LL::Chronometer timer;
     public:
         Opening()
         {
@@ -23,16 +21,14 @@ class Opening
             {
                 screen->set_real_size(opening.get_size_x(),opening.get_size_y());
                 opening.start();
-                timer.play();
             }
         }
         bool status()
         {
-            return (duration+0.5)>timer.get_time();
+            return opening.is_playing();
         }
         void draw()
         {
-            duration=opening.get_video_position();
             screen->clear();
             screen->draw(&opening);
             screen->refresh();
@@ -40,9 +36,9 @@ class Opening
         void error()
         {
             #ifdef GAME_DEBUG
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
             #else
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             exit_program=1;
             #endif // GAME_DEBUG
         }
@@ -50,7 +46,6 @@ class Opening
         {
             if(load_status())
                 opening.stop();
-            timer.stop();
             screen->set_real_size(_REALSIZEX,_REALSIZEY);
         }
 };

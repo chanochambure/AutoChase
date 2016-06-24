@@ -6,8 +6,6 @@ class Demo
     private:
         LL_AL5::Video demo;
         LL_AL5::Text middle;
-        double duration=0;
-        LL::Chronometer timer;
     public:
         Demo()
         {
@@ -29,16 +27,14 @@ class Demo
                 middle.set_color(RED);
                 middle.set_flag(ALLEGRO_ALIGN_CENTER);
                 demo.start();
-                timer.play();
             }
         }
         bool status()
         {
-            return (duration+0.5)>timer.get_time();
+            return demo.is_playing();
         }
         void draw()
         {
-            duration=demo.get_video_position();
             screen->clear();
             screen->draw(&demo);
             screen->draw(&middle);
@@ -47,9 +43,9 @@ class Demo
         void error()
         {
             #ifdef GAME_DEBUG
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
             #else
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             exit_program=1;
             #endif // GAME_DEBUG
         }
@@ -57,7 +53,6 @@ class Demo
         {
             if(load_status())
                 demo.stop();
-            timer.stop();
             screen->set_real_size(_REALSIZEX,_REALSIZEY);
         }
 };
