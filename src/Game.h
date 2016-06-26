@@ -125,7 +125,9 @@ void apply_language_options()
 
 void game_start()
 {
+    screen->set_real_size(REAL_SIZE_X_GAME,REAL_SIZE_Y_GAME);
    // <GAME>_control();
+    screen->set_real_size(_REALSIZEX_TITLE,_REALSIZEY_TITLE);
 }
 
 //CONFIGURATION
@@ -133,7 +135,7 @@ void game_start()
 void game_interface_options_menu_control()
 {
     bool save_and_apply_interface_options=0;
-    if(!exit_program)save_and_apply_interface_options=start_interface_options_menu();
+    if(exit_program)save_and_apply_interface_options=start_interface_options_menu();
     if(save_and_apply_interface_options)
     {
         if(has_changes)
@@ -146,11 +148,11 @@ void game_interface_options_menu_control()
 
 void game_control()
 {
-    if(!exit_program)start_LL_Logo();
-    if(!exit_program)start_Opening();
-    if(!exit_program and start_title_menu())
+    if(exit_program)start_LL_Logo();
+    if(exit_program)start_Opening();
+    if(exit_program and start_title_menu())
     {
-        while(!exit_program and main_menu_option>=0)
+        while(exit_program and main_menu_option>=0)
         {
             start_main_menu();
             switch(main_menu_option)
@@ -162,7 +164,7 @@ void game_control()
                     game_interface_options_menu_control();
                     break;
                 case _MAIN_MENU_EXIT_GAME:
-                    exit_program=1;
+                    exit_program=false;
             }
         }
     }
@@ -199,7 +201,7 @@ void init_game()
         init_mixer();
         init_all();
     //GAME
-    if(!exit_program)
+    if(exit_program)
         game_control();
     #ifdef GAME_DEBUG
         errors.check_all_system();

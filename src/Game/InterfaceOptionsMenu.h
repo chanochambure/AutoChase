@@ -56,22 +56,22 @@ class InterfaceOptionsMenu
             last_display_type_option=display_type_option;
             last_language_option=language_option=language_map;
             last_volume_option=volume_option=(10*_audio_volume);
-            title.set_font(comic_32C);
+            title.set_font(comic_long);
             title=game.interface_options_menu.title;
             title.set_color(WHITE);
             title.set_flag(ALLEGRO_ALIGN_LEFT);
             title.set_pos(10,10);
             line.set_color(WHITE);
             line.set_filled_status(1);
-            line.set_pos_y(title.get_pos_y()+(comic_32C->get_size()*2));
-            line.set_size_x(_REALSIZEX);
+            line.set_pos_y(title.get_pos_y()+(comic_long->get_size()*2));
+            line.set_size_x(_REALSIZEX_TITLE);
             line.set_size_y(3);
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_MENU_TOTAL_OPTIONS;++i)
             {
-                options[i].set_font(comic_24C);
+                options[i].set_font(comic_normal);
                 options[i].set_color(WHITE);
                 options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                options[i].set_pos(20,(2*_REALSIZEY/3)+(i*comic_24C->get_size()));
+                options[i].set_pos(20,(2*_REALSIZEY_TITLE/3)+(i*comic_normal->get_size()));
             }
             options[_INTERFACE_OPTIONS_MENU_DISPLAY_SIZE]=game.interface_options_menu.select_display_size;
             options[_INTERFACE_OPTIONS_MENU_DISPLAY_TYPE]=game.interface_options_menu.select_display_type;
@@ -80,10 +80,10 @@ class InterfaceOptionsMenu
             options[interface_options_option].set_color(ORANGE);
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_DISPLAY_SIZE_TOTAL_OPTIONS;++i)
             {
-                display_size_options[i].set_font(comic_16C);
+                display_size_options[i].set_font(comic_small);
                 display_size_options[i].set_color(WHITE);
                 display_size_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                display_size_options[i].set_pos(400+(i*200),(2*_REALSIZEY/3));
+                display_size_options[i].set_pos(400+(i*200),(2*_REALSIZEY_TITLE/3));
             }
             display_size_options[0]=game.interface_options_menu.display_size_1;
             display_size_options[1]=game.interface_options_menu.display_size_2;
@@ -98,45 +98,45 @@ class InterfaceOptionsMenu
                 display_size_options[2].set_color(GRAY);
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_DISPLAY_TYPE_TOTAL_OPTIONS;++i)
             {
-                display_type_options[i].set_font(comic_16C);
+                display_type_options[i].set_font(comic_small);
                 display_type_options[i].set_color(WHITE);
                 display_type_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                display_type_options[i].set_pos(400+(i*200),(2*_REALSIZEY/3)+(comic_24C->get_size()));
+                display_type_options[i].set_pos(400+(i*200),(2*_REALSIZEY_TITLE/3)+(comic_normal->get_size()));
             }
             display_type_options[0]=game.interface_options_menu.display_type_1;
             display_type_options[1]=game.interface_options_menu.display_type_2;
             display_type_options[display_type_option].set_color(ORANGE);
-            volume_text.set_font(comic_16C);
+            volume_text.set_font(comic_small);
             volume_text.set_color(WHITE);
             volume_text.set_flag(ALLEGRO_ALIGN_CENTER);
-            volume_text.set_pos((_REALSIZEX/2),(2*_REALSIZEY/3)+(2*comic_24C->get_size()));
+            volume_text.set_pos((_REALSIZEX_TITLE/2),(2*_REALSIZEY_TITLE/3)+(2*comic_normal->get_size()));
             volume_text="\u25C4        \u25BA";
-            volume_options.set_font(comic_16C);
+            volume_options.set_font(comic_small);
             volume_options.set_color(WHITE);
             volume_options.set_flag(ALLEGRO_ALIGN_CENTER);
-            volume_options.set_pos((_REALSIZEX/2),(2*_REALSIZEY/3)+(2*comic_24C->get_size()));
+            volume_options.set_pos((_REALSIZEX_TITLE/2),(2*_REALSIZEY_TITLE/3)+(2*comic_normal->get_size()));
             volume_options=LL::to_string(volume_option);
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_LANGUAGE_TOTAL_OPTIONS;++i)
             {
-                language_options[i].set_font(comic_16C);
+                language_options[i].set_font(comic_small);
                 language_options[i].set_color(WHITE);
                 language_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                language_options[i].set_pos(400+(i*200),(2*_REALSIZEY/3)+(3*comic_24C->get_size()));
+                language_options[i].set_pos(400+(i*200),(2*_REALSIZEY_TITLE/3)+(3*comic_normal->get_size()));
             }
             language_options[0]=game.interface_options_menu.language_EN;
             language_options[1]=game.interface_options_menu.language_ES;
             language_options[2]=game.interface_options_menu.language_PR;
             language_options[language_option].set_color(ORANGE);
-            footnote.set_font(comic_16C);
+            footnote.set_font(comic_small);
             footnote=(game.organization+" - "+game.release_year);
             footnote.set_color(WHITE);
             footnote.set_flag(ALLEGRO_ALIGN_LEFT);
-            footnote.set_pos(10,_REALSIZEY-30);
-            controls.set_font(comic_16C);
+            footnote.set_pos(10,_REALSIZEY_TITLE-30);
+            controls.set_font(comic_small);
             controls=game.interface_options_menu.controls;
             controls.set_color(WHITE);
             controls.set_flag(ALLEGRO_ALIGN_RIGHT);
-            controls.set_pos(_REALSIZEX-(comic_16C->get_size()*2),_REALSIZEY-(comic_16C->get_size()*2));
+            controls.set_pos(_REALSIZEX_TITLE-(comic_small->get_size()*2),_REALSIZEY_TITLE-(comic_small->get_size()*2));
         }
         bool load_status()
         {
@@ -286,7 +286,7 @@ class InterfaceOptionsMenu
         void error()
         {
             show_native_message(*screen,game.error_text.title,game.error_text.header_internal,game.error_text.message_interface_options_internal_error,ALLEGRO_MESSAGEBOX_ERROR);
-            exit_program=1;
+            exit_program=false;
         }
 };
 
@@ -299,11 +299,11 @@ bool start_interface_options_menu()
     {
         input->clear_key_status();
         input->clear_events();
-        while(!exit_program)
+        while(exit_program)
         {
             input->get_event();
             if(input->get_display_status())
-                exit_program=1;
+                exit_program=false;
             if((*input)[MENU_CANCEL])
                 break;
             if((*input)[MENU_LEFT])

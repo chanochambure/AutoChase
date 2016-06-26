@@ -32,7 +32,7 @@ struct LoadingVideos
             #ifdef GAME_DEBUG
             if(debug)
             {
-                t_log->write_text("\t ERROR LOADING AUTO CHASE 3.0 OPENING VIDEO - ");
+                t_log->write_text(string("\t ERROR LOADING ")+GAME_NAME+" OPENING VIDEO - ");
                 t_log->write_text(OPENING_VIDEO_PATH);
                 t_log->write_endl();
             }
@@ -45,7 +45,7 @@ struct LoadingVideos
             #ifdef GAME_DEBUG
             if(debug)
             {
-                t_log->write_text("\t ERROR LOADING AUTO CHASE 3.0 DEMO VIDEO - ");
+                t_log->write_text(string("\t ERROR LOADING ")+GAME_NAME+" DEMO VIDEO - ");
                 t_log->write_text(DEMO_VIDEO_PATH);
                 t_log->write_endl();
             }

@@ -35,18 +35,13 @@ class LL_Logo
         }
         void error()
         {
-            #ifdef GAME_DEBUG
             LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
-            #else
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,LL_LOGO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
-            exit_program=1;
-            #endif // GAME_DEBUG
         }
         ~LL_Logo()
         {
             if(load_status())
                 logo.stop();
-            screen->set_real_size(_REALSIZEX,_REALSIZEY);
+            screen->set_real_size(_REALSIZEX_TITLE,_REALSIZEY_TITLE);
         }
 };
 
@@ -62,11 +57,11 @@ void start_LL_Logo()
         input->clear_key_status();
         input->clear_events();
         logo.start();
-        while(!exit_program and logo.status())
+        while(exit_program and logo.status())
         {
             input->get_event();
             if(input->get_display_status())
-                exit_program=1;
+                exit_program=false;
             if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
                 break;
             if(input->get_timer_event())

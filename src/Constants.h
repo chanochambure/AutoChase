@@ -1,9 +1,11 @@
 #ifndef CONSTANTS_INCLUDE_H_INCLUDED
 #define CONSTANTS_INCLUDE_H_INCLUDED
 
+//META
+    #define GAME_NAME "<GAME NAME>"
+
 //DICTIONARIES FOR ENCRYPTER
     #define DICTIONARY_GAME_FILES "1234567890$abcdefghijklmnopqrstuvwxyz"
-    #define DICTIONARY_GAME_ONLINE " &.-_:,;!?%&1alw2bmx3cny4doz5ep6fq7gr8hs9it0ju$kv"
 
 //KEYS FOR ENCRYPTER
     #define _ENCRYPTER_DOC_KEY "gatito"
@@ -25,12 +27,14 @@
     #define _LOADER_TIME 0.9
 
 //DISPLAY SIZE
-    #define _DISPLAY_X_800  800
-    #define _DISPLAY_Y_600  600
-    #define _DISPLAY_X_640  640
-    #define _DISPLAY_Y_480  480
-    #define _REALSIZEX 1250.0
-    #define _REALSIZEY 700.0
+    #define _DISPLAY_X_800      800
+    #define _DISPLAY_Y_600      600
+    #define _DISPLAY_X_640      640
+    #define _DISPLAY_Y_480      480
+    #define _REALSIZEX_TITLE    1250.0
+    #define _REALSIZEY_TITLE    700.0
+    #define REAL_SIZE_X_GAME    800.0
+    #define REAL_SIZE_Y_GAME    600.0
 //DISPLAY TYPE
     int _GAME_FULLSCREEN=ALLEGRO_FULLSCREEN_WINDOW;
     int _GAME_WINDOWED=ALLEGRO_WINDOWED;
@@ -73,5 +77,10 @@
         #define LL_LOGO_VIDEO_PATH  "Data/Video/LL_Logo.ogv"
         #define OPENING_VIDEO_PATH  "Data/Video/Opening.ogv"
         #define DEMO_VIDEO_PATH     "Data/Video/Demo.ogv"
+
+//FONTS SIZE
+    #define FONT_SIZE_SMALL                         16
+    #define FONT_SIZE_NORMAL                        24
+    #define FONT_SIZE_LONG                          32
 
 #endif // CONSTANTS_INCLUDE_H_INCLUDED

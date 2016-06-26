@@ -1,6 +1,6 @@
 using namespace std;
 
-bool exit_program=false;
+bool exit_program=true;
 
 #include "src/Game.h"
 

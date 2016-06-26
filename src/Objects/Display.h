@@ -32,7 +32,7 @@ LL_AL5::Display* screen=nullptr;
 
 void init_display()
 {
-    screen=new LL_AL5::Display(_screen_size_x,_screen_size_y,_REALSIZEX,_REALSIZEY);
+    screen=new LL_AL5::Display(_screen_size_x,_screen_size_y,_REALSIZEX_TITLE,_REALSIZEY_TITLE);
     screen->set_flag(_screen_mode);
     screen->set_title(game.title);
     screen->hide_cursor();

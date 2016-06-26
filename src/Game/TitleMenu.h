@@ -19,17 +19,17 @@ class TitleMenu
         {
             logo.set_path(LOGO_IMAGE_PATH);
             if(!(errors.loading_images.logo_image=!logo.load()))
-                logo.set_pos((_REALSIZEX/2)-(logo.get_size_x()/2),100);
-            start_game.set_font(comic_16C);
+                logo.set_pos((_REALSIZEX_TITLE/2)-(logo.get_size_x()/2),100);
+            start_game.set_font(comic_small);
             start_game=game.title_menu.start_game;
             start_game.set_color(WHITE);
             start_game.set_flag(ALLEGRO_ALIGN_CENTER);
-            start_game.set_pos((_REALSIZEX/2),500);
-            footnote.set_font(comic_16C);
+            start_game.set_pos((_REALSIZEX_TITLE/2),500);
+            footnote.set_font(comic_small);
             footnote=(game.organization+" - "+game.release_year);
             footnote.set_color(WHITE);
             footnote.set_flag(ALLEGRO_ALIGN_LEFT);
-            footnote.set_pos(10,_REALSIZEY-30);
+            footnote.set_pos(10,_REALSIZEY_TITLE-30);
             #ifdef GAME_DEMO
             timer.clear();
             timer.play();
@@ -50,7 +50,7 @@ class TitleMenu
         void error()
         {
             show_native_message(*screen,game.error_text.title,game.error_text.header_file,LOGO_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
-            exit_program=1;
+            exit_program=false;
         }
         #ifdef GAME_DEMO
         void demo_start()
@@ -81,7 +81,7 @@ bool start_title_menu()
         loader->finish_load();
         input->clear_key_status();
         input->clear_events();
-        while(!exit_program)
+        while(exit_program)
         {
             #ifdef GAME_DEMO
             title.demo_start();
@@ -89,7 +89,7 @@ bool start_title_menu()
             if(input->get_event())
             {
                 if(input->get_display_status() or (*input)[MENU_CANCEL])
-                    exit_program=1;
+                    exit_program=false;
                 if((*input)[MENU_SELECT])
                     return 1;
                 if(input->get_timer_event())

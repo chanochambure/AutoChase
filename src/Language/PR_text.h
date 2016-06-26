@@ -1,7 +1,7 @@
 #ifndef GAME_PR_TEXT_H_INCLUDED
 #define GAME_PR_TEXT_H_INCLUDED
 
-//#include "AutoChase3.0/PR_text.h"
+//#include "<GAME>/PR_text.h"
 
 void load_PR_game_text()
 {

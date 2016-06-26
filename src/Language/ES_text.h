@@ -1,7 +1,7 @@
 #ifndef GAME_ES_TEXT_H_INCLUDED
 #define GAME_ES_TEXT_H_INCLUDED
 
-//#include "AutoChase3.0/ES_text.h"
+//#include "<GAME>/ES_text.h"
 
 void load_ES_game_text()
 {
