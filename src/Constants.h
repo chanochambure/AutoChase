@@ -19,9 +19,10 @@
     #define _AUDIO_LANGUAGE_OPTIONS_TOTAL_DATA 2
 
 //LANGUAGES
-    #define _LANGUAGE_EN 0
-    #define _LANGUAGE_ES 1
-    #define _LANGUAGE_PR 2
+    #define TOTAL_LANGUAGES         3
+    #define _LANGUAGE_EN            0
+    #define _LANGUAGE_ES            1
+    #define _LANGUAGE_PR            2
 
 //LOADING TIME
     #define _LOADER_TIME 0.9

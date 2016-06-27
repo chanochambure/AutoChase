@@ -3,7 +3,6 @@
 
 //Encryptors Object
 LL::Encryptor* encryptor_files=nullptr;
-LL::Encryptor* encryptor_special_files=nullptr;
 
 void init_encryptor_files()
 {
@@ -16,20 +15,11 @@ void init_encryptor_files()
     encryptor_files->add_new_key(_ENCRYPTER_CHUJU_KEY);
 }
 
-void destroy_encryptor_files(){if(encryptor_files)delete(encryptor_files);encryptor_files=nullptr;}
-
-void init_encryptor_special_files()
+void destroy_encryptor_files()
 {
-    encryptor_special_files=new LL::Encryptor();
-    encryptor_special_files->set_dictionary(DICTIONARY_GAME_FILES);
-    encryptor_special_files->add_new_key(_ENCRYPTER_DOC_KEY);
-    encryptor_special_files->add_new_key(_ENCRYPTER_ERIK_KEY);
-    encryptor_special_files->add_new_key(_ENCRYPTER_CHANO_KEY);
-    encryptor_special_files->add_new_key(_ENCRYPTER_CHECHO_KEY);
-    encryptor_special_files->add_new_key(_ENCRYPTER_CHUJU_KEY);
+    if(encryptor_files)
+        delete(encryptor_files);
+    encryptor_files=nullptr;
 }
-
-void destroy_encryptor_special_files(){if(encryptor_special_files)delete(encryptor_special_files);encryptor_special_files=nullptr;}
-
 
 #endif // GAME_ENCRYPTOR_H_INCLUDED

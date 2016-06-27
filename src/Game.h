@@ -34,13 +34,13 @@
     //Language Options
     unsigned int language_map=_LANGUAGE_EN;
 
-    //Functions
+    //Language Function
     void configure_language_options(unsigned int l_map)
     {
-        if(2<l_map)
-            errors.loading_interface_options.invalid_language_option=1;
-        else
+        if(l_map<TOTAL_LANGUAGES)
             language_map=l_map;
+        else
+            errors.loading_interface_options.invalid_language_option=1;
     }
 
 //HEADERS INCLUDE
@@ -53,7 +53,7 @@
     #include "Game/Opening.h"
     #include "Game/TitleMenu.h"
     #include "Game/MainMenu.h"
-//    #include "<GAME>/AC3Main.h"
+//    #include "<GAME>/Main.h"
 
 void destroy_all()
 {
@@ -82,7 +82,7 @@ void init_all()
 //FILE READER
 LL::FileStream interface_option_file; //GET OPTIONS
 
-//OPTIONS
+//INTERFACE OPTIONS
 void load_interface_options()
 {
     LL::StringSplitter load_split;
@@ -126,7 +126,7 @@ void apply_language_options()
 void game_start()
 {
     screen->set_real_size(REAL_SIZE_X_GAME,REAL_SIZE_Y_GAME);
-   // <GAME>_control();
+//    <GAME>_control();
     screen->set_real_size(_REALSIZEX_TITLE,_REALSIZEY_TITLE);
 }
 
@@ -135,7 +135,8 @@ void game_start()
 void game_interface_options_menu_control()
 {
     bool save_and_apply_interface_options=0;
-    if(exit_program)save_and_apply_interface_options=start_interface_options_menu();
+    if(exit_program)
+        save_and_apply_interface_options=start_interface_options_menu();
     if(save_and_apply_interface_options)
     {
         if(has_changes)
@@ -148,8 +149,10 @@ void game_interface_options_menu_control()
 
 void game_control()
 {
-    if(exit_program)start_LL_Logo();
-    if(exit_program)start_Opening();
+    if(exit_program)
+        start_LL_Logo();
+    if(exit_program)
+        start_Opening();
     if(exit_program and start_title_menu())
     {
         while(exit_program and main_menu_option>=0)
@@ -176,7 +179,6 @@ void exit_game(void)
 {
     destroy_all();
     destroy_mixer();
-    destroy_encryptor_special_files();
     destroy_encryptor_files();
     LL_AL5::uninstall_audio();
     LL_AL5::uninstall_primitives();
@@ -188,7 +190,6 @@ void init_game()
         _screen_size_x=LL_AL5::desktop_size_x;
         _screen_size_y=LL_AL5::desktop_size_y;
         init_encryptor_files();
-        init_encryptor_special_files();
     //LOAD
         interface_option_file.set_path(INTERFACE_OPTIONS_PATH);
         if(!(errors.loading_interface_options.loading_interface_options_file=!interface_option_file.load()))

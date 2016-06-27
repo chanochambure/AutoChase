@@ -20,7 +20,17 @@ void configure_display_options(LL_AL5::Type_display_size ss_X,LL_AL5::Type_displ
     }
     else
         errors.loading_interface_options.invalid_display_size=1;
-    if(mode==_GAME_FULLSCREEN or mode==_GAME_WINDOWED)
+    if(mode==_GAME_FULLSCREEN)
+    {
+        if(ss_X==LL_AL5::desktop_size_x and ss_Y==LL_AL5::desktop_size_y)
+            _screen_mode=mode;
+        else
+        {
+            errors.loading_interface_options.incorrect_display_mode_display=true;
+            _screen_mode=_GAME_WINDOWED;
+        }
+    }
+    else if(mode==_GAME_WINDOWED)
         _screen_mode=mode;
     else
         errors.loading_interface_options.invalid_display_mode=1;

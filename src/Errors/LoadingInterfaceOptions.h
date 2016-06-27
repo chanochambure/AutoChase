@@ -7,6 +7,7 @@ struct LoadingInterfaceOptions
     bool bad_decrypt_display=0;
     bool invalid_display_size=0;
     bool invalid_display_mode=0;
+    bool incorrect_display_mode_display=0;
     bool bad_decrypt_audio_language=0;
     bool invalid_audio_number=0;
     bool invalid_language_option=0;
@@ -42,6 +43,14 @@ struct LoadingInterfaceOptions
             #ifdef GAME_DEBUG
             if(debug)
                 t_log->write_text("\t NO VALID DISPLAY MODE\n");
+            #endif // GAME_DEBUG
+            ++total_errors;
+        }
+        if(incorrect_display_mode_display)
+        {
+            #ifdef GAME_DEBUG
+            if(debug)
+                t_log->write_text("\t NO VALID DISPLAY FULLSCREEN WITH BAD DISPLAY SIZE\n");
             #endif // GAME_DEBUG
             ++total_errors;
         }

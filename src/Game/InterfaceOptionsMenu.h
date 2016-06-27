@@ -81,7 +81,10 @@ class InterfaceOptionsMenu
             for(unsigned int i=0;i<_INTERFACE_OPTIONS_DISPLAY_SIZE_TOTAL_OPTIONS;++i)
             {
                 display_size_options[i].set_font(comic_small);
-                display_size_options[i].set_color(WHITE);
+                if(display_type_option)
+                    display_size_options[i].set_color(WHITE);
+                else
+                    display_size_options[i].set_color(GRAY);
                 display_size_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
                 display_size_options[i].set_pos(400+(i*200),(2*_REALSIZEY_TITLE/3));
             }
@@ -160,6 +163,16 @@ class InterfaceOptionsMenu
                         display_type_options[display_type_option].set_color(WHITE);
                         display_type_option=LL::mod(display_type_option-1,_INTERFACE_OPTIONS_DISPLAY_TYPE_TOTAL_OPTIONS);
                         display_type_options[display_type_option].set_color(ORANGE);
+                        for(unsigned int i=0;i<_INTERFACE_OPTIONS_DISPLAY_SIZE_TOTAL_OPTIONS;++i)
+                        {
+                            if(display_type_option)
+                                display_size_options[i].set_color(WHITE);
+                            else
+                                display_size_options[i].set_color(GRAY);
+                        }
+                        if(!display_type_option)
+                            display_size_option=0;
+                        display_size_options[display_size_option].set_color(ORANGE);
                     }
                     break;
                 case _INTERFACE_OPTIONS_MENU_AUDIO_VOLUME:
@@ -195,6 +208,16 @@ class InterfaceOptionsMenu
                         display_type_options[display_type_option].set_color(WHITE);
                         display_type_option=LL::mod(display_type_option+1,_INTERFACE_OPTIONS_DISPLAY_TYPE_TOTAL_OPTIONS);
                         display_type_options[display_type_option].set_color(ORANGE);
+                        for(unsigned int i=0;i<_INTERFACE_OPTIONS_DISPLAY_SIZE_TOTAL_OPTIONS;++i)
+                        {
+                            if(display_type_option)
+                                display_size_options[i].set_color(WHITE);
+                            else
+                                display_size_options[i].set_color(GRAY);
+                        }
+                        if(!display_type_option)
+                            display_size_option=0;
+                        display_size_options[display_size_option].set_color(ORANGE);
                     }
                     break;
                 case _INTERFACE_OPTIONS_MENU_AUDIO_VOLUME:
