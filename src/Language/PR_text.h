@@ -1,7 +1,7 @@
 #ifndef INCLUDED_PR_GAME_TEXT_H
 #define INCLUDED_PR_GAME_TEXT_H
 
-//#include "<GAME>/PR_text.h"
+#include "../../AC/Language/PR_text.h"
 
 void load_PR_game_text()
 {
@@ -42,7 +42,7 @@ void load_PR_game_text()
                                              " \u21C4 : Selecionar -"\
                                              " ESC : Cancelar -"\
                                              " ENTER : Aplicar e em Salvar altera\u00E7\u00F5es";
-//    load_PR_<GAME>_text();
+    load_PR_AC_text();
 }
 
 #endif // INCLUDED_PR_GAME_TEXT_H

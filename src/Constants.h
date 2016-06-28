@@ -2,7 +2,7 @@
 #define INCLUDED_CONSTANTS_H
 
 //META
-#define GAME_NAME           "<GAME NAME>"
+#define GAME_NAME           "Auto Chase"
 #define GAME_COMPANY        "LexRis Logic"
 #define GAME_YEAR           "2016"
 

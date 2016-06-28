@@ -1,7 +1,7 @@
 #ifndef INCLUDED_EN_GAME_TEXT_H
 #define INCLUDED_EN_GAME_TEXT_H
 
-//#include "<GAME>/EN_text.h"
+#include "../../AC/Language/EN_text.h"
 
 void load_EN_game_text()
 {
@@ -42,7 +42,7 @@ void load_EN_game_text()
                                              " \u21C4 : Select -"\
                                              " ESC : Cancel -"\
                                              " ENTER : Apply and Save Changes";
-//    load_EN_<GAME>_text();
+    load_EN_AC_text();
 }
 
 #endif // INCLUDED_EN_GAME_TEXT_H

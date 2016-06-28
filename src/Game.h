@@ -8,7 +8,7 @@
 #endif // DEBUG_OPTION
 
 //DEMO OPTIONS
-#define GAME_DEMO
+//#define GAME_DEMO
 #ifdef GAME_DEMO
     #define GAME_DEMO_WAIT_TIME 20
 #endif // GAME_DEMO
@@ -26,7 +26,7 @@
 
 //HEADERS INCLUDE
 #include "Constants.h"
-//#include "<GAME>/Constants.h"
+#include "../AC/Constants.h"
 #include "Errors.h"
 
 //OPTIONS
@@ -51,7 +51,7 @@ void set_language(unsigned int new_language_map)
 #include "Game/Opening.h"
 #include "Game/TitleMenu.h"
 #include "Game/MainMenu.h"
-//#include "<GAME>/Main.h"
+#include "../AC/Main.h"
 
 //FILE READER
 LL::FileStream interface_option_file;
@@ -121,7 +121,7 @@ void apply_language_options()
 void game_start()
 {
     screen->set_real_size(REAL_SIZE_X_GAME,REAL_SIZE_Y_GAME);
-//    <GAME>_control();
+    autochase_control();
     screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
 }
 

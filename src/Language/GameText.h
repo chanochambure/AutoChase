@@ -1,7 +1,7 @@
 #ifndef INCLUDED_GAME_TEXT_H
 #define INCLUDED_GAME_TEXT_H
 
-//#include "<GAME>/GameText.h"
+#include "../../AC/Language/GameText.h"
 
 struct ErrorsText
 {
@@ -66,8 +66,8 @@ struct GameText
     TitleMenuText title_menu;
     MainMenuText main_menu;
         InterfaceOptionsMenuText interface_options_menu;
-    //AUTO CHASE 3
-//    <GAME>Text <GAME>;
+    //AUTO CHASE
+    AutoChaseText autochase_text;
 };
 
 #endif // INCLUDED_GAME_TEXT_H

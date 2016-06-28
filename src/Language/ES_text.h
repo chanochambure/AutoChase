@@ -1,7 +1,7 @@
 #ifndef INCLUDED_ES_GAME_TEXT_H
 #define INCLUDED_ES_GAME_TEXT_H
 
-//#include "<GAME>/ES_text.h"
+#include "../../AC/Language/ES_text.h"
 
 void load_ES_game_text()
 {
@@ -42,7 +42,7 @@ void load_ES_game_text()
                                              " \u21C4 : Seleccionar -"\
                                              " ESC : Cancelar -"\
                                              " ENTER : Aplicar y Salvar Cambios";
-//    load_ES_<GAME>_text();
+    load_ES_AC_text();
 }
 
 #endif // INCLUDED_ES_GAME_TEXT_H
