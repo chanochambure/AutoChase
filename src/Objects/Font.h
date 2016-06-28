@@ -1,5 +1,5 @@
-#ifndef GAME_FONT_H_INCLUDED
-#define GAME_FONT_H_INCLUDED
+#ifndef INCLUDED_GAME_FONT_H
+#define INCLUDED_GAME_FONT_H
 
 //FONTS
 LL_AL5::Font* comic_small=nullptr;
@@ -26,14 +26,20 @@ void init_fonts()
 {
     init_comic_font();
     if(errors.initializing_fonts.check())
-        exit_program=false;
+        game_running=false;
 }
 
 void destroy_fonts()
 {
-    if(comic_small)delete(comic_small);comic_small=nullptr;
-    if(comic_normal)delete(comic_normal);comic_normal=nullptr;
-    if(comic_long)delete(comic_long);comic_long=nullptr;
+    if(comic_small)
+        delete(comic_small);
+    comic_small=nullptr;
+    if(comic_normal)
+        delete(comic_normal);
+    comic_normal=nullptr;
+    if(comic_long)
+        delete(comic_long);
+    comic_long=nullptr;
 }
 
-#endif // GAME_FONT_H_INCLUDED
+#endif // INCLUDED_GAME_FONT_H

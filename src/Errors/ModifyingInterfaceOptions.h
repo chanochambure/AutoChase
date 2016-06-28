@@ -1,45 +1,45 @@
-#ifndef MODIFYING_INTERFACE_OPTIONS_H_INCLUDED
-#define MODIFYING_INTERFACE_OPTIONS_H_INCLUDED
+#ifndef INCLUDED_MODIFYING_INTERFACE_OPTIONS_ERRORS_H
+#define INCLUDED_MODIFYING_INTERFACE_OPTIONS_ERRORS_H
 
 struct ModifyingInterfaceOptions
 {
-    bool invalid_display_size_option=0;
-    bool invalid_display_type_option=0;
-    unsigned int check(bool debug=0)
+    bool invalid_display_size_option=false;
+    bool invalid_display_type_option=false;
+    unsigned int check(bool debug=false)
     {
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("MODIFYING INTERFACE OPTIONS\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("MODIFYING INTERFACE OPTIONS\n");
+        #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         if(invalid_display_size_option)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
             {
-                t_log->write_text("\t ERROR - INVALID DISPLAY SIZE OPTION");
-                t_log->write_endl();
+                textlog->write_text("\t ERROR - INVALID DISPLAY SIZE OPTION");
+                textlog->write_endl();
             }
-            #endif // GAME_DEBUG
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(invalid_display_type_option)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
             {
-                t_log->write_text("\t ERROR - INVALID DISPLAY TYPE OPTION");
-                t_log->write_endl();
+                textlog->write_text("\t ERROR - INVALID DISPLAY TYPE OPTION");
+                textlog->write_endl();
             }
-            #endif // GAME_DEBUG
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+        #endif // DEBUG_OPTION
         return total_errors;
     }
 };
 
-#endif // MODIFYING_INTERFACE_OPTIONS_H_INCLUDED
+#endif // INCLUDED_MODIFYING_INTERFACE_OPTIONS_ERRORS_H

@@ -1,5 +1,5 @@
-#ifndef GAME_PR_TEXT_H_INCLUDED
-#define GAME_PR_TEXT_H_INCLUDED
+#ifndef INCLUDED_PR_GAME_TEXT_H
+#define INCLUDED_PR_GAME_TEXT_H
 
 //#include "<GAME>/PR_text.h"
 
@@ -9,9 +9,9 @@ void load_PR_game_text()
     game.error_text.title="Erro";
     game.error_text.header_file="File Not Found";
     game.error_text.header_internal="Erro Interno";
-    game.error_text.message_interface_options_internal_error="Uma vari\u00E1vel foi corrompido em tempo de execu\u00E7\u00E3o.";
+    game.error_text.message_interface_options_internal_error="Uma vari\u00E1vel foi corrompido"\
+                                                             " em tempo de execu\u00E7\u00E3o.";
     //COMMON
-    game.title="<GAME> - <TITLE>";
     game.load="Carregando...";
     #ifdef GAME_DEMO
     //DEMO
@@ -23,7 +23,9 @@ void load_PR_game_text()
     game.main_menu.init_game="Iniciar o Jogo";
     game.main_menu.options_game="Op\u00E7\u00F5es de interface";
     game.main_menu.exit_game="Jogo Exit";
-    game.main_menu.controls="\u21C5 : Navegar - ESC : Sair - ENTER : Selecionar";
+    game.main_menu.controls="\u21C5 : Navegar -"\
+                            " ESC : Sair -"\
+                            " ENTER : Selecionar";
         //INTERFACE OPTIONS MENU
         game.interface_options_menu.title="Op\u00E7\u00F5es de interface";
         game.interface_options_menu.select_display_size="Tamanho da Tela";
@@ -36,8 +38,11 @@ void load_PR_game_text()
             game.interface_options_menu.language_EN="Ingl\u00EAs";
             game.interface_options_menu.language_ES="Espanhol";
             game.interface_options_menu.language_PR="Portugu\u00EAs";
-        game.interface_options_menu.controls="\u21C5 : Navegar - \u21C4 : Selecionar - ESC : Cancelar - ENTER : Aplicar e em Salvar altera\u00E7\u00F5es";
-//    load_PR_AC3_text();
+        game.interface_options_menu.controls="\u21C5 : Navegar -"\
+                                             " \u21C4 : Selecionar -"\
+                                             " ESC : Cancelar -"\
+                                             " ENTER : Aplicar e em Salvar altera\u00E7\u00F5es";
+//    load_PR_<GAME>_text();
 }
 
-#endif // GAME_PR_TEXT_H_INCLUDED
+#endif // INCLUDED_PR_GAME_TEXT_H

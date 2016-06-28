@@ -1,14 +1,15 @@
-#ifndef MIXER_H_INCLUDED
-#define MIXER_H_INCLUDED
+#ifndef INCLUDED_GAME_MIXER_H
+#define INCLUDED_GAME_MIXER_H
 
 //Audio Options
-float _audio_volume=1;
-void configure_audio_options(int audio)
+float global_volume_option=1;
+
+void configure_audio_options(int new_audio)
 {
-    if(10<audio)
-        errors.loading_interface_options.invalid_audio_number=1;
+    if(MAX_VOLUME<new_audio)
+        errors.loading_interface_options.invalid_audio_number=true;
     else
-        _audio_volume=audio/10.0;
+        global_volume_option=new_audio/NORMAL_VOLUME;
 }
 
 //Mixer Object
@@ -21,6 +22,11 @@ void init_mixer()
     mixer->set_default_mixer();
 }
 
-void destroy_mixer(){if(mixer)delete(mixer);mixer=nullptr;}
+void destroy_mixer()
+{
+    if(mixer)
+        delete(mixer);
+    mixer=nullptr;
+}
 
-#endif // MIXER_H_INCLUDED
+#endif // INCLUDED_GAME_MIXER_H

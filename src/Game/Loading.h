@@ -1,12 +1,9 @@
-#ifndef LOADING_H_INCLUDED
-#define LOADING_H_INCLUDED
+#ifndef INCLUDED_GAME_LOADING_H
+#define INCLUDED_GAME_LOADING_H
 
 class Loader
 {
     private:
-        double FINAL_STATUS;
-        double LOGO_STATUS;
-        double TEXT_STATUS;
         double status;
         LL_AL5::Image logo;
         LL_AL5::Text load;
@@ -14,13 +11,10 @@ class Loader
     public:
         Loader()
         {
-            FINAL_STATUS=_LOADER_TIME;
-            LOGO_STATUS=FINAL_STATUS/3;
-            TEXT_STATUS=2*(LOGO_STATUS);
             logo.set_path(LOGO_IMAGE_PATH);
             if(!(errors.loading_images.logo_image=!logo.load()))
             {
-                logo.set_pos(_REALSIZEX_TITLE-(logo.get_size_x()/2),_REALSIZEY_TITLE-(logo.get_size_y()/2));
+                logo.set_pos(REAL_SIZE_X_TITLE-(logo.get_size_x()/2),REAL_SIZE_Y_TITLE-(logo.get_size_y()/2));
                 logo.set_scale_x(0.5);
                 logo.set_scale_y(0.5);
             }
@@ -28,7 +22,7 @@ class Loader
             load=game.load;
             load.set_color(WHITE);
             load.set_flag(ALLEGRO_ALIGN_CENTER);
-            load.set_pos((_REALSIZEX_TITLE/2.0),(_REALSIZEY_TITLE/2.0));
+            load.set_pos((REAL_SIZE_X_TITLE/2.0),(REAL_SIZE_Y_TITLE/2.0));
         }
         bool load_status()
         {
@@ -37,11 +31,11 @@ class Loader
         void draw()
         {
             screen->clear_to_color(BLACK);
-            if(status>LOGO_STATUS)
+            if(status>LOADER_LOGO_STATUS)
             {
-                screen->draw(&logo,0);
-                if(status>TEXT_STATUS)
-                    screen->draw(&load,0);
+                screen->draw(&logo,false);
+                if(status>LOADER_TEXT_STATUS)
+                    screen->draw(&load,false);
             }
             screen->refresh();
         }
@@ -51,16 +45,16 @@ class Loader
             input->clear_events();
             chrono.play();
             status=0;
-            while(exit_program and status<FINAL_STATUS)
+            while(game_running and status<LOADER_FINAL_STATUS)
             {
                 status=chrono.get_time();
                 input->get_event();
                 if(input->get_display_status())
-                    exit_program=false;
+                    game_running=false;
                 if(input->get_timer_event())
                     draw();
             }
-            status=FINAL_STATUS;
+            status=LOADER_FINAL_STATUS;
             chrono.stop();
         }
         void finish_load()
@@ -68,14 +62,14 @@ class Loader
             input->clear_key_status();
             input->clear_events();
             chrono.play();
-            status=FINAL_STATUS;
-            while(exit_program and status>0)
+            status=LOADER_FINAL_STATUS;
+            while(game_running and status>0)
             {
-                status=FINAL_STATUS-chrono.get_time();
+                status=LOADER_FINAL_STATUS-chrono.get_time();
                 if(input->get_event())
                 {
                     if(input->get_display_status())
-                        exit_program=false;
+                        game_running=false;
                     if(input->get_timer_event())
                         draw();
                 }
@@ -97,8 +91,9 @@ class Loader
         }
         void error()
         {
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,LOGO_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
-            exit_program=false;
+            show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                LOGO_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            game_running=false;
         }
 };
 
@@ -111,6 +106,11 @@ void init_loader()
         loader->error();
 }
 
-void destroy_loader(){if(loader)delete(loader);}
+void destroy_loader()
+{
+    if(loader)
+        delete(loader);
+    loader=nullptr;
+}
 
-#endif // LOADING_H_INCLUDED
+#endif // INCLUDED_GAME_LOADING_H

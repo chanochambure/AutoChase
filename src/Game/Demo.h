@@ -42,13 +42,14 @@ class Demo
         }
         void error()
         {
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                        DEMO_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
         }
         ~Demo()
         {
             if(load_status())
                 demo.stop();
-            screen->set_real_size(_REALSIZEX_TITLE,_REALSIZEY_TITLE);
+            screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
         }
 };
 
@@ -64,11 +65,11 @@ void start_Demo()
         input->clear_key_status();
         input->clear_events();
         demo.start();
-        while(exit_program and demo.status())
+        while(game_running and demo.status())
         {
             input->get_event();
             if(input->get_display_status())
-                exit_program=false;
+                game_running=false;
             if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
                 break;
             if(input->get_timer_event())

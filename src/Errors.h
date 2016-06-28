@@ -1,5 +1,5 @@
-#ifndef ERRORS_H_INCLUDED
-#define ERRORS_H_INCLUDED
+#ifndef INCLUDED_ERRORS_H
+#define INCLUDED_ERRORS_H
 
 //LOG
 #include "Objects/Log.h"
@@ -26,14 +26,14 @@ struct Errors
     //CHECK
     unsigned int check_all_system()
     {
-        #ifdef GAME_DEBUG
-        t_log->write_text("ERRORS\n");
-        #endif // GAME_DEBUG
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
+        textlog->write_text("ERRORS\n");
+        #endif // DEBUG_OPTION
+        #ifdef DEBUG_OPTION
         bool debug=1;
         #else
         bool debug=0;
-        #endif // GAME_DEBUG
+        #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         total_errors+=loading_interface_options.check(debug);
         total_errors+=initializing_fonts.check(debug);
@@ -41,13 +41,13 @@ struct Errors
         total_errors+=loading_videos.check(debug);
         total_errors+=modifying_interface_options.check(debug);
 //        total_errors+=<GAME>.check_all_game();
-        #ifdef GAME_DEBUG
-        t_log->write_text("\n TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
-        #endif // GAME_DEBUG
+        #ifdef DEBUG_OPTION
+        textlog->write_text("\n TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+        #endif // DEBUG_OPTION
         return total_errors;
     }
 };
 
 Errors errors;
 
-#endif // ERRORS_H_INCLUDED
+#endif // INCLUDED_ERRORS_H

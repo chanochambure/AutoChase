@@ -1,5 +1,5 @@
-#ifndef COLORS_H_INCLUDED
-#define COLORS_H_INCLUDED
+#ifndef INCLUDED_GAME_COLORS_H
+#define INCLUDED_GAME_COLORS_H
 
 //BASICS
 LL_AL5::Color WHITE;
@@ -23,4 +23,4 @@ void init_colors()
     BLACK_GRAY=al_map_rgb(51,51,51);
 }
 
-#endif // COLORS_H_INCLUDED
+#endif // INCLUDED_GAME_COLORS_H

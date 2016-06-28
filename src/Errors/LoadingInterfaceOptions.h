@@ -1,89 +1,89 @@
-#ifndef LOADING_INTERFACE_OPTION_H_INCLUDED
-#define LOADING_INTERFACE_OPTION_H_INCLUDED
+#ifndef INCLUDED_LOADING_INTERFACE_OPTIONS_ERRORS_H
+#define INCLUDED_LOADING_INTERFACE_OPTIONS_ERRORS_H
 
 struct LoadingInterfaceOptions
 {
-    bool loading_interface_options_file=0;
-    bool bad_decrypt_display=0;
-    bool invalid_display_size=0;
-    bool invalid_display_mode=0;
-    bool incorrect_display_mode_display=0;
-    bool bad_decrypt_audio_language=0;
-    bool invalid_audio_number=0;
-    bool invalid_language_option=0;
-    unsigned int check(bool debug=0)
+    bool loading_interface_options_file=false;
+    bool bad_decrypt_display=false;
+    bool invalid_display_size=false;
+    bool invalid_display_mode=false;
+    bool incorrect_display_mode_display=false;
+    bool bad_decrypt_audio_language=false;
+    bool invalid_audio_number=false;
+    bool invalid_language_option=false;
+    unsigned int check(bool debug=false)
     {
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("LOADING INTERFACE OPTIONS\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("LOADING INTERFACE OPTIONS\n");
+        #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         if(loading_interface_options_file)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
             {
-                t_log->write_text("\t ERROR LOADING INTERFACE OPTIONS FILE - ");
-                t_log->write_text(INTERFACE_OPTIONS_PATH);
-                t_log->write_endl();
+                textlog->write_text("\t ERROR LOADING INTERFACE OPTIONS FILE - ");
+                textlog->write_text(INTERFACE_OPTIONS_PATH);
+                textlog->write_endl();
             }
-            #endif // GAME_DEBUG
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(bad_decrypt_display)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t MISS DATA - BAD DECRYPT DISPLAY SIZE AND TYPE\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t MISS DATA - BAD DECRYPT DISPLAY SIZE AND TYPE\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(invalid_display_mode)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t NO VALID DISPLAY MODE\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t NO VALID DISPLAY MODE\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(incorrect_display_mode_display)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t NO VALID DISPLAY FULLSCREEN WITH BAD DISPLAY SIZE\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t NO VALID DISPLAY FULLSCREEN WITH BAD DISPLAY SIZE\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(bad_decrypt_audio_language)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t MISS DATA - BAD DECRYPT AUDIO AND LANGUAGE\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t MISS DATA - BAD DECRYPT AUDIO AND LANGUAGE\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(invalid_audio_number)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t NO VALID AUDIO VOLUME\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t NO VALID AUDIO VOLUME\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
         if(invalid_language_option)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
-                t_log->write_text("\t NO VALID LANGUAGE OPTION\n");
-            #endif // GAME_DEBUG
+                textlog->write_text("\t NO VALID LANGUAGE OPTION\n");
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+        #endif // DEBUG_OPTION
         return total_errors;
     }
 };
 
-#endif // LOADING_INTERFACE_OPTION_H_INCLUDED
+#endif // INCLUDED_LOADING_INTERFACE_OPTIONS_ERRORS_H

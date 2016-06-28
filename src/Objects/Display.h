@@ -1,39 +1,43 @@
-#ifndef GAME_DISPLAY_H_INCLUDED
-#define GAME_DISPLAY_H_INCLUDED
+#ifndef INCLUDED_GAME_DISPLAY_H
+#define INCLUDED_GAME_DISPLAY_H
 
 //Screen Options
-unsigned int _screen_size_x;
-unsigned int _screen_size_y;
-int _screen_mode=_GAME_FULLSCREEN;
+unsigned int global_screen_option_size_x;
+unsigned int global_screen_option_size_y;
+int global_screen_mode_option=SCREEN_FULLSCREEN_OPTION;
 
-void configure_display_options(LL_AL5::Type_display_size ss_X,LL_AL5::Type_display_size ss_Y,int mode)
+void configure_display_options(LL_AL5::Type_display_size new_screen_size_x,
+                               LL_AL5::Type_display_size new_screen_size_y,
+                               int mode)
 {
-    if((ss_X==LL_AL5::desktop_size_x and ss_Y==LL_AL5::desktop_size_y) or (ss_X==_DISPLAY_X_800 and ss_Y==_DISPLAY_Y_600) or (ss_X==_DISPLAY_X_640 and ss_Y==_DISPLAY_Y_480))
+    if((new_screen_size_x==LL_AL5::desktop_size_x and new_screen_size_y==LL_AL5::desktop_size_y) or
+       (new_screen_size_x==SCREEN_X_800 and new_screen_size_y==SCREEN_Y_600) or
+       (new_screen_size_x==SCREEN_X_640 and new_screen_size_y==SCREEN_Y_480))
     {
-        if(ss_X<=LL_AL5::desktop_size_x and ss_Y<=LL_AL5::desktop_size_y)
+        if(new_screen_size_x<=LL_AL5::desktop_size_x and new_screen_size_y<=LL_AL5::desktop_size_y)
         {
-            _screen_size_x=ss_X;
-            _screen_size_y=ss_Y;
+            global_screen_option_size_x=new_screen_size_x;
+            global_screen_option_size_y=new_screen_size_y;
         }
         else
-            errors.loading_interface_options.invalid_display_size=1;
+            errors.loading_interface_options.invalid_display_size=true;
     }
     else
-        errors.loading_interface_options.invalid_display_size=1;
-    if(mode==_GAME_FULLSCREEN)
+        errors.loading_interface_options.invalid_display_size=true;
+    if(mode==SCREEN_FULLSCREEN_OPTION)
     {
-        if(ss_X==LL_AL5::desktop_size_x and ss_Y==LL_AL5::desktop_size_y)
-            _screen_mode=mode;
+        if(new_screen_size_x==LL_AL5::desktop_size_x and new_screen_size_y==LL_AL5::desktop_size_y)
+            global_screen_mode_option=mode;
         else
         {
             errors.loading_interface_options.incorrect_display_mode_display=true;
-            _screen_mode=_GAME_WINDOWED;
+            global_screen_mode_option=SCREEN_WINDOWED_OPTION;
         }
     }
-    else if(mode==_GAME_WINDOWED)
-        _screen_mode=mode;
+    else if(mode==SCREEN_WINDOWED_OPTION)
+        global_screen_mode_option=mode;
     else
-        errors.loading_interface_options.invalid_display_mode=1;
+        errors.loading_interface_options.invalid_display_mode=true;
 
 }
 
@@ -42,12 +46,18 @@ LL_AL5::Display* screen=nullptr;
 
 void init_display()
 {
-    screen=new LL_AL5::Display(_screen_size_x,_screen_size_y,_REALSIZEX_TITLE,_REALSIZEY_TITLE);
-    screen->set_flag(_screen_mode);
+    screen=new LL_AL5::Display(global_screen_option_size_x,global_screen_option_size_y,
+                               REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
+    screen->set_flag(global_screen_mode_option);
     screen->set_title(game.title);
     screen->hide_cursor();
 }
 
-void destroy_display(){if(screen)delete(screen);screen=nullptr;}
+void destroy_display()
+{
+    if(screen)
+        delete(screen);
+    screen=nullptr;
+}
 
-#endif // GAME_DISPLAY_H_INCLUDED
+#endif // INCLUDED_GAME_DISPLAY_H

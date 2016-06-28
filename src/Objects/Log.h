@@ -1,21 +1,21 @@
-#ifndef GAME_LOG_H_INCLUDED
-#define GAME_LOG_H_INCLUDED
+#ifndef INCLUDED_GAME_TEXTLOG_H
+#define INCLUDED_GAME_TEXTLOG_H
 
 //DEBUGGER LOG
-LL_AL5::TextLog* t_log=nullptr;
+LL_AL5::TextLog* textlog=nullptr;
 
-void init_log()
+void init_textlog()
 {
-    t_log=new LL_AL5::TextLog;
-    t_log->set_title("Text Log");
-    t_log->open_textlog();
+    textlog=new LL_AL5::TextLog;
+    textlog->set_title("TextLog");
+    textlog->open_textlog();
 }
 
-void destroy_log()
+void destroy_textlog()
 {
-    if(t_log)
-        delete(t_log);
-    t_log=nullptr;
+    if(textlog)
+        delete(textlog);
+    textlog=nullptr;
 }
 
-#endif // GAME_LOG_H_INCLUDED
+#endif // INCLUDED_GAME_TEXTLOG_H

@@ -1,34 +1,34 @@
-#ifndef INITIALIZING_FONTS_H_INCLUDED
-#define INITIALIZING_FONTS_H_INCLUDED
+#ifndef INCLUDED_INITIALIZING_FONTS_ERRORS_H
+#define INCLUDED_INITIALIZING_FONTS_ERRORS_H
 
 struct InitializingFonts
 {
-    bool loading_comic_font=0;
-    unsigned int check(bool debug=0)
+    bool loading_comic_font=false;
+    unsigned int check(bool debug=false)
     {
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("INITIALIZING FONTS\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("INITIALIZING FONTS\n");
+        #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         if(loading_comic_font)
         {
-            #ifdef GAME_DEBUG
+            #ifdef DEBUG_OPTION
             if(debug)
             {
-                t_log->write_text("\t ERROR LOADING AGENCY FONT - ");
-                t_log->write_text(COMIC_FONT_PATH);
-                t_log->write_endl();
+                textlog->write_text("\t ERROR LOADING AGENCY FONT - ");
+                textlog->write_text(COMIC_FONT_PATH);
+                textlog->write_endl();
             }
-            #endif // GAME_DEBUG
+            #endif // DEBUG_OPTION
             ++total_errors;
         }
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
         if(debug)
-            t_log->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
-        #endif // GAME_DEBUG
+            textlog->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+        #endif // DEBUG_OPTION
         return total_errors;
     }
 };
 
-#endif // INITIALIZING_FONTS_H_INCLUDED
+#endif // INCLUDED_INITIALIZING_FONTS_ERRORS_H

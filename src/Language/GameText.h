@@ -1,5 +1,5 @@
-#ifndef GAMETEXT_H_INCLUDED
-#define GAMETEXT_H_INCLUDED
+#ifndef INCLUDED_GAME_TEXT_H
+#define INCLUDED_GAME_TEXT_H
 
 //#include "<GAME>/GameText.h"
 
@@ -54,9 +54,9 @@ struct GameText
     //ERRORS
     ErrorsText error_text;
     //COMMON
-    string title;
-    string organization="LexRis Logic";
-    string release_year="2016";
+    string title=GAME_NAME;
+    string organization=GAME_COMPANY;
+    string release_year=GAME_YEAR;
     string load;
     #ifdef GAME_DEMO
     //DEMO
@@ -70,4 +70,4 @@ struct GameText
 //    <GAME>Text <GAME>;
 };
 
-#endif // GAMETEXT_H_INCLUDED
+#endif // INCLUDED_GAME_TEXT_H

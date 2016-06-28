@@ -35,13 +35,14 @@ class Opening
         }
         void error()
         {
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                        OPENING_VIDEO_PATH,ALLEGRO_MESSAGEBOX_WARN);
         }
         ~Opening()
         {
             if(load_status())
                 opening.stop();
-            screen->set_real_size(_REALSIZEX_TITLE,_REALSIZEY_TITLE);
+            screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
         }
 };
 
@@ -57,11 +58,11 @@ void start_Opening()
         input->clear_key_status();
         input->clear_events();
         opening.start();
-        while(exit_program and opening.status())
+        while(game_running and opening.status())
         {
             input->get_event();
             if(input->get_display_status())
-                exit_program=false;
+                game_running=false;
             if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
                 break;
             if(input->get_timer_event())
