@@ -4,6 +4,7 @@
 struct LoadingInterfaceOptions
 {
     bool loading_interface_options_file=false;
+    bool bad_interface_options_lines=false;
     bool bad_decrypt_display=false;
     bool invalid_display_size=false;
     bool invalid_display_mode=false;
@@ -26,6 +27,16 @@ struct LoadingInterfaceOptions
                 textlog->write_text("\t ERROR LOADING INTERFACE OPTIONS FILE - ");
                 textlog->write_text(INTERFACE_OPTIONS_PATH);
                 textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(bad_interface_options_lines)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t MISS TOTAL LINES IN INTERFACE OPTIONS FILE \n");
             }
             #endif // DEBUG_OPTION
             ++total_errors;

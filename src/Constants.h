@@ -16,7 +16,8 @@
 #define KEY_ENCRYPTER_CHECHO    "sheylacorazon"
 #define KEY_ENCRYPTER_CHUJU     "sipiripipi"
 
-//FILES - DATA BY LINE
+//FILES VALUES
+#define INTERFACE_OPTIONS_FILE_TOTAL_LINES      2
 #define SCREEN_OPTIONS_TOTAL_DATA               3
 #define AUDIO_LANGUAGE_OPTIONS_TOTAL_DATA       2
 

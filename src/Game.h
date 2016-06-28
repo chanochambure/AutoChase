@@ -60,22 +60,37 @@ LL::StringSplitter splitter;
 //INTERFACE OPTIONS
 void load_interface_options()
 {
-    splitter.set_string(encryptor_files->decrypt(interface_option_file[0]));
-    splitter.split('$');
-    if(splitter.size()==SCREEN_OPTIONS_TOTAL_DATA)
-        configure_display_options(LL::to_int(splitter[0]),LL::to_int(splitter[1]),LL::to_int(splitter[2]));
-    else
-        errors.loading_interface_options.bad_decrypt_display=true;
-    splitter.set_string(encryptor_files->decrypt(interface_option_file[1]));
-    splitter.split('$');
-    if(splitter.size()==AUDIO_LANGUAGE_OPTIONS_TOTAL_DATA)
+    if(interface_option_file.size()!=INTERFACE_OPTIONS_FILE_TOTAL_LINES)
+        errors.loading_interface_options.bad_interface_options_lines=true;
+    if(0<interface_option_file.size())
     {
-        configure_audio_options(LL::to_int(splitter[0]));
-        set_language(LL::to_int(splitter[1]));
+        splitter.set_string(encryptor_files->decrypt(interface_option_file[0]));
+        splitter.split('$');
+        if(splitter.size()==SCREEN_OPTIONS_TOTAL_DATA)
+            configure_display_options(LL::to_int(splitter[0]),LL::to_int(splitter[1]),LL::to_int(splitter[2]));
+        else
+            errors.loading_interface_options.bad_decrypt_display=true;
+        if(1<interface_option_file.size())
+        {
+            splitter.set_string(encryptor_files->decrypt(interface_option_file[1]));
+            splitter.split('$');
+            if(splitter.size()==AUDIO_LANGUAGE_OPTIONS_TOTAL_DATA)
+            {
+                configure_audio_options(LL::to_int(splitter[0]));
+                set_language(LL::to_int(splitter[1]));
+            }
+            else
+                errors.loading_interface_options.bad_decrypt_audio_language=true;
+            splitter.clear();
+        }
+        else
+            errors.loading_interface_options.bad_decrypt_audio_language=true;
     }
     else
+    {
+        errors.loading_interface_options.bad_decrypt_display=true;
         errors.loading_interface_options.bad_decrypt_audio_language=true;
-    splitter.clear();
+    }
 }
 
 void save_interface_options()
