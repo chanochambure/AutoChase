@@ -29,8 +29,6 @@ void init_input()
 {
     input=new LL_AL5::Input;
     input->keyboard_on();
-    input->register_display(*screen);
-    input->register_timer(*timer);
     input->set_key_control(menu_key_control);
 }
 

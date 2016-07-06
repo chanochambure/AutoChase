@@ -21,13 +21,15 @@ void destroy_objects()
 
 void init_objects()
 {
+    init_input();
     init_textlog();
     #ifndef DEBUG_OPTION
         destroy_textlog();
     #endif // DEBUG_OPTION
-    init_display();
     init_timer();
-    init_input();
+    init_display();
+    input->register_timer(*timer);
+    input->register_display(*screen);
     init_fonts();
     mixer->set_volume(global_volume_option);
 }
