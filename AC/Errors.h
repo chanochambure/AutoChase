@@ -2,25 +2,28 @@
 #define INCLUDED_AC_ERRORS_H
 
 //ERRORS
+#include "Errors/LoadingDataAC.h"
 
 struct AutoChaseError
 {
     //ERRORS
+    LoadingDataAC loading_data_ac;
     //CHECK
     unsigned int check_all_game()
     {
-        #ifdef GAME_DEBUG
-        t_log->write("AUTO CHASE ERRORS\n");
-        #endif // GAME_DEBUG
-        #ifdef GAME_DEBUG
+        #ifdef DEBUG_OPTION
+        textlog->write_text("AUTO CHASE ERRORS\n");
+        #endif // DEBUG_OPTION
+        #ifdef DEBUG_OPTION
         bool debug=true;
         #else
         bool debug=false;
-        #endif // GAME_DEBUG
+        #endif // DEBUG_OPTION
         unsigned int total_errors=0;
-        #ifdef GAME_DEBUG
-        t_log->write("\n\t TOTAL ERRORS -> "+to_string(total_errors)+"\n");
-        #endif // GAME_DEBUG
+        total_errors+=loading_data_ac.check(debug);
+        #ifdef DEBUG_OPTION
+        textlog->write_text("\n\t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+        #endif // DEBUG_OPTION
         return total_errors;
     }
 };

@@ -41,6 +41,9 @@ void set_language(unsigned int new_language_map)
         errors.loading_interface_options.invalid_language_option=true;
 }
 
+//SPLITTER
+LL::StringSplitter splitter;
+
 //HEADERS INCLUDE
 #include "Language/Language.h"
 #include "Objects/Objects.h"
@@ -55,7 +58,6 @@ void set_language(unsigned int new_language_map)
 
 //FILE READER
 LL::FileStream interface_option_file;
-LL::StringSplitter splitter;
 
 //INTERFACE OPTIONS
 void load_interface_options()
@@ -152,7 +154,7 @@ void game_control()
             start_Opening();
             if(game_running and start_title_menu())
             {
-                while(game_running and main_menu_option>=0)
+                while(game_running)
                 {
                     start_main_menu();
                     switch(main_menu_option)
