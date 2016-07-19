@@ -4,12 +4,12 @@
 class Opening
 {
     private:
-        LL_AL5::Video opening;
+        LL_AL5::Video _V_opening;
     public:
         Opening()
         {
-            opening.set_path(OPENING_VIDEO_PATH);
-            errors.loading_videos.opening_video=!(opening.load());
+            _V_opening.set_path(OPENING_VIDEO_PATH);
+            errors.loading_videos.opening_video=!(_V_opening.load());
         }
         bool load_status()
         {
@@ -19,18 +19,18 @@ class Opening
         {
             if(load_status())
             {
-                screen->set_real_size(opening.get_size_x(),opening.get_size_y());
-                opening.start();
+                screen->set_real_size(_V_opening.get_size_x(),_V_opening.get_size_y());
+                _V_opening.start();
             }
         }
         bool status()
         {
-            return opening.is_playing();
+            return _V_opening.is_playing();
         }
         void draw()
         {
             screen->clear();
-            screen->draw(&opening);
+            screen->draw(&_V_opening);
             screen->refresh();
         }
         void error()
@@ -41,7 +41,7 @@ class Opening
         ~Opening()
         {
             if(load_status())
-                opening.stop();
+                _V_opening.stop();
             screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
         }
 };

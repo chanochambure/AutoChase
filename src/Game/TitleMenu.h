@@ -8,31 +8,31 @@
 class TitleMenu
 {
     private:
-        LL_AL5::Image logo;
-        LL_AL5::Text start_game;
-        LL_AL5::Text footnote;
+        LL_AL5::Image _V_logo;
+        LL_AL5::Text _V_start_game;
+        LL_AL5::Text _V_footnote;
         #ifdef GAME_DEMO
-        LL::Chronometer timer;
+        LL::Chronometer _V_chrono;
         #endif // GAME_DEMO
     public:
         TitleMenu()
         {
-            logo.set_path(LOGO_IMAGE_PATH);
-            if(!(errors.loading_images.logo_image=!logo.load()))
-                logo.set_pos((REAL_SIZE_X_TITLE/2)-(logo.get_size_x()/2),100);
-            start_game.set_font(comic_small);
-            start_game=game.title_menu.start_game;
-            start_game.set_color(WHITE);
-            start_game.set_flag(ALLEGRO_ALIGN_CENTER);
-            start_game.set_pos((REAL_SIZE_X_TITLE/2),500);
-            footnote.set_font(comic_small);
-            footnote=(game.organization+" - "+game.release_year);
-            footnote.set_color(WHITE);
-            footnote.set_flag(ALLEGRO_ALIGN_LEFT);
-            footnote.set_pos(10,REAL_SIZE_Y_TITLE-30);
+            _V_logo.set_path(LOGO_IMAGE_PATH);
+            if(!(errors.loading_images.logo_image=!_V_logo.load()))
+                _V_logo.set_pos((REAL_SIZE_X_TITLE/2)-(_V_logo.get_size_x()/2),100);
+            _V_start_game.set_font(comic_small);
+            _V_start_game=game.title_menu.start_game;
+            _V_start_game.set_color(WHITE);
+            _V_start_game.set_flag(ALLEGRO_ALIGN_CENTER);
+            _V_start_game.set_pos((REAL_SIZE_X_TITLE/2),500);
+            _V_footnote.set_font(comic_small);
+            _V_footnote=(game.organization+" - "+game.release_year);
+            _V_footnote.set_color(WHITE);
+            _V_footnote.set_flag(ALLEGRO_ALIGN_LEFT);
+            _V_footnote.set_pos(10,REAL_SIZE_Y_TITLE-30);
             #ifdef GAME_DEMO
-            timer.clear();
-            timer.play();
+            _V_chrono.clear();
+            _V_chrono.play();
             #endif // GAME_DEMO
         }
         bool load_status()
@@ -42,9 +42,9 @@ class TitleMenu
         void draw()
         {
             screen->clear_to_color(BLACK);
-            screen->draw(&logo);
-            screen->draw(&start_game);
-            screen->draw(&footnote);
+            screen->draw(&_V_logo);
+            screen->draw(&_V_start_game);
+            screen->draw(&_V_footnote);
             screen->refresh();
         }
         void error()
@@ -56,14 +56,14 @@ class TitleMenu
         #ifdef GAME_DEMO
         void demo_start()
         {
-            if(timer.get_time()>=GAME_DEMO_WAIT_TIME)
+            if(_V_chrono.get_time()>=GAME_DEMO_WAIT_TIME)
             {
                 input->clear_key_status();
                 input->clear_events();
                 start_Demo();
-                timer.stop();
-                timer.clear();
-                timer.play();
+                _V_chrono.stop();
+                _V_chrono.clear();
+                _V_chrono.play();
                 input->clear_key_status();
                 input->clear_events();
             }

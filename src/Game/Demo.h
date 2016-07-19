@@ -4,13 +4,13 @@
 class Demo
 {
     private:
-        LL_AL5::Video demo;
-        LL_AL5::Text middle;
+        LL_AL5::Video _V_demo;
+        LL_AL5::Text _V_middle;
     public:
         Demo()
         {
-            demo.set_path(DEMO_VIDEO_PATH);
-            errors.loading_videos.demo_video=!(demo.load());
+            _V_demo.set_path(DEMO_VIDEO_PATH);
+            errors.loading_videos.demo_video=!(_V_demo.load());
         }
         bool load_status()
         {
@@ -20,24 +20,24 @@ class Demo
         {
             if(load_status())
             {
-                screen->set_real_size(demo.get_size_x(),demo.get_size_y());
-                middle.set_font(comic_normal);
-                middle=game.demo_text.middle_text;
-                middle.set_pos(demo.get_size_x()/2,demo.get_size_y()/2);
-                middle.set_color(RED);
-                middle.set_flag(ALLEGRO_ALIGN_CENTER);
-                demo.start();
+                screen->set_real_size(_V_demo.get_size_x(),_V_demo.get_size_y());
+                _V_middle.set_font(comic_normal);
+                _V_middle=game.demo_text.middle_text;
+                _V_middle.set_pos(_V_demo.get_size_x()/2,_V_demo.get_size_y()/2);
+                _V_middle.set_color(RED);
+                _V_middle.set_flag(ALLEGRO_ALIGN_CENTER);
+                _V_demo.start();
             }
         }
         bool status()
         {
-            return demo.is_playing();
+            return _V_demo.is_playing();
         }
         void draw()
         {
             screen->clear();
-            screen->draw(&demo);
-            screen->draw(&middle);
+            screen->draw(&_V_demo);
+            screen->draw(&_V_middle);
             screen->refresh();
         }
         void error()
@@ -48,7 +48,7 @@ class Demo
         ~Demo()
         {
             if(load_status())
-                demo.stop();
+                _V_demo.stop();
             screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
         }
 };

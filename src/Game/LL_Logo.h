@@ -4,12 +4,12 @@
 class LL_Logo
 {
     private:
-        LL_AL5::Video logo;
+        LL_AL5::Video _V_logo;
     public:
         LL_Logo()
         {
-            logo.set_path(LL_LOGO_VIDEO_PATH);
-            errors.loading_videos.ll_logo_video=!(logo.load());
+            _V_logo.set_path(LL_LOGO_VIDEO_PATH);
+            errors.loading_videos.ll_logo_video=!(_V_logo.load());
         }
         bool load_status()
         {
@@ -19,18 +19,18 @@ class LL_Logo
         {
             if(load_status())
             {
-                screen->set_real_size(logo.get_size_x(),logo.get_size_y());
-                logo.start();
+                screen->set_real_size(_V_logo.get_size_x(),_V_logo.get_size_y());
+                _V_logo.start();
             }
         }
         bool status()
         {
-            return logo.is_playing();
+            return _V_logo.is_playing();
         }
         void draw()
         {
             screen->clear();
-            screen->draw(&logo);
+            screen->draw(&_V_logo);
             screen->refresh();
         }
         void error()
@@ -41,7 +41,7 @@ class LL_Logo
         ~LL_Logo()
         {
             if(load_status())
-                logo.stop();
+                _V_logo.stop();
             screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
         }
 };

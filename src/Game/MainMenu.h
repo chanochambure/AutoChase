@@ -8,37 +8,37 @@ int main_menu_option=MAIN_MENU_INIT_GAME;
 class MainMenu
 {
     private:
-        LL_AL5::Image logo;
-        LL_AL5::Text options[MAIN_MENU_TOTAL_OPTIONS];
-        LL_AL5::Text footnote;
-        LL_AL5::Text controls;
+        LL_AL5::Image _V_logo;
+        LL_AL5::Text _V_options[MAIN_MENU_TOTAL_OPTIONS];
+        LL_AL5::Text _V_footnote;
+        LL_AL5::Text _V_controls;
     public:
         MainMenu()
         {
-            logo.set_path(LOGO_IMAGE_PATH);
-            if(!(errors.loading_images.logo_image=!logo.load()))
-                logo.set_pos((REAL_SIZE_X_TITLE/2)-(logo.get_size_x()/2),100);
+            _V_logo.set_path(LOGO_IMAGE_PATH);
+            if(!(errors.loading_images.logo_image=!_V_logo.load()))
+                _V_logo.set_pos((REAL_SIZE_X_TITLE/2)-(_V_logo.get_size_x()/2),100);
             for(unsigned int i=0;i<MAIN_MENU_TOTAL_OPTIONS;++i)
             {
-                options[i].set_font(comic_small);
-                options[i].set_color(WHITE);
-                options[i].set_flag(ALLEGRO_ALIGN_CENTER);
-                options[i].set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(i*comic_small->get_size()));
+                _V_options[i].set_font(comic_small);
+                _V_options[i].set_color(WHITE);
+                _V_options[i].set_flag(ALLEGRO_ALIGN_CENTER);
+                _V_options[i].set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(i*comic_small->get_size()));
             }
-            options[MAIN_MENU_INIT_GAME]=game.main_menu.init_game;
-            options[MAIN_MENU_OPTIONS_GAME]=game.main_menu.options_game;
-            options[MAIN_MENU_EXIT_GAME]=game.main_menu.exit_game;
-            options[main_menu_option].set_color(ORANGE);
-            footnote.set_font(comic_small);
-            footnote=(game.organization+" - "+game.release_year);
-            footnote.set_color(WHITE);
-            footnote.set_flag(ALLEGRO_ALIGN_LEFT);
-            footnote.set_pos(10,REAL_SIZE_Y_TITLE-30);
-            controls.set_font(comic_small);
-            controls=game.main_menu.controls;
-            controls.set_color(WHITE);
-            controls.set_flag(ALLEGRO_ALIGN_RIGHT);
-            controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_size()*2),
+            _V_options[MAIN_MENU_INIT_GAME]=game.main_menu.init_game;
+            _V_options[MAIN_MENU_OPTIONS_GAME]=game.main_menu.options_game;
+            _V_options[MAIN_MENU_EXIT_GAME]=game.main_menu.exit_game;
+            _V_options[main_menu_option].set_color(ORANGE);
+            _V_footnote.set_font(comic_small);
+            _V_footnote=(game.organization+" - "+game.release_year);
+            _V_footnote.set_color(WHITE);
+            _V_footnote.set_flag(ALLEGRO_ALIGN_LEFT);
+            _V_footnote.set_pos(10,REAL_SIZE_Y_TITLE-30);
+            _V_controls.set_font(comic_small);
+            _V_controls=game.main_menu.controls;
+            _V_controls.set_color(WHITE);
+            _V_controls.set_flag(ALLEGRO_ALIGN_RIGHT);
+            _V_controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_size()*2),
                              REAL_SIZE_Y_TITLE-(comic_small->get_size()*2));
         }
         bool load_status()
@@ -47,9 +47,9 @@ class MainMenu
         }
         void move_selection_up_down(int num_of_moves)
         {
-            options[main_menu_option].set_color(WHITE);
+            _V_options[main_menu_option].set_color(WHITE);
             main_menu_option=LL::mod(main_menu_option+num_of_moves,MAIN_MENU_TOTAL_OPTIONS);
-            options[main_menu_option].set_color(ORANGE);
+            _V_options[main_menu_option].set_color(ORANGE);
         }
         void up()
         {
@@ -62,11 +62,11 @@ class MainMenu
         void draw()
         {
             screen->clear_to_color(BLACK);
-            screen->draw(&logo);
+            screen->draw(&_V_logo);
             for(unsigned int i=0;i<MAIN_MENU_TOTAL_OPTIONS;++i)
-                screen->draw(&(options[i]));
-            screen->draw(&footnote);
-            screen->draw(&controls);
+                screen->draw(&(_V_options[i]));
+            screen->draw(&_V_footnote);
+            screen->draw(&_V_controls);
             screen->refresh();
         }
         void error()
