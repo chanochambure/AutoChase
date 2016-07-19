@@ -32,6 +32,8 @@
 *.cbp
 *.depend
 *.layout
+*.ico
+*.rc
 
 #Directory
 LexRisLogic/
