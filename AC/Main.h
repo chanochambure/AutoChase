@@ -57,13 +57,13 @@ void autochase_control()
     load_data();
     if(errors.auto_chase_errors.loading_data_ac.check())
         save_data();
+    ac_main_menu_option=AC_MAIN_MENU_PLAY_GAME;
     while(game_running and ac_main_menu_option!=AC_MAIN_MENU_EXIT_GAME)
     {
         start_ac_main_menu();
         switch(main_menu_option)
         {
         }
-        break;
     }
 }
 

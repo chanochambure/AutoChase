@@ -35,16 +35,22 @@
 
 //MENU
 //MAIN MENU
+#define AC_MAIN_MENU_TOTAL_OPTIONS  3
 #define AC_MAIN_MENU_PLAY_GAME      0
 #define AC_MAIN_MENU_CONFIGURATION  1
 #define AC_MAIN_MENU_EXIT_GAME      2
 
+#define AC_MAIN_MENU_OPTIONS_POS_X  740
+#define AC_MAIN_MENU_OPTIONS_POS_Y  150
+
 //PATHS
 //DIRECTORIES
 //FILES
-#define DATA_AC_PATH "DATA/Save/data.acsf"
+#define DATA_AC_PATH                        "DATA/Save/data.acsf"
 //FONTS
 //IMAGES
+#define BACKGROUND_MAIN_MENU_IMAGE_PATH     "DATA/Image/Main Menu/background.PNG"
+#define ARROW_MAIN_MENU_IMAGE_PATH          "DATA/Image/Main Menu/arrow.PNG"
 //VIDEO
 
 #endif // INCLUDED_AC_CONSTANTS_H

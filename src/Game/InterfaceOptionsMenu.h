@@ -284,7 +284,7 @@ class InterfaceOptionsMenu
         }
         void error()
         {
-            show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
                                 game.error_text.message_interface_options_internal_error,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }

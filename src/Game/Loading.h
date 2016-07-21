@@ -91,7 +91,7 @@ class Loader
         }
         void error()
         {
-            show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
                                 LOGO_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }

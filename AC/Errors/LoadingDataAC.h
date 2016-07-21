@@ -1,5 +1,5 @@
-#ifndef INCLUDED_LOADING_DATA_AC_H
-#define INCLUDED_LOADING_DATA_AC_H
+#ifndef INCLUDED_LOADING_DATA_AC_ERRORS_H
+#define INCLUDED_LOADING_DATA_AC_ERRORS_H
 
 struct LoadingDataAC
 {
@@ -67,4 +67,4 @@ struct LoadingDataAC
     }
 };
 
-#endif // INCLUDED_LOADING_DATA_AC_H
+#endif // INCLUDED_LOADING_DATA_AC_ERRORS_H

@@ -3,11 +3,13 @@
 
 //ERRORS
 #include "Errors/LoadingDataAC.h"
+#include "Errors/LoadingImagesAC.h"
 
 struct AutoChaseError
 {
     //ERRORS
     LoadingDataAC loading_data_ac;
+    LoadingImagesAC loading_images_ac;
     //CHECK
     unsigned int check_all_game()
     {
@@ -21,6 +23,7 @@ struct AutoChaseError
         #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         total_errors+=loading_data_ac.check(debug);
+        total_errors+=loading_images_ac.check(debug);
         #ifdef DEBUG_OPTION
         textlog->write_text("\n\t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
         #endif // DEBUG_OPTION
