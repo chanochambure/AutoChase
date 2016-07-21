@@ -46,11 +46,11 @@
 //PATHS
 //DIRECTORIES
 //FILES
-#define DATA_AC_PATH                        "DATA/Save/data.acsf"
+#define DATA_AC_PATH                        "Data/Save/data.acsf"
 //FONTS
 //IMAGES
-#define BACKGROUND_MAIN_MENU_IMAGE_PATH     "DATA/Image/Main Menu/background.PNG"
-#define ARROW_MAIN_MENU_IMAGE_PATH          "DATA/Image/Main Menu/arrow.PNG"
+#define BACKGROUND_MAIN_MENU_IMAGE_PATH     "Data/Image/Main Menu/background.png"
+#define ARROW_MAIN_MENU_IMAGE_PATH          "Data/Image/Main Menu/arrow.PNG"
 //VIDEO
 
 #endif // INCLUDED_AC_CONSTANTS_H

@@ -9,7 +9,7 @@ struct LoadingImagesAC
     {
         #ifdef DEBUG_OPTION
         if(debug)
-            textlog->write_text("LOADING IMAGES\n");
+            textlog->write_text("\t LOADING IMAGES\n");
         #endif // DEBUG_OPTION
         unsigned int total_errors=0;
         if(background_main_menu_image)
@@ -17,7 +17,7 @@ struct LoadingImagesAC
             #ifdef DEBUG_OPTION
             if(debug)
             {
-                textlog->write_text("\t ERROR LOADING BACKGROUND MAIN MENU IMAGE - ");
+                textlog->write_text("\t \t ERROR LOADING BACKGROUND MAIN MENU IMAGE - ");
                 textlog->write_text(BACKGROUND_MAIN_MENU_IMAGE_PATH);
                 textlog->write_endl();
             }
@@ -29,7 +29,7 @@ struct LoadingImagesAC
             #ifdef DEBUG_OPTION
             if(debug)
             {
-                textlog->write_text("\t ERROR LOADING ARROW MAIN MENU IMAGE - ");
+                textlog->write_text("\t \t ERROR LOADING ARROW MAIN MENU IMAGE - ");
                 textlog->write_text(ARROW_MAIN_MENU_IMAGE_PATH);
                 textlog->write_endl();
             }
@@ -38,7 +38,7 @@ struct LoadingImagesAC
         }
         #ifdef DEBUG_OPTION
         if(debug)
-            textlog->write_text("\n \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
+            textlog->write_text("\n \t \t TOTAL ERRORS -> "+LL::to_string(total_errors)+"\n");
         #endif // DEBUG_OPTION
         return total_errors;
     }
