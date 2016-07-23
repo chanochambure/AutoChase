@@ -1,5 +1,5 @@
-#ifndef AC_MAIN_MENU_H_INCLUDED
-#define AC_MAIN_MENU_H_INCLUDED
+#ifndef INCLUDED_AC_MAIN_MENU_H
+#define INCLUDED_AC_MAIN_MENU_H
 
 int ac_main_menu_option=AC_MAIN_MENU_PLAY_GAME;
 
@@ -16,8 +16,8 @@ class ACMainMenu
         {
             _V_background.set_path(BACKGROUND_MAIN_MENU_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.background_main_menu_image=!_V_background.load();
-            _V_arrow.set_path(ARROW_MAIN_MENU_IMAGE_PATH);
-            errors.auto_chase_errors.loading_images_ac.arrow_main_menu_image=!_V_arrow.load();
+            _V_arrow.set_path(ARROW_MENU_IMAGE_PATH);
+            errors.auto_chase_errors.loading_images_ac.arrow_menu_image=!_V_arrow.load();
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
                         AC_MAIN_MENU_OPTIONS_POS_Y-(comic_long->get_size()/2)+
                              (ac_main_menu_option*comic_long->get_size()));
@@ -46,7 +46,7 @@ class ACMainMenu
         bool load_status()
         {
             return !(errors.auto_chase_errors.loading_images_ac.background_main_menu_image) or
-                    !(errors.auto_chase_errors.loading_images_ac.arrow_main_menu_image);
+                    !(errors.auto_chase_errors.loading_images_ac.arrow_menu_image);
         }
         void move_selection_up_down(int num_of_moves)
         {
@@ -80,7 +80,7 @@ class ACMainMenu
             LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
                                 BACKGROUND_MAIN_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
-                                ARROW_MAIN_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+                                ARROW_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }
 };
@@ -122,4 +122,4 @@ void start_ac_main_menu()
     }
 }
 
-#endif // AC_MAIN_MENU_H_INCLUDED
+#endif // INCLUDED_AC_MAIN_MENU_H

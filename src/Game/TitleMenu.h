@@ -1,5 +1,5 @@
-#ifndef GAME_TITLE_MENU_H_INCLUDED
-#define GAME_TITLE_MENU_H_INCLUDED
+#ifndef INCLUDED_GAME_TITLE_MENU_H
+#define INCLUDED_GAME_TITLE_MENU_H
 
 #ifdef GAME_DEMO
 #include "Demo.h"
@@ -101,4 +101,4 @@ bool start_title_menu()
     return false;
 }
 
-#endif // GAME_TITLE_MENU_H_INCLUDED
+#endif // INCLUDED_GAME_TITLE_MENU_H

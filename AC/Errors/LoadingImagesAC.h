@@ -4,7 +4,9 @@
 struct LoadingImagesAC
 {
     bool background_main_menu_image=false;
-    bool arrow_main_menu_image=false;
+    bool background_configuration_menu_image=false;
+    bool arrow_menu_image=false;
+    bool demo_car_image=false;
     unsigned int check(bool debug=false)
     {
         #ifdef DEBUG_OPTION
@@ -24,14 +26,36 @@ struct LoadingImagesAC
             #endif // DEBUG_OPTION
             ++total_errors;
         }
-        if(arrow_main_menu_image)
+        if(background_configuration_menu_image)
         {
             #ifdef DEBUG_OPTION
             if(debug)
             {
-                textlog->write_text("\t \t ERROR LOADING ARROW MAIN MENU IMAGE - ");
-                textlog->write_text(ARROW_MAIN_MENU_IMAGE_PATH);
+                textlog->write_text("\t \t ERROR LOADING BACKGROUND CONFIGURATION MENU IMAGE - ");
+                textlog->write_text(BACKGROUND_CONFIGRATION_MENU_IMAGE_PATH);
                 textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(arrow_menu_image)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING ARROW MENU IMAGE - ");
+                textlog->write_text(ARROW_MENU_IMAGE_PATH);
+                textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(demo_car_image)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING DEMO CAR IMAGE \n");
             }
             #endif // DEBUG_OPTION
             ++total_errors;

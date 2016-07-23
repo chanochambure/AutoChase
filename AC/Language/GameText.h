@@ -9,11 +9,24 @@ struct ACMainMenuText
     string controls;
 };
 
+struct ACConfigurationMenuText
+{
+    string title;
+    string car_type;
+    string car_color;
+    string difficulty;
+    string controls;
+    string difficulties[TOTAL_DIFFICULTIES];
+    string types[CAR_TYPE_TOTAL_OPTIONS];
+    string colors[CAR_COLOR_TOTAL_OPTIONS];
+};
+
 struct AutoChaseText
 {
     //COMMON
     //MENUS
     ACMainMenuText main_menu;
+    ACConfigurationMenuText configuration_menu;
 };
 
 #endif // INCLUDED_AC_GAME_TEXT_H

@@ -1,5 +1,5 @@
-#ifndef GAME_OPENING_H_INCLUDED
-#define GAME_OPENING_H_INCLUDED
+#ifndef INCLUDED_GAME_OPENING_H
+#define INCLUDED_GAME_OPENING_H
 
 class Opening
 {
@@ -71,4 +71,4 @@ void start_Opening()
     }
 }
 
-#endif // GAME_OPENING_H_INCLUDED
+#endif // INCLUDED_GAME_OPENING_H

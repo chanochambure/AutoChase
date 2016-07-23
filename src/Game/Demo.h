@@ -1,5 +1,5 @@
-#ifndef GAME_DEMO_H_INCLUDED
-#define GAME_DEMO_H_INCLUDED
+#ifndef INCLUDED_GAME_DEMO_H
+#define INCLUDED_GAME_DEMO_H
 
 class Demo
 {
@@ -78,4 +78,4 @@ void start_Demo()
     }
 }
 
-#endif // GAME_DEMO_H_INCLUDED
+#endif // INCLUDED_GAME_DEMO_H

@@ -92,5 +92,6 @@ const int SCREEN_WINDOWED_OPTION=ALLEGRO_WINDOWED;
 #define FONT_SIZE_SMALL                         16
 #define FONT_SIZE_NORMAL                        24
 #define FONT_SIZE_LONG                          32
+#define FONT_SIZE_BIG                           48
 
 #endif // INCLUDED_CONSTANTS_H

@@ -1,5 +1,5 @@
-#ifndef GAME_MAIN_MENU_H_INCLUDED
-#define GAME_MAIN_MENU_H_INCLUDED
+#ifndef INCLUDED_GAME_MAIN_MENU_H
+#define INCLUDED_GAME_MAIN_MENU_H
 
 #include "InterfaceOptionsMenu.h"
 
@@ -110,4 +110,4 @@ void start_main_menu()
     }
 }
 
-#endif // GAME_MAIN_MENU_H_INCLUDED
+#endif // INCLUDED_GAME_MAIN_MENU_H

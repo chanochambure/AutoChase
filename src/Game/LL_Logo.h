@@ -1,5 +1,5 @@
-#ifndef LL_LOGO_H_INCLUDED
-#define LL_LOGO_H_INCLUDED
+#ifndef INCLUDED_LL_LOGO_H
+#define INCLUDED_LL_LOGO_H
 
 class LL_Logo
 {
@@ -71,4 +71,4 @@ void start_LL_Logo()
     }
 }
 
-#endif // LL_LOGO_H_INCLUDED
+#endif // INCLUDED_LL_LOGO_H

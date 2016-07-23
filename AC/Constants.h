@@ -22,10 +22,12 @@
 #define DIFFICULTY_NORMAL       1
 #define DIFFICULTY_HARD         2
 //CAR TYPES
+#define CAR_TYPE_TOTAL_OPTIONS  3
 #define CAR_TYPE_AUTO           0
 #define CAR_TYPE_AC_CAR         1
 #define CAR_TYPE_FORMULA        2
 //CAR COLORS
+#define CAR_COLOR_TOTAL_OPTIONS 6
 #define CAR_COLOR_BLACK         0
 #define CAR_COLOR_BLUE          1
 #define CAR_COLOR_GREEN         2
@@ -43,14 +45,36 @@
 #define AC_MAIN_MENU_OPTIONS_POS_X  740
 #define AC_MAIN_MENU_OPTIONS_POS_Y  150
 
+//CONFIGURATION MENU
+#define AC_CONFIGURATION_MENU_TOTAL_OPTIONS     3
+#define AC_CONFIGURATION_MENU_CAR_TYPE          0
+#define AC_CONFIGURATION_MENU_CAR_COLOR         1
+#define AC_CONFIGURATION_MENU_DIFFICULTY        2
+
+#define AC_CONFIGURATION_MENU_OPTIONS_POS_X     740
+#define AC_CONFIGURATION_MENU_OPTIONS_POS_Y     180
+
+#define AC_CONFIGURATION_MENU_DIFFICULTY_POS_X  650
+#define AC_CONFIGURATION_MENU_DIFFICULTY_POS_Y  360
+
+#define AC_CONFIGURATION_MENU_CAR_POS_X         250
+#define AC_CONFIGURATION_MENU_CAR_POS_Y         400
+
+#define AC_CONFIGURATION_MENU_DEMO_CAR_POS_X    20
+#define AC_CONFIGURATION_MENU_DEMO_CAR_POS_Y    200
+
 //PATHS
 //DIRECTORIES
 //FILES
 #define DATA_AC_PATH                        "Data/Save/data.acsf"
 //FONTS
 //IMAGES
-#define BACKGROUND_MAIN_MENU_IMAGE_PATH     "Data/Image/Main Menu/background.png"
-#define ARROW_MAIN_MENU_IMAGE_PATH          "Data/Image/Main Menu/arrow.PNG"
+#define BACKGROUND_MAIN_MENU_IMAGE_PATH             "Data/Image/Main Menu/background.png"
+#define ARROW_MENU_IMAGE_PATH                       "Data/Image/arrow.png"
+#define BACKGROUND_CONFIGRATION_MENU_IMAGE_PATH     "Data/Image/Configuration/background.png"
+#define CAR_TYPE_AUTO_IMAGE_PATH                    "Data/Image/Configuration/Cars/Auto.PNG"
+#define CAR_TYPE_AC_CAR_IMAGE_PATH                  "Data/Image/Configuration/Cars/AC_Car.PNG"
+#define CAR_TYPE_FORMULA_IMAGE_PATH                 "Data/Image/Configuration/Cars/Formula.PNG"
 //VIDEO
 
 #endif // INCLUDED_AC_CONSTANTS_H

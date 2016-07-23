@@ -1,13 +1,14 @@
 #ifndef INCLUDED_AC_MAIN_H
 #define INCLUDED_AC_MAIN_H
 
-#include "MainMenu.h"
-
 //Main Data
 int ac_difficulty=DIFFICULTY_EASY;
 int ac_car_type=CAR_TYPE_AUTO;
 int ac_car_color=CAR_COLOR_BLACK;
 int ac_records[TOTAL_DIFFICULTIES]={0,0,0};
+
+#include "MainMenu.h"
+#include "ConfigurationMenu.h"
 
 void load_data()
 {
@@ -22,14 +23,13 @@ void load_data()
             if(!(errors.auto_chase_errors.loading_data_ac.missing_data_configuration=
                  (splitter.size()!=DATA_AC_TOTAL_CONFIGURATION)))
             {
-                ac_difficulty=LL::to_int(splitter[0]);
-                ac_car_type=LL::to_int(splitter[1]);
-                ac_car_color=LL::to_int(splitter[2]);
+                ac_difficulty=LL::mod(LL::to_int(splitter[0]),TOTAL_DIFFICULTIES);
+                ac_car_type=LL::mod(LL::to_int(splitter[1]),CAR_TYPE_TOTAL_OPTIONS);
+                ac_car_color=LL::mod(LL::to_int(splitter[2]),CAR_COLOR_TOTAL_OPTIONS);
             }
             splitter.set_string(encryptor_files->decrypt(file[1]));
             splitter.split('$');
-            if(!(errors.auto_chase_errors.loading_data_ac.missing_data_records=
-                 (splitter.size()!=TOTAL_DIFFICULTIES)))
+            if(!(errors.auto_chase_errors.loading_data_ac.missing_data_records=(splitter.size()!=TOTAL_DIFFICULTIES)))
             {
                 for(int i=0;i<TOTAL_DIFFICULTIES;++i)
                     ac_records[i]=LL::to_int(splitter[i]);
@@ -61,8 +61,18 @@ void autochase_control()
     while(game_running and ac_main_menu_option!=AC_MAIN_MENU_EXIT_GAME)
     {
         start_ac_main_menu();
-        switch(main_menu_option)
+        switch(ac_main_menu_option)
         {
+            case AC_MAIN_MENU_PLAY_GAME:
+            {
+                break;
+            }
+            case AC_MAIN_MENU_CONFIGURATION:
+            {
+                if(start_configuration_menu())
+                    save_data();
+                break;
+            }
         }
     }
 }
