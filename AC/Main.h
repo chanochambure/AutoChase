@@ -57,6 +57,19 @@ void autochase_control()
     load_data();
     if(errors.auto_chase_errors.loading_data_ac.check())
         save_data();
+    LL_AL5::Audio theme_audio;
+    theme_audio.set_path(AC_THEME_AUDIO_PATH);
+    if((errors.auto_chase_errors.loading_audios_ac.ac_theme_audio=!theme_audio.load()))
+    {
+        LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    AC_THEME_AUDIO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+        game_running=false;
+    }
+    else
+    {
+        theme_audio.set_playmode(ALLEGRO_PLAYMODE_LOOP);
+        theme_audio.play();
+    }
     ac_main_menu_option=AC_MAIN_MENU_PLAY_GAME;
     while(game_running and ac_main_menu_option!=AC_MAIN_MENU_EXIT_GAME)
     {
@@ -65,6 +78,8 @@ void autochase_control()
         {
             case AC_MAIN_MENU_PLAY_GAME:
             {
+                theme_audio.stop();
+                theme_audio.play();
                 break;
             }
             case AC_MAIN_MENU_CONFIGURATION:
