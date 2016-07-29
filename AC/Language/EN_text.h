@@ -30,6 +30,20 @@ void load_EN_AC_text()
     game.autochase_text.configuration_menu.colors[CAR_COLOR_RED]="Red";
     game.autochase_text.configuration_menu.colors[CAR_COLOR_WHITE]="White";
     game.autochase_text.configuration_menu.colors[CAR_COLOR_YELLOW]="Yellow";
+    game.autochase_text.configuration_menu.controls_options[AC_ARROWS_CONTROLS_OPTION]="Arrows Keys";
+    game.autochase_text.configuration_menu.controls_options[AC_WASD_CONTROLS_OPTION]="WASD Keys";
+    //Are You Ready
+    game.autochase_text.are_you_ready.ready="Ready?";
+    game.autochase_text.are_you_ready.go="Go!";
+    //Game
+    game.autochase_text.error_text.controls_option="";
+    game.autochase_text.game.score_label="Score";
+    game.autochase_text.game.record_label="Record";
+    //Pause
+    game.autochase_text.pause.pause_label="Pause";
+    game.autochase_text.pause.continue_option="Enter - Continue Game";
+    game.autochase_text.pause.new_game_option="R - New Game";
+    game.autochase_text.pause.exit_game_option="Esc - Exit Game";
 }
 
 #endif // INCLUDED_EN_AC_GAME_TEXT_H

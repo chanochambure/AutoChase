@@ -7,6 +7,7 @@ struct LoadingImagesAC
     bool background_configuration_menu_image=false;
     bool arrow_menu_image=false;
     bool demo_car_image=false;
+    bool ac_hud_image=false;
     unsigned int check(bool debug=false)
     {
         #ifdef DEBUG_OPTION
@@ -54,8 +55,18 @@ struct LoadingImagesAC
         {
             #ifdef DEBUG_OPTION
             if(debug)
-            {
                 textlog->write_text("\t \t ERROR LOADING DEMO CAR IMAGE \n");
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(ac_hud_image)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING AC HUD GAME IMAGE - ");
+                textlog->write_text(AC_HUD_IMAGE_PATH);
+                textlog->write_endl();
             }
             #endif // DEBUG_OPTION
             ++total_errors;

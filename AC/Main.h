@@ -6,8 +6,10 @@ int ac_difficulty=DIFFICULTY_EASY;
 int ac_car_type=CAR_TYPE_AUTO;
 int ac_car_color=CAR_COLOR_BLACK;
 int ac_records[TOTAL_DIFFICULTIES]={0,0,0};
+int ac_controls=AC_ARROWS_CONTROLS_OPTION;
 
 #include "MainMenu.h"
+#include "Game.h"
 #include "ConfigurationMenu.h"
 
 void load_data()
@@ -26,6 +28,7 @@ void load_data()
                 ac_difficulty=LL::mod(LL::to_int(splitter[0]),TOTAL_DIFFICULTIES);
                 ac_car_type=LL::mod(LL::to_int(splitter[1]),CAR_TYPE_TOTAL_OPTIONS);
                 ac_car_color=LL::mod(LL::to_int(splitter[2]),CAR_COLOR_TOTAL_OPTIONS);
+                ac_controls=LL::mod(LL::to_int(splitter[3]),TOTAL_CONTROLS_OPTIONS);
             }
             splitter.set_string(encryptor_files->decrypt(file[1]));
             splitter.split('$');
@@ -45,7 +48,8 @@ void save_data()
     file.insert_line(0,DATA_AC_TOTAL_DATA);
     file[0]=encryptor_files->encrypt(LL::to_string(ac_difficulty)+'$'+
                                      LL::to_string(ac_car_type)+'$'+
-                                     LL::to_string(ac_car_color)+'$');
+                                     LL::to_string(ac_car_color)+'$'+
+                                     LL::to_string(ac_controls)+'$');
     for(int i=0;i<TOTAL_DIFFICULTIES;++i)
         file[1]+=(LL::to_string(ac_records[i])+'$');
     file[1]=encryptor_files->encrypt(file[1]);
@@ -79,6 +83,7 @@ void autochase_control()
             case AC_MAIN_MENU_PLAY_GAME:
             {
                 theme_audio.stop();
+                start_ac_game();
                 theme_audio.play();
                 break;
             }

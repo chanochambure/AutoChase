@@ -19,14 +19,45 @@ struct ACConfigurationMenuText
     string difficulties[TOTAL_DIFFICULTIES];
     string types[CAR_TYPE_TOTAL_OPTIONS];
     string colors[CAR_COLOR_TOTAL_OPTIONS];
+    string controls_options[TOTAL_CONTROLS_OPTIONS];
+};
+
+struct ACAreYouReadyText
+{
+    string ready;
+    string go;
+};
+
+struct ACGameText
+{
+    string score_label;
+    string record_label;
+};
+
+struct ACPauseText
+{
+    string pause_label;
+    string continue_option;
+    string exit_game_option;
+    string new_game_option;
+};
+
+struct ACErrorText
+{
+    string controls_option;
 };
 
 struct AutoChaseText
 {
-    //COMMON
+    //ERRORS
+    ACErrorText error_text;
     //MENUS
     ACMainMenuText main_menu;
     ACConfigurationMenuText configuration_menu;
+    //GAMES
+    ACAreYouReadyText are_you_ready;
+    ACPauseText pause;
+    ACGameText game;
 };
 
 #endif // INCLUDED_AC_GAME_TEXT_H

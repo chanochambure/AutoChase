@@ -18,12 +18,14 @@ class ACConfigurationMenu
         int _V_last_car_type;
         int _V_last_car_color;
         int _V_last_difficulty;
+        int _V_last_controls_option;
     public:
         ACConfigurationMenu()
         {
             _V_last_car_type=ac_car_type;
             _V_last_car_color=ac_car_color;
             _V_last_difficulty=ac_difficulty;
+            _V_last_controls_option=ac_controls;
             _V_background.set_path(BACKGROUND_CONFIGRATION_MENU_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.background_configuration_menu_image=!_V_background.load();
             _V_arrow.set_path(ARROW_MENU_IMAGE_PATH);
@@ -46,6 +48,8 @@ class ACConfigurationMenu
             }
             _V_options[AC_CONFIGURATION_MENU_CAR_TYPE]=game.autochase_text.configuration_menu.car_type;
             _V_options[AC_CONFIGURATION_MENU_CAR_COLOR]=game.autochase_text.configuration_menu.car_color;
+            _V_options[AC_CONFIGURATION_MENU_CONTROLS_OPTION]=
+                                        game.autochase_text.configuration_menu.controls_options[ac_controls];
             _V_options[AC_CONFIGURATION_MENU_DIFFICULTY]=game.autochase_text.configuration_menu.difficulty;
             _V_footnote.set_font(comic_long);
             _V_footnote=(game.organization+" - "+game.release_year);
@@ -89,6 +93,13 @@ class ACConfigurationMenu
                 {
                     ac_car_color=LL::mod(ac_car_color+num_of_moves,CAR_COLOR_TOTAL_OPTIONS);
                     load_changes();
+                    break;
+                }
+                case AC_CONFIGURATION_MENU_CONTROLS_OPTION:
+                {
+                    ac_controls=LL::mod(ac_controls+num_of_moves,TOTAL_CONTROLS_OPTIONS);
+                    _V_options[AC_CONFIGURATION_MENU_CONTROLS_OPTION]=
+                                        game.autochase_text.configuration_menu.controls_options[ac_controls];
                     break;
                 }
                 case AC_CONFIGURATION_MENU_DIFFICULTY:
@@ -199,7 +210,8 @@ class ACConfigurationMenu
         {
             return (_V_last_car_type!=ac_car_type) or
                     (_V_last_car_color!=ac_car_color) or
-                    (_V_last_difficulty!=ac_difficulty);
+                    (_V_last_difficulty!=ac_difficulty) or
+                    (_V_last_controls_option!=ac_controls);
         }
         void draw()
         {
