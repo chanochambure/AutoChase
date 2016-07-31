@@ -4,6 +4,7 @@
 struct GameErrorsAC
 {
     bool create_key_control_status=false;
+    bool create_player_status=false;
     unsigned int check(bool debug=false)
     {
         #ifdef DEBUG_OPTION
@@ -16,6 +17,14 @@ struct GameErrorsAC
             #ifdef DEBUG_OPTION
             if(debug)
                 textlog->write_text("\t \t ERROR CREATING GAME KEY CONTROL\n");
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(create_player_status)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+                textlog->write_text("\t \t ERROR CREATING PLAYER\n");
             #endif // DEBUG_OPTION
             ++total_errors;
         }

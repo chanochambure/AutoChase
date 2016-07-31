@@ -36,7 +36,10 @@ void load_PR_AC_text()
     game.autochase_text.are_you_ready.ready="Pronto?";
     game.autochase_text.are_you_ready.go="V\u00E1!";
     //Game
-    game.autochase_text.error_text.controls_option="";
+    game.autochase_text.error_text.controls_option="Houve um erro interno ao configurar os controles";
+    game.autochase_text.error_text.create_player="Houve um erro interno criando o jogador, verificar a"\
+                                                " exist\u00EAncia de imagens no seguinte diret\u00F3rio: "\
+                                                CARS_SPRITE_PATH;
     game.autochase_text.game.score_label="Ponta\u00E7\u00E3o";
     game.autochase_text.game.record_label="Recorde";
     //Pause

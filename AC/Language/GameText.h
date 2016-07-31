@@ -45,6 +45,7 @@ struct ACPauseText
 struct ACErrorText
 {
     string controls_option;
+    string create_player;
 };
 
 struct AutoChaseText

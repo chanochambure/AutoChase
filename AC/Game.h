@@ -4,6 +4,8 @@
 #include "AreYouReady.h"
 #include "Pause.h"
 
+#include "Objects/Player.h"
+
 bool create_key_control(LL_AL5::KeyControl* key_control)
 {
     switch(ac_controls)
@@ -49,6 +51,11 @@ class ACGame
         bool _V_playing=true;
         bool _V_in_game=true;
         bool _V_finish_game=false;
+        ACPlayer _V_player;
+        bool _V_up_status=false;
+        bool _V_down_status=false;
+        bool _V_left_status=false;
+        bool _V_right_status=false;
     public:
         ACGame()
         {
@@ -74,10 +81,14 @@ class ACGame
             _V_record_text.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_record_text.set_font(comic_big);
             _V_record_text.set_pos(750,460);
+            errors.auto_chase_errors.game_errors_ac.create_player_status=!_V_player.create_sprite();
+            _V_player.set_limits(PLAYER_LIMIT_POS_X_1,PLAYER_LIMIT_POS_X_2,
+                                 PLAYER_LIMIT_POS_Y_1,PLAYER_LIMIT_POS_Y_2);
         }
         bool load_status()
         {
-            return !(errors.auto_chase_errors.loading_images_ac.ac_hud_image);
+            return !(errors.auto_chase_errors.loading_images_ac.ac_hud_image) or
+                    !(errors.auto_chase_errors.game_errors_ac.create_player_status);
         }
         bool status()
         {
@@ -92,6 +103,8 @@ class ACGame
             _V_record_text=LL::to_string(ac_records[ac_difficulty]);
             _V_score_text.set_color(WHITE);
             _V_score_text=LL::to_string(_V_score);
+            _V_player.set_selection(RIGHT_PLAYER_SPRITE);
+            _V_player.set_pos(PLAYER_INI_POS_X,PLAYER_INI_POS_Y);
         }
         void draw()
         {
@@ -101,12 +114,15 @@ class ACGame
             screen->draw(&_V_record_label);
             screen->draw(&_V_score_text);
             screen->draw(&_V_record_text);
+            screen->draw(&_V_player);
             screen->refresh();
         }
         void error()
         {
             LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
                                 AC_HUD_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
+                                game.autochase_text.error_text.create_player,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }
         void exit()
@@ -125,6 +141,34 @@ class ACGame
         bool finish_game()
         {
             return _V_finish_game;
+        }
+        void set_up(bool up_status)
+        {
+            _V_up_status=up_status;
+        }
+        void set_down(bool down_status)
+        {
+            _V_down_status=down_status;
+        }
+        void set_left(bool left_status)
+        {
+            _V_left_status=left_status;
+        }
+        void set_right(bool right_status)
+        {
+            _V_right_status=right_status;
+        }
+        void move_player()
+        {
+            if(_V_right_status)
+                _V_player.set_selection(RIGHT_PLAYER_SPRITE);
+            else if(_V_left_status)
+                _V_player.set_selection(LEFT_PLAYER_SPRITE);
+            else if(_V_down_status)
+                _V_player.set_selection(DOWN_PLAYER_SPRITE);
+            else if(_V_up_status)
+                _V_player.set_selection(UP_PLAYER_SPRITE);
+            _V_player.move(_V_right_status-_V_left_status,_V_down_status-_V_up_status);
         }
 };
 
@@ -150,6 +194,10 @@ void start_ac_game()
                     input->get_event();
                     if(input->get_display_status())
                         game_running=false;
+                    ac_game.set_up((*input)[GAME_UP]);
+                    ac_game.set_down((*input)[GAME_DOWN]);
+                    ac_game.set_left((*input)[GAME_LEFT]);
+                    ac_game.set_right((*input)[GAME_RIGHT]);
                     if((*input)[GAME_PAUSE])
                     {
                         switch(start_ac_pause())
@@ -167,7 +215,10 @@ void start_ac_game()
                         }
                     }
                     if(input->get_timer_event())
+                    {
+                        ac_game.move_player();
                         ac_game.draw();
+                    }
                 }
                 if(ac_game.finish_game())
                 {

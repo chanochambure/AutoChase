@@ -36,7 +36,10 @@ void load_ES_AC_text()
     game.autochase_text.are_you_ready.ready="\u00BFListos?";
     game.autochase_text.are_you_ready.go="\u00A1Fuera!";
     //Game
-    game.autochase_text.error_text.controls_option="Hubo un error intersno al configurar el teclado";
+    game.autochase_text.error_text.controls_option="Hubo un error interno al configurar los controles";
+    game.autochase_text.error_text.create_player="Hubo un error interno al crear al jugador, verificar la existencia"\
+                                                " de im\u00E1genes en el siguiente directorio: "\
+                                                CARS_SPRITE_PATH;
     game.autochase_text.game.score_label="Puntaje";
     game.autochase_text.game.record_label="R\u00E9cord";
     //Pause

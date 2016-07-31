@@ -79,7 +79,30 @@
 #define AC_CONFIGURATION_MENU_DEMO_CAR_POS_X    20
 #define AC_CONFIGURATION_MENU_DEMO_CAR_POS_Y    200
 
+//PLAYER
+#define TOTAL_PLAYER_SPRITES                        4
+#define DOWN_PLAYER_SPRITE                          0
+#define UP_PLAYER_SPRITE                            1
+#define RIGHT_PLAYER_SPRITE                         2
+#define LEFT_PLAYER_SPRITE                          3
+
+#define PLAYER_MAX_SPEED                            10
+
+#define PLAYER_INI_POS_X                            30
+#define PLAYER_INI_POS_Y                            30
+
+#define PLAYER_LIMIT_POS_X_1                        10
+#define PLAYER_LIMIT_POS_X_2                        691
+#define PLAYER_LIMIT_POS_Y_1                        10
+#define PLAYER_LIMIT_POS_Y_2                        591
+
 //PATHS
+#define CARS_SPRITE_PATH                            "Data/Image/Game/Cars/"
+#define AUTO_SPRITE_PATH                            "Data/Image/Game/Cars/Auto/"
+#define AC_CAR_SPRITE_PATH                          "Data/Image/Game/Cars/AutoChaseCar/"
+#define FORMULA_SPRITE_PATH                         "Data/Image/Game/Cars/Formula/"
+//FORMATS
+#define BMP_FORMAT                                  ".PNG"
 //FILES
 #define DATA_AC_PATH                                "Data/Save/data.acsf"
 //IMAGES

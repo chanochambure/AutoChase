@@ -36,7 +36,10 @@ void load_EN_AC_text()
     game.autochase_text.are_you_ready.ready="Ready?";
     game.autochase_text.are_you_ready.go="Go!";
     //Game
-    game.autochase_text.error_text.controls_option="";
+    game.autochase_text.error_text.controls_option="There was an internal error when setting the controls";
+    game.autochase_text.error_text.create_player="There was an internal error creating the player, verify the"\
+                                                " existence of images in the following directory: "\
+                                                CARS_SPRITE_PATH;
     game.autochase_text.game.score_label="Score";
     game.autochase_text.game.record_label="Record";
     //Pause
