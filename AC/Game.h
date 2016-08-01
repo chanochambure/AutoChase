@@ -5,6 +5,7 @@
 #include "Pause.h"
 
 #include "Objects/Player.h"
+#include "Objects/Score.h"
 
 bool create_key_control(LL_AL5::KeyControl* key_control)
 {
@@ -47,11 +48,12 @@ class ACGame
         LL_AL5::Text _V_score_text;
         LL_AL5::Text _V_record_label;
         LL_AL5::Text _V_record_text;
-        unsigned int _V_score=0;
+        unsigned int _V_actual_score=0;
         bool _V_playing=true;
         bool _V_in_game=true;
         bool _V_finish_game=false;
         ACPlayer _V_player;
+        ACScore _V_score;
         bool _V_up_status=false;
         bool _V_down_status=false;
         bool _V_left_status=false;
@@ -59,6 +61,7 @@ class ACGame
     public:
         ACGame()
         {
+            LL::random_generate_new_seed();
             _V_hud.set_path(AC_HUD_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.ac_hud_image=!_V_hud.load();
             if(ac_difficulty!=DIFFICULTY_HARD)
@@ -84,11 +87,15 @@ class ACGame
             errors.auto_chase_errors.game_errors_ac.create_player_status=!_V_player.create_sprite();
             _V_player.set_limits(PLAYER_LIMIT_POS_X_1,PLAYER_LIMIT_POS_X_2,
                                  PLAYER_LIMIT_POS_Y_1,PLAYER_LIMIT_POS_Y_2);
+            errors.auto_chase_errors.loading_images_ac.ac_score_image=!_V_score.create_score();
+            _V_score.set_limits(PLAYER_LIMIT_POS_X_1,PLAYER_LIMIT_POS_X_2,
+                                PLAYER_LIMIT_POS_Y_1,PLAYER_LIMIT_POS_Y_2);
         }
         bool load_status()
         {
             return !(errors.auto_chase_errors.loading_images_ac.ac_hud_image) or
-                    !(errors.auto_chase_errors.game_errors_ac.create_player_status);
+                    !(errors.auto_chase_errors.game_errors_ac.create_player_status) or
+                    !(errors.auto_chase_errors.loading_images_ac.ac_score_image);
         }
         bool status()
         {
@@ -98,13 +105,14 @@ class ACGame
         {
             _V_in_game=true;
             _V_finish_game=false;
-            _V_score=0;
+            _V_actual_score=0;
             _V_record_text.set_color(WHITE);
             _V_record_text=LL::to_string(ac_records[ac_difficulty]);
             _V_score_text.set_color(WHITE);
-            _V_score_text=LL::to_string(_V_score);
+            _V_score_text=LL::to_string(_V_actual_score);
             _V_player.set_selection(RIGHT_PLAYER_SPRITE);
             _V_player.set_pos(PLAYER_INI_POS_X,PLAYER_INI_POS_Y);
+            _V_score.generate_new_pos();
         }
         void draw()
         {
@@ -114,6 +122,7 @@ class ACGame
             screen->draw(&_V_record_label);
             screen->draw(&_V_score_text);
             screen->draw(&_V_record_text);
+            screen->draw(&_V_score);
             screen->draw(&_V_player);
             screen->refresh();
         }
@@ -123,6 +132,8 @@ class ACGame
                                 AC_HUD_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
                                 game.autochase_text.error_text.create_player,ALLEGRO_MESSAGEBOX_ERROR);
+            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                AC_SCORE_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }
         void exit()
@@ -158,7 +169,7 @@ class ACGame
         {
             _V_right_status=right_status;
         }
-        void move_player()
+        void move_world()
         {
             if(_V_right_status)
                 _V_player.set_selection(RIGHT_PLAYER_SPRITE);
@@ -216,7 +227,7 @@ void start_ac_game()
                     }
                     if(input->get_timer_event())
                     {
-                        ac_game.move_player();
+                        ac_game.move_world();
                         ac_game.draw();
                     }
                 }

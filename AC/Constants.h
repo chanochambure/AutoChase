@@ -113,6 +113,7 @@
 #define CAR_TYPE_AC_CAR_IMAGE_PATH                  "Data/Image/Configuration/Cars/AC_Car.PNG"
 #define CAR_TYPE_FORMULA_IMAGE_PATH                 "Data/Image/Configuration/Cars/Formula.PNG"
 #define AC_HUD_IMAGE_PATH                           "Data/Image/Game/hud.PNG"
+#define AC_SCORE_IMAGE_PATH                         "Data/Image/Game/Score.PNG"
 //AUDIO
 #define AC_THEME_AUDIO_PATH                         "Data/Sound/Theme.WAV"
 //VIDEO
