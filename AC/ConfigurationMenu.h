@@ -31,41 +31,40 @@ class ACConfigurationMenu
             _V_arrow.set_path(ARROW_MENU_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.arrow_menu_image=!_V_arrow.load();
             _V_arrow.set_pos(AC_CONFIGURATION_MENU_OPTIONS_POS_X,
-                            AC_CONFIGURATION_MENU_OPTIONS_POS_Y-(comic_big->get_size()/3)+
-                             (ac_configuration_menu_option*comic_big->get_size()));
-            _V_title.set_font(comic_big);
+                            AC_CONFIGURATION_MENU_OPTIONS_POS_Y+(ac_configuration_menu_option*comic_long->get_size()));
+            _V_title.set_font(comic_long);
             _V_title=game.autochase_text.configuration_menu.title;
             _V_title.set_color(BLACK);
             _V_title.set_flag(ALLEGRO_ALIGN_LEFT);
             _V_title.set_pos(20,20);
             for(unsigned int i=0;i<AC_CONFIGURATION_MENU_TOTAL_OPTIONS;++i)
             {
-                _V_options[i].set_font(comic_big);
+                _V_options[i].set_font(comic_long);
                 _V_options[i].set_color(BLACK);
                 _V_options[i].set_flag(ALLEGRO_ALIGN_RIGHT);
                 _V_options[i].set_pos(AC_CONFIGURATION_MENU_OPTIONS_POS_X,
-                                      AC_CONFIGURATION_MENU_OPTIONS_POS_Y+(i*comic_big->get_size()));
+                                      AC_CONFIGURATION_MENU_OPTIONS_POS_Y+(i*comic_long->get_size()));
             }
             _V_options[AC_CONFIGURATION_MENU_CAR_TYPE]=game.autochase_text.configuration_menu.car_type;
             _V_options[AC_CONFIGURATION_MENU_CAR_COLOR]=game.autochase_text.configuration_menu.car_color;
             _V_options[AC_CONFIGURATION_MENU_CONTROLS_OPTION]=
                                         game.autochase_text.configuration_menu.controls_options[ac_controls];
             _V_options[AC_CONFIGURATION_MENU_DIFFICULTY]=game.autochase_text.configuration_menu.difficulty;
-            _V_footnote.set_font(comic_long);
+            _V_footnote.set_font(comic_normal);
             _V_footnote=(game.organization+" - "+game.release_year);
             _V_footnote.set_color(BLACK);
             _V_footnote.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_footnote.set_pos(REAL_SIZE_X_GAME/2,REAL_SIZE_Y_GAME-30);
-            _V_controls.set_font(comic_long);
+            _V_controls.set_font(comic_normal);
             _V_controls=game.autochase_text.configuration_menu.controls;
             _V_controls.set_color(BLACK);
             _V_controls.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_controls.set_pos(REAL_SIZE_X_GAME/2,REAL_SIZE_Y_GAME-70);
-            _V_car_text.set_font(comic_long);
+            _V_car_text.set_font(comic_normal);
             _V_car_text.set_color(BLACK);
             _V_car_text.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_car_text.set_pos(AC_CONFIGURATION_MENU_CAR_POS_X,AC_CONFIGURATION_MENU_CAR_POS_Y);
-            _V_difficulty_text.set_font(comic_long);
+            _V_difficulty_text.set_font(comic_normal);
             _V_difficulty_text.set_color(BLACK);
             _V_difficulty_text.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_difficulty_text.set_pos(AC_CONFIGURATION_MENU_DIFFICULTY_POS_X,AC_CONFIGURATION_MENU_DIFFICULTY_POS_Y);
@@ -115,8 +114,7 @@ class ACConfigurationMenu
             ac_configuration_menu_option=LL::mod(ac_configuration_menu_option+num_of_moves,
                                                  AC_CONFIGURATION_MENU_TOTAL_OPTIONS);
             _V_arrow.set_pos(AC_CONFIGURATION_MENU_OPTIONS_POS_X,
-                            AC_CONFIGURATION_MENU_OPTIONS_POS_Y-(comic_big->get_size()/3)+
-                             (ac_configuration_menu_option*comic_big->get_size()));
+                            AC_CONFIGURATION_MENU_OPTIONS_POS_Y+(ac_configuration_menu_option*comic_long->get_size()));
         }
         void left()
         {

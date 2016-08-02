@@ -19,8 +19,7 @@ class ACMainMenu
             _V_arrow.set_path(ARROW_MENU_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.arrow_menu_image=!_V_arrow.load();
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
-                        AC_MAIN_MENU_OPTIONS_POS_Y-(comic_long->get_size()/2)+
-                             (ac_main_menu_option*comic_long->get_size()));
+                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_size()));
             for(unsigned int i=0;i<AC_MAIN_MENU_TOTAL_OPTIONS;++i)
             {
                 _V_options[i].set_font(comic_long);
@@ -32,12 +31,12 @@ class ACMainMenu
             _V_options[AC_MAIN_MENU_PLAY_GAME]=game.autochase_text.main_menu.play_game;
             _V_options[AC_MAIN_MENU_CONFIGURATION]=game.autochase_text.main_menu.configuration;
             _V_options[AC_MAIN_MENU_EXIT_GAME]=game.autochase_text.main_menu.exit;
-            _V_footnote.set_font(comic_long);
+            _V_footnote.set_font(comic_normal);
             _V_footnote=(game.organization+" - "+game.release_year);
             _V_footnote.set_color(BLACK);
             _V_footnote.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_footnote.set_pos(REAL_SIZE_X_GAME/2,REAL_SIZE_Y_GAME-30);
-            _V_controls.set_font(comic_long);
+            _V_controls.set_font(comic_normal);
             _V_controls=game.autochase_text.main_menu.controls;
             _V_controls.set_color(BLACK);
             _V_controls.set_flag(ALLEGRO_ALIGN_CENTER);
@@ -52,8 +51,7 @@ class ACMainMenu
         {
             ac_main_menu_option=LL::mod(ac_main_menu_option+num_of_moves,AC_MAIN_MENU_TOTAL_OPTIONS);
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
-                        AC_MAIN_MENU_OPTIONS_POS_Y-(comic_long->get_size()/2)+
-                             (ac_main_menu_option*comic_long->get_size()));
+                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_size()));
 
         }
         void up()

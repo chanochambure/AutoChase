@@ -73,19 +73,19 @@ class ACGame
                 _V_background_color=BLACK;
             _V_score_label.set_color(WHITE);
             _V_score_label.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_score_label.set_font(comic_normal);
+            _V_score_label.set_font(comic_small);
             _V_score_label.set_pos(750,0);
             _V_score_label=game.autochase_text.game.score_label;
             _V_record_label.set_color(WHITE);
             _V_record_label.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_record_label.set_font(comic_long);
+            _V_record_label.set_font(comic_normal);
             _V_record_label.set_pos(750,425);
             _V_record_label=game.autochase_text.game.record_label;
             _V_score_text.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_score_text.set_font(comic_big);
+            _V_score_text.set_font(comic_long);
             _V_score_text.set_pos(750,60);
             _V_record_text.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_record_text.set_font(comic_big);
+            _V_record_text.set_font(comic_long);
             _V_record_text.set_pos(750,460);
             errors.auto_chase_errors.game_errors_ac.create_player_status=!_V_player.create_sprite();
             _V_player.set_limits(PLAYER_LIMIT_POS_X_1,PLAYER_LIMIT_POS_X_2,

@@ -21,7 +21,7 @@ class ACPause
             _V_option_block.set_pos(350,500);
             _V_option_block.set_size_x(200);
             _V_option_block.set_size_y(70);
-            _V_pause_label.set_font(comic_big);
+            _V_pause_label.set_font(comic_long);
             _V_pause_label.set_color(BLACK);
             _V_pause_label.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_pause_label.set_pos(140,500);

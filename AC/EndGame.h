@@ -21,7 +21,7 @@ class ACEndGame
             _V_option_block.set_pos(350,500);
             _V_option_block.set_size_x(200);
             _V_option_block.set_size_y(45);
-            _V_end_game_label.set_font(comic_big);
+            _V_end_game_label.set_font(comic_long);
             _V_end_game_label.set_color(BLACK);
             _V_end_game_label.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_end_game_label.set_pos(140,500);

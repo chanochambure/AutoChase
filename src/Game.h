@@ -123,8 +123,10 @@ void apply_language_options()
 void game_start()
 {
     screen->set_real_size(REAL_SIZE_X_GAME,REAL_SIZE_Y_GAME);
+    refresh_fonts();
     autochase_control();
     screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
+    refresh_fonts();
 }
 
 //CONFIGURATION

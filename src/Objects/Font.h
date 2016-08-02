@@ -34,6 +34,14 @@ void init_fonts()
         game_running=false;
 }
 
+void refresh_fonts()
+{
+    errors.initializing_fonts.loading_comic_font=!comic_small->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_normal->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_long->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_big->load_ttf_font();
+}
+
 void destroy_fonts()
 {
     if(comic_small)

@@ -17,7 +17,7 @@ class ACAreYouReady
                 _V_background=BLACK;
             _V_message.set_color(!_V_background);
             _V_message.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_message.set_font(comic_big);
+            _V_message.set_font(comic_long);
             _V_message.set_pos(REAL_SIZE_X_GAME/2,REAL_SIZE_Y_GAME/2);
             _V_message=game.autochase_text.are_you_ready.ready;
             _V_chrono.play();
