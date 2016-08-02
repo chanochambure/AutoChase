@@ -40,6 +40,9 @@ void load_PR_AC_text()
     game.autochase_text.error_text.create_player="Houve um erro interno criando o jogador, verificar a"\
                                                 " exist\u00EAncia de imagens no seguinte diret\u00F3rio: "\
                                                 CARS_SPRITE_PATH;
+    game.autochase_text.error_text.create_enemies="Houve um erro interno criando inimigos, verificar a"\
+                                                " exist\u00EAncia de imagens no seguinte diret\u00F3rio: "\
+                                                ENEMIES_PATH;
     game.autochase_text.game.score_label="Ponta\u00E7\u00E3o";
     game.autochase_text.game.record_label="Recorde";
     //Pause
@@ -47,6 +50,10 @@ void load_PR_AC_text()
     game.autochase_text.pause.continue_option="Enter - Continuar Jogo";
     game.autochase_text.pause.new_game_option="R - Novo Jogo";
     game.autochase_text.pause.exit_game_option="Esc - Deixar o Jogo";
+    //End Game
+    game.autochase_text.end_game.end_game_label="Fim do Jogo";
+    game.autochase_text.end_game.new_game_option="Enter - Novo Jogo";
+    game.autochase_text.end_game.exit_game_option="Esc - Deixar o Jogo";
 }
 
 #endif // INCLUDED_PR_AC_GAME_TEXT_H

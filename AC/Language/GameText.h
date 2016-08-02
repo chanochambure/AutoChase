@@ -42,10 +42,18 @@ struct ACPauseText
     string new_game_option;
 };
 
+struct ACEndGameText
+{
+    string end_game_label;
+    string exit_game_option;
+    string new_game_option;
+};
+
 struct ACErrorText
 {
     string controls_option;
     string create_player;
+    string create_enemies;
 };
 
 struct AutoChaseText
@@ -59,6 +67,7 @@ struct AutoChaseText
     ACAreYouReadyText are_you_ready;
     ACPauseText pause;
     ACGameText game;
+    ACEndGameText end_game;
 };
 
 #endif // INCLUDED_AC_GAME_TEXT_H

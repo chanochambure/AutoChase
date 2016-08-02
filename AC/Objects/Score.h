@@ -13,6 +13,7 @@ class ACScore
         ACScore()
         {
             _V_score.set_path(AC_SCORE_IMAGE_PATH);
+            _V_score.set_centering_option(true,true);
         }
         void set_limits(float limit_x_1,float limit_x_2,float limit_y_1,float limit_y_2)
         {
@@ -44,6 +45,14 @@ class ACScore
         void draw()
         {
             _V_score.draw();
+        }
+        float get_size_x()
+        {
+            return _V_score.get_size_x();
+        }
+        float get_size_y()
+        {
+            return _V_score.get_size_y();
         }
 };
 

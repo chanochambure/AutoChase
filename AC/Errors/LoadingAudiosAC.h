@@ -4,6 +4,7 @@
 struct LoadingAudiosAC
 {
     bool ac_theme_audio=false;
+    bool ac_game_audio=false;
     unsigned int check(bool debug=false)
     {
         #ifdef DEBUG_OPTION
@@ -18,6 +19,18 @@ struct LoadingAudiosAC
             {
                 textlog->write_text("\t \t ERROR LOADING AC THEME AUDIO - ");
                 textlog->write_text(AC_THEME_AUDIO_PATH);
+                textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(ac_game_audio)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING AC GAME AUDIO - ");
+                textlog->write_text(AC_GAME_AUDIO_PATH);
                 textlog->write_endl();
             }
             #endif // DEBUG_OPTION

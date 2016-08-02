@@ -137,6 +137,14 @@ class ACPlayer
             else if(_V_car.get_pos_y()>_V_limit_y_2)
                 _V_car.set_pos_y(_V_limit_y_2);
         }
+        float get_size_x()
+        {
+            return _V_car.get_size_x();
+        }
+        float get_size_y()
+        {
+            return _V_car.get_size_y();
+        }
 };
 
 #endif // INCLUDED_AC_PLAYER_H

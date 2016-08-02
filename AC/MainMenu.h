@@ -45,7 +45,7 @@ class ACMainMenu
         }
         bool load_status()
         {
-            return !(errors.auto_chase_errors.loading_images_ac.background_main_menu_image) or
+            return !(errors.auto_chase_errors.loading_images_ac.background_main_menu_image) and
                     !(errors.auto_chase_errors.loading_images_ac.arrow_menu_image);
         }
         void move_selection_up_down(int num_of_moves)

@@ -8,10 +8,6 @@ int ac_car_color=CAR_COLOR_BLACK;
 int ac_records[TOTAL_DIFFICULTIES]={0,0,0};
 int ac_controls=AC_ARROWS_CONTROLS_OPTION;
 
-#include "MainMenu.h"
-#include "Game.h"
-#include "ConfigurationMenu.h"
-
 void load_data()
 {
     LL::FileStream file;
@@ -56,6 +52,10 @@ void save_data()
     file.save();
 }
 
+#include "MainMenu.h"
+#include "Game.h"
+#include "ConfigurationMenu.h"
+
 void autochase_control()
 {
     load_data();
@@ -74,6 +74,16 @@ void autochase_control()
         theme_audio.set_playmode(ALLEGRO_PLAYMODE_LOOP);
         theme_audio.play();
     }
+    LL_AL5::Audio game_audio;
+    game_audio.set_path(AC_GAME_AUDIO_PATH);
+    if((errors.auto_chase_errors.loading_audios_ac.ac_game_audio=!game_audio.load()))
+    {
+        LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    AC_GAME_AUDIO_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+        game_running=false;
+    }
+    else
+        game_audio.set_playmode(ALLEGRO_PLAYMODE_LOOP);
     ac_main_menu_option=AC_MAIN_MENU_PLAY_GAME;
     while(game_running and ac_main_menu_option!=AC_MAIN_MENU_EXIT_GAME)
     {
@@ -83,7 +93,9 @@ void autochase_control()
             case AC_MAIN_MENU_PLAY_GAME:
             {
                 theme_audio.stop();
+                game_audio.play();
                 start_ac_game();
+                game_audio.stop();
                 theme_audio.play();
                 break;
             }

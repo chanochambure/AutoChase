@@ -75,8 +75,8 @@ class ACConfigurationMenu
         }
         bool load_status()
         {
-            return !(errors.auto_chase_errors.loading_images_ac.background_configuration_menu_image) or
-                    !(errors.auto_chase_errors.loading_images_ac.arrow_menu_image) or
+            return !(errors.auto_chase_errors.loading_images_ac.background_configuration_menu_image) and
+                    !(errors.auto_chase_errors.loading_images_ac.arrow_menu_image) and
                     !(errors.auto_chase_errors.loading_images_ac.demo_car_image);
         }
         void move_selection_left_right(int num_of_moves)

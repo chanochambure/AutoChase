@@ -5,12 +5,17 @@ class ACAreYouReady
 {
     private:
         LL::Chronometer _V_chrono;
+        LL_AL5::Color _V_background;
         LL_AL5::Text _V_message;
         bool _V_ready_message_set_status=true;
     public:
         ACAreYouReady()
         {
-            _V_message.set_color(BLACK);
+            if(ac_difficulty!=DIFFICULTY_HARD)
+                _V_background=WHITE;
+            else
+                _V_background=BLACK;
+            _V_message.set_color(!_V_background);
             _V_message.set_flag(ALLEGRO_ALIGN_CENTER);
             _V_message.set_font(comic_big);
             _V_message.set_pos(REAL_SIZE_X_GAME/2,REAL_SIZE_Y_GAME/2);
@@ -23,7 +28,7 @@ class ACAreYouReady
         }
         void draw()
         {
-            screen->clear();
+            screen->clear_to_color(_V_background);
             if(_V_ready_message_set_status and _V_chrono.get_time()>=AC_READY_TIME)
             {
                 _V_ready_message_set_status=false;

@@ -50,6 +50,11 @@
 #define PAUSE_NEW_GAME_OPTION   1
 #define PAUSE_EXIT_GAME_OPTION  2
 
+//END GAME OPTIONS
+#define AC_END_GAME_TOTAL_OPTIONS   2
+#define END_NEW_GAME_OPTION         0
+#define END_EXIT_GAME_OPTION        1
+
 //MENU
 //MAIN MENU
 #define AC_MAIN_MENU_TOTAL_OPTIONS  3
@@ -96,11 +101,21 @@
 #define PLAYER_LIMIT_POS_Y_1                        10
 #define PLAYER_LIMIT_POS_Y_2                        591
 
+//ENEMY
+#define TOTAL_ENEMIES                               4
+
+#define ENEMY_INI_POS_X                            680
+
+#define ENEMY_EASY_MAX_SPEED                        5
+#define ENEMY_NORMAL_MAX_SPEED                      6
+#define ENEMY_HARD_MAX_SPEED                        7
+
 //PATHS
 #define CARS_SPRITE_PATH                            "Data/Image/Game/Cars/"
 #define AUTO_SPRITE_PATH                            "Data/Image/Game/Cars/Auto/"
 #define AC_CAR_SPRITE_PATH                          "Data/Image/Game/Cars/AutoChaseCar/"
 #define FORMULA_SPRITE_PATH                         "Data/Image/Game/Cars/Formula/"
+#define ENEMIES_PATH                                "Data/Image/Game/Enemies/"
 //FORMATS
 #define BMP_FORMAT                                  ".PNG"
 //FILES
@@ -114,8 +129,14 @@
 #define CAR_TYPE_FORMULA_IMAGE_PATH                 "Data/Image/Configuration/Cars/Formula.PNG"
 #define AC_HUD_IMAGE_PATH                           "Data/Image/Game/hud.PNG"
 #define AC_SCORE_IMAGE_PATH                         "Data/Image/Game/Score.PNG"
+#define ENEMY_EASY_1_PATH_IMAGE                     "Data/Image/Game/Enemies/E1.PNG"
+#define ENEMY_EASY_2_PATH_IMAGE                     "Data/Image/Game/Enemies/E2.PNG"
+#define ENEMY_NORMAL_1_PATH_IMAGE                   "Data/Image/Game/Enemies/N1.PNG"
+#define ENEMY_NORMAL_2_PATH_IMAGE                   "Data/Image/Game/Enemies/N2.PNG"
+#define ENEMY_HARD_1_PATH_IMAGE                     "Data/Image/Game/Enemies/H1.PNG"
+#define ENEMY_HARD_2_PATH_IMAGE                     "Data/Image/Game/Enemies/H2.PNG"
 //AUDIO
 #define AC_THEME_AUDIO_PATH                         "Data/Sound/Theme.WAV"
-//VIDEO
+#define AC_GAME_AUDIO_PATH                          "Data/Sound/Game.WAV"
 
 #endif // INCLUDED_AC_CONSTANTS_H

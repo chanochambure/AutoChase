@@ -3,9 +3,11 @@
 
 #include "AreYouReady.h"
 #include "Pause.h"
+#include "EndGame.h"
 
 #include "Objects/Player.h"
 #include "Objects/Score.h"
+#include "Objects/Enemy.h"
 
 bool create_key_control(LL_AL5::KeyControl* key_control)
 {
@@ -48,12 +50,13 @@ class ACGame
         LL_AL5::Text _V_score_text;
         LL_AL5::Text _V_record_label;
         LL_AL5::Text _V_record_text;
-        unsigned int _V_actual_score=0;
+        int _V_actual_score=0;
         bool _V_playing=true;
         bool _V_in_game=true;
         bool _V_finish_game=false;
         ACPlayer _V_player;
         ACScore _V_score;
+        ACEnemy _V_enemies[TOTAL_ENEMIES];
         bool _V_up_status=false;
         bool _V_down_status=false;
         bool _V_left_status=false;
@@ -90,11 +93,47 @@ class ACGame
             errors.auto_chase_errors.loading_images_ac.ac_score_image=!_V_score.create_score();
             _V_score.set_limits(PLAYER_LIMIT_POS_X_1,PLAYER_LIMIT_POS_X_2,
                                 PLAYER_LIMIT_POS_Y_1,PLAYER_LIMIT_POS_Y_2);
+            int enemy_errors=0;
+            for(unsigned int i=0;i<TOTAL_ENEMIES;++i)
+            {
+                switch(ac_difficulty)
+                {
+                    case DIFFICULTY_EASY:
+                    {
+                        _V_enemies[i].set_max_speed(ENEMY_EASY_MAX_SPEED*(i+1)/TOTAL_ENEMIES);
+                        if(LL::mod(i,2)==0)
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_EASY_1_PATH_IMAGE);
+                        else
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_EASY_2_PATH_IMAGE);
+                        break;
+                    }
+                    case DIFFICULTY_NORMAL:
+                    {
+                        _V_enemies[i].set_max_speed(ENEMY_NORMAL_MAX_SPEED*(i+1)/TOTAL_ENEMIES);
+                        if(LL::mod(i,2)==0)
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_NORMAL_1_PATH_IMAGE);
+                        else
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_NORMAL_2_PATH_IMAGE);
+                        break;
+                    }
+                    case DIFFICULTY_HARD:
+                    {
+                        _V_enemies[i].set_max_speed(ENEMY_HARD_MAX_SPEED*(i+1)/TOTAL_ENEMIES);
+                        if(LL::mod(i,2)==0)
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_HARD_1_PATH_IMAGE);
+                        else
+                            enemy_errors+=!_V_enemies[i].create_enemy(ENEMY_HARD_2_PATH_IMAGE);
+                        break;
+                    }
+                }
+            }
+            errors.auto_chase_errors.game_errors_ac.create_enemies_status=(0<enemy_errors);
         }
         bool load_status()
         {
-            return !(errors.auto_chase_errors.loading_images_ac.ac_hud_image) or
-                    !(errors.auto_chase_errors.game_errors_ac.create_player_status) or
+            return !(errors.auto_chase_errors.loading_images_ac.ac_hud_image) and
+                    !(errors.auto_chase_errors.game_errors_ac.create_player_status) and
+                    !(errors.auto_chase_errors.game_errors_ac.create_enemies_status) and
                     !(errors.auto_chase_errors.loading_images_ac.ac_score_image);
         }
         bool status()
@@ -113,6 +152,8 @@ class ACGame
             _V_player.set_selection(RIGHT_PLAYER_SPRITE);
             _V_player.set_pos(PLAYER_INI_POS_X,PLAYER_INI_POS_Y);
             _V_score.generate_new_pos();
+            for(unsigned int i=0;i<TOTAL_ENEMIES;++i)
+                _V_enemies[i].set_pos(ENEMY_INI_POS_X,(i+1)*REAL_SIZE_Y_GAME/(TOTAL_ENEMIES+2));
         }
         void draw()
         {
@@ -123,17 +164,25 @@ class ACGame
             screen->draw(&_V_score_text);
             screen->draw(&_V_record_text);
             screen->draw(&_V_score);
+            for(unsigned int i=0;i<TOTAL_ENEMIES;++i)
+                screen->draw(&_V_enemies[i]);
             screen->draw(&_V_player);
             screen->refresh();
         }
         void error()
         {
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
-                                AC_HUD_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
-                                game.autochase_text.error_text.create_player,ALLEGRO_MESSAGEBOX_ERROR);
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
-                                AC_SCORE_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.loading_images_ac.ac_hud_image)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    AC_HUD_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.game_errors_ac.create_player_status)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
+                                    game.autochase_text.error_text.create_player,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.loading_images_ac.ac_score_image)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    AC_SCORE_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.game_errors_ac.create_enemies_status)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_internal,
+                                    game.autochase_text.error_text.create_enemies,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }
         void exit()
@@ -180,6 +229,68 @@ class ACGame
             else if(_V_up_status)
                 _V_player.set_selection(UP_PLAYER_SPRITE);
             _V_player.move(_V_right_status-_V_left_status,_V_down_status-_V_up_status);
+            if(LL::segment_collision(_V_player.get_pos_x()-_V_player.get_size_x()/2,
+                                     _V_player.get_pos_x()+_V_player.get_size_x()/2,
+                                     _V_score.get_pos_x()-_V_score.get_size_x()/2,
+                                     _V_score.get_pos_x()+_V_score.get_size_x()/2))
+            {
+                if(LL::segment_collision(_V_player.get_pos_y()-_V_player.get_size_y()/2,
+                                         _V_player.get_pos_y()+_V_player.get_size_y()/2,
+                                         _V_score.get_pos_y()-_V_score.get_size_y()/2,
+                                         _V_score.get_pos_y()+_V_score.get_size_y()/2))
+                {
+                    _V_score.generate_new_pos();
+                    ++_V_actual_score;
+                    if(ac_records[ac_difficulty]<_V_actual_score)
+                    {
+                        _V_record_text.set_color(RED);
+                        _V_record_text=LL::to_string(_V_actual_score);
+                    }
+                    _V_score_text=LL::to_string(_V_actual_score);
+                }
+            }
+            for(unsigned int i=0;i<TOTAL_ENEMIES;++i)
+            {
+                if(LL::mod(i,2))
+                    _V_enemies[i].move(_V_player.get_pos_x(),_V_player.get_pos_y());
+                else
+                    _V_enemies[i].move(_V_score.get_pos_x(),_V_score.get_pos_y());
+                if(LL::segment_collision(_V_player.get_pos_x()-_V_player.get_size_x()/2,
+                                         _V_player.get_pos_x()+_V_player.get_size_x()/2,
+                                         _V_enemies[i].get_pos_x()-_V_enemies[i].get_size_x()/2,
+                                         _V_enemies[i].get_pos_x()+_V_enemies[i].get_size_x()/2))
+                {
+                    if(LL::segment_collision(_V_player.get_pos_y()-_V_player.get_size_y()/2,
+                                             _V_player.get_pos_y()+_V_player.get_size_y()/2,
+                                             _V_enemies[i].get_pos_y()-_V_enemies[i].get_size_y()/2,
+                                             _V_enemies[i].get_pos_y()+_V_enemies[i].get_size_y()/2))
+                    {
+                        _V_in_game=false;
+                        _V_finish_game=true;
+                    }
+                }
+                if(LL::segment_collision(_V_score.get_pos_x()-_V_score.get_size_x()/2,
+                                         _V_score.get_pos_x()+_V_score.get_size_x()/2,
+                                         _V_enemies[i].get_pos_x()-_V_enemies[i].get_size_x()/2,
+                                         _V_enemies[i].get_pos_x()+_V_enemies[i].get_size_x()/2))
+                {
+                    if(LL::segment_collision(_V_score.get_pos_y()-_V_score.get_size_y()/2,
+                                             _V_score.get_pos_y()+_V_score.get_size_y()/2,
+                                             _V_enemies[i].get_pos_y()-_V_enemies[i].get_size_y()/2,
+                                             _V_enemies[i].get_pos_y()+_V_enemies[i].get_size_y()/2))
+                    {
+                        _V_score.generate_new_pos();
+                    }
+                }
+            }
+        }
+        void save()
+        {
+            if(ac_records[ac_difficulty]<_V_actual_score)
+            {
+                ac_records[ac_difficulty]=_V_actual_score;
+                save_data();
+            }
         }
 };
 
@@ -233,6 +344,15 @@ void start_ac_game()
                 }
                 if(ac_game.finish_game())
                 {
+                    ac_game.save();
+                    switch(start_ac_end_game())
+                    {
+                        case END_EXIT_GAME_OPTION:
+                        {
+                            ac_game.exit();
+                            break;
+                        }
+                    }
                 }
             }
             input->set_key_control(menu_key_control);

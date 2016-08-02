@@ -40,6 +40,9 @@ void load_EN_AC_text()
     game.autochase_text.error_text.create_player="There was an internal error creating the player, verify the"\
                                                 " existence of images in the following directory: "\
                                                 CARS_SPRITE_PATH;
+    game.autochase_text.error_text.create_enemies="There was an internal error creating the enemies, verify the"\
+                                                " existence of images in the following directory: "\
+                                                ENEMIES_PATH;
     game.autochase_text.game.score_label="Score";
     game.autochase_text.game.record_label="Record";
     //Pause
@@ -47,6 +50,10 @@ void load_EN_AC_text()
     game.autochase_text.pause.continue_option="Enter - Continue Game";
     game.autochase_text.pause.new_game_option="R - New Game";
     game.autochase_text.pause.exit_game_option="Esc - Exit Game";
+    //End Game
+    game.autochase_text.end_game.end_game_label="Game Over";
+    game.autochase_text.end_game.new_game_option="Enter - New Game";
+    game.autochase_text.end_game.exit_game_option="Esc - Exit Game";
 }
 
 #endif // INCLUDED_EN_AC_GAME_TEXT_H
