@@ -77,10 +77,12 @@ class ACMainMenu
         }
         void error()
         {
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
-                                BACKGROUND_MAIN_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
-            LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
-                                ARROW_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.loading_images_ac.background_main_menu_image)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    BACKGROUND_MAIN_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
+            if(errors.auto_chase_errors.loading_images_ac.arrow_menu_image)
+                LL_AL5::show_native_message(*screen,game.error_text.title,game.error_text.header_file,
+                                    ARROW_MENU_IMAGE_PATH,ALLEGRO_MESSAGEBOX_ERROR);
             game_running=false;
         }
 };
