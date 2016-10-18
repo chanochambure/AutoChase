@@ -257,13 +257,13 @@ class ACGame
                     _V_enemies[i].move(_V_score.get_pos_x(),_V_score.get_pos_y());
                 if(LL::segment_collision(_V_player.get_pos_x()-_V_player.get_size_x()/2,
                                          _V_player.get_pos_x()+_V_player.get_size_x()/2,
-                                         _V_enemies[i].get_pos_x()-_V_enemies[i].get_size_x()/2,
-                                         _V_enemies[i].get_pos_x()+_V_enemies[i].get_size_x()/2))
+                                         _V_enemies[i].get_pos_x()-_V_enemies[i].get_size_x()*PLAYER_TOLERANCE/2,
+                                         _V_enemies[i].get_pos_x()+_V_enemies[i].get_size_x()*PLAYER_TOLERANCE/2))
                 {
                     if(LL::segment_collision(_V_player.get_pos_y()-_V_player.get_size_y()/2,
                                              _V_player.get_pos_y()+_V_player.get_size_y()/2,
-                                             _V_enemies[i].get_pos_y()-_V_enemies[i].get_size_y()/2,
-                                             _V_enemies[i].get_pos_y()+_V_enemies[i].get_size_y()/2))
+                                             _V_enemies[i].get_pos_y()-_V_enemies[i].get_size_y()*PLAYER_TOLERANCE/2,
+                                             _V_enemies[i].get_pos_y()+_V_enemies[i].get_size_y()*PLAYER_TOLERANCE/2))
                     {
                         _V_in_game=false;
                         _V_finish_game=true;

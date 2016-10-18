@@ -4,7 +4,7 @@ bool game_running=true;
 
 #include "src/Game.h"
 
-int main()
+int main(int argc, char* argv[])
 {
     LL_AL5::init_allegro();
     atexit(exit_game);

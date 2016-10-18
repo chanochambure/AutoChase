@@ -101,6 +101,8 @@
 #define PLAYER_LIMIT_POS_Y_1                        10
 #define PLAYER_LIMIT_POS_Y_2                        591
 
+#define PLAYER_TOLERANCE                            4.0/5.0
+
 //ENEMY
 #define TOTAL_ENEMIES                               4
 
