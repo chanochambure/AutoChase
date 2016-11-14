@@ -30,6 +30,7 @@ class ACMainMenu
             }
             _V_options[AC_MAIN_MENU_PLAY_GAME]=game.autochase_text.main_menu.play_game;
             _V_options[AC_MAIN_MENU_CONFIGURATION]=game.autochase_text.main_menu.configuration;
+            _V_options[AC_MAIN_MENU_CREDITS]=game.autochase_text.main_menu.credits_option;
             _V_options[AC_MAIN_MENU_EXIT_GAME]=game.autochase_text.main_menu.exit;
             _V_footnote.set_font(comic_normal);
             _V_footnote=(game.organization+" - "+game.release_year);

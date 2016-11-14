@@ -40,3 +40,4 @@
 LexRisLogic/
 bin/
 
+*.cscope_file_list
