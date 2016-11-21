@@ -15,14 +15,25 @@
 
 //LIBRARY INCLUDE
 //API
-#include "../LexRisLogic/Allegro5/Allegro.h"
+#include <LexRisLogic/Allegro5/Allegro5.h>
+    #include <LexRisLogic/Allegro5/Display.h>
+    #include <LexRisLogic/Allegro5/Input.h>
+    #include <LexRisLogic/Allegro5/Timer.h>
+    #include <LexRisLogic/Allegro5/Color.h>
+    #include <LexRisLogic/Allegro5/NativeDialog.h>
+    #include <LexRisLogic/Allegro5/Mixer.h>
+    #include <LexRisLogic/Allegro5/Text.h>
+    #include <LexRisLogic/Allegro5/Primitives.h>
+    #include <LexRisLogic/Allegro5/Audio.h>
+    #include <LexRisLogic/Allegro5/Video.h>
+    #include <LexRisLogic/Allegro5/Special/Sprite.h>
 //EXTRA
-#include "../LexRisLogic/Convert.h"
-#include "../LexRisLogic/Math.h"
-#include "../LexRisLogic/Time.h"
-#include "../LexRisLogic/Encryptor.h"
-#include "../LexRisLogic/FileStream.h"
-#include "../LexRisLogic/StringSplitter.h"
+#include <LexRisLogic/Convert.h>
+#include <LexRisLogic/Math.h>
+#include <LexRisLogic/Time.h>
+#include <LexRisLogic/Encryptor.h>
+#include <LexRisLogic/FileStream.h>
+#include <LexRisLogic/StringSplitter.h>
 
 //HEADERS INCLUDE
 #include "Constants.h"

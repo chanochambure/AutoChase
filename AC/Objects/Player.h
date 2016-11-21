@@ -82,6 +82,7 @@ class ACPlayer
                             break;
                         }
                     }
+                    LL_AL5::Pixel pixel;
                     for(unsigned int i=0;i<TOTAL_PLAYER_SPRITES;++i)
                     {
                         _V_car.set_selection(i);
@@ -92,7 +93,11 @@ class ACPlayer
                             for(unsigned int y=0;y<_V_car.get_size_y();++y)
                             {
                                 if(TURQUOISE==_V_car.get_pixel_color(x,y))
-                                    al_put_pixel(x,y,paint_color);
+                                {
+                                    pixel.set_pos(x,y);
+                                    pixel.set_color(paint_color);
+                                    pixel.draw_in_another_target();
+                                }
                             }
                         }
                         _V_car.unlock();

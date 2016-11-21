@@ -192,12 +192,17 @@ class ACConfigurationMenu
             {
                 _V_demo_car.lock();
                 _V_demo_car.set_target();
+                LL_AL5::Pixel pixel;
                 for(unsigned int x=0;x<_V_demo_car.get_size_x();++x)
                 {
                     for(unsigned int y=0;y<_V_demo_car.get_size_y();++y)
                     {
                         if(TURQUOISE==_V_demo_car.get_pixel_color(x,y))
-                            al_put_pixel(x,y,paint_color);
+                        {
+                            pixel.set_pos(x,y);
+                            pixel.set_color(paint_color);
+                            pixel.draw_in_another_target();
+                        }
                     }
                 }
                 _V_demo_car.unlock();

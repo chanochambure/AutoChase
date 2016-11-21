@@ -15,16 +15,16 @@ LL_AL5::Color TURQUOISE;
 
 void init_colors()
 {
-    WHITE=al_map_rgb(255,255,255);
-    RED=al_map_rgb(255,0,0);
-    GREEN=al_map_rgb(0,255,0);
-    BLUE=al_map_rgb(0,0,255);
-    BLACK=al_map_rgb(0,0,0);
-    ORANGE=al_map_rgb(255,128,0);
-    YELLOW=al_map_rgb(255,255,0);
-    GRAY=al_map_rgb(128,128,128);
-    BLACK_GRAY=al_map_rgb(51,51,51);
-    TURQUOISE=al_map_rgb(0,255,255);
+    WHITE=LL_AL5::Color(255,255,255);
+    RED=LL_AL5::Color(255,0,0);
+    GREEN=LL_AL5::Color(0,255,0);
+    BLUE=LL_AL5::Color(0,0,255);
+    BLACK=LL_AL5::Color(0,0,0);
+    ORANGE=LL_AL5::Color(255,128,0);
+    YELLOW=LL_AL5::Color(255,255,0);
+    GRAY=LL_AL5::Color(128,128,128);
+    BLACK_GRAY=LL_AL5::Color(51,51,51);
+    TURQUOISE=LL_AL5::Color(0,255,255);
 }
 
 #endif // INCLUDED_GAME_COLORS_H
