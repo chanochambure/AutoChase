@@ -5,6 +5,7 @@ struct ACMainMenuText
 {
     string play_game;
     string configuration;
+    string credits_option;
     string exit;
     string controls;
 };

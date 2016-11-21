@@ -6,6 +6,7 @@ void load_EN_AC_text()
     //Main Menu
     game.autochase_text.main_menu.play_game="Play a Game";
     game.autochase_text.main_menu.configuration="Configuration";
+    game.autochase_text.main_menu.credits_option="Credits";
     game.autochase_text.main_menu.exit="Back";
     game.autochase_text.main_menu.controls="\u21C5 : Browse-"\
                                             " ESC : Back -"\

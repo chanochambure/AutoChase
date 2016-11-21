@@ -6,6 +6,7 @@ void load_PR_AC_text()
     //Main Menu
     game.autochase_text.main_menu.play_game="Jogar um Jogo";
     game.autochase_text.main_menu.configuration="Configura\u00E7\u00E3o";
+    game.autochase_text.main_menu.credits_option="Cr\u00E9ditos";
     game.autochase_text.main_menu.exit="De Volta";
     game.autochase_text.main_menu.controls="\u21C5 : Navegar -"\
                                             " ESC : De Volta -"\

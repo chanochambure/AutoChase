@@ -105,6 +105,10 @@ void autochase_control()
                     save_data();
                 break;
             }
+            case AC_MAIN_MENU_CREDITS:
+            {
+                break;
+            }
         }
     }
 }
