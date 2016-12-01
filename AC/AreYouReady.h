@@ -12,7 +12,7 @@ class ACAreYouReady
         ACAreYouReady()
         {
             if(ac_difficulty!=DIFFICULTY_HARD)
-                _V_background=WHITE;
+                _V_background=SIMPLE_WHITE;
             else
                 _V_background=BLACK;
             _V_message.set_color(!_V_background);

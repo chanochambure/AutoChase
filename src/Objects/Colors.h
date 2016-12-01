@@ -3,6 +3,7 @@
 
 //BASICS
 LL_AL5::Color WHITE;
+LL_AL5::Color SIMPLE_WHITE;
 LL_AL5::Color RED;
 LL_AL5::Color GREEN;
 LL_AL5::Color BLUE;
@@ -16,6 +17,7 @@ LL_AL5::Color TURQUOISE;
 void init_colors()
 {
     WHITE=LL_AL5::Color(255,255,255);
+    SIMPLE_WHITE=LL_AL5::Color(245,245,245);
     RED=LL_AL5::Color(255,0,0);
     GREEN=LL_AL5::Color(0,255,0);
     BLUE=LL_AL5::Color(0,0,255);

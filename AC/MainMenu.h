@@ -53,7 +53,6 @@ class ACMainMenu
             ac_main_menu_option=LL::mod(ac_main_menu_option+num_of_moves,AC_MAIN_MENU_TOTAL_OPTIONS);
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
                         AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_size()));
-
         }
         void up()
         {

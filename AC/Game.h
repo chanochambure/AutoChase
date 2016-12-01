@@ -68,7 +68,7 @@ class ACGame
             _V_hud.set_path(AC_HUD_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.ac_hud_image=!_V_hud.load();
             if(ac_difficulty!=DIFFICULTY_HARD)
-                _V_background_color=WHITE;
+                _V_background_color=SIMPLE_WHITE;
             else
                 _V_background_color=BLACK;
             _V_score_label.set_color(WHITE);
