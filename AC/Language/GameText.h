@@ -23,6 +23,26 @@ struct ACConfigurationMenuText
     string controls_options[TOTAL_CONTROLS_OPTIONS];
 };
 
+struct ACCreditsText
+{
+    string credits[TOTAL_CREDITS_LINES]={GAME_NAME,
+                                        "",
+                                        "",
+                                        GAME_COMPANY,GAME_YEAR,
+                                        "",
+                                        "",
+                                        "",GAME_CREATOR,
+                                        "",
+                                        "",MUSIC_CREATOR,
+                                        "",
+                                        "",GAME_DEVELOPER,
+                                        "",
+                                        "",
+                                        "",GAME_TESTER_WIN,
+                                        "",GAME_TESTER_MAC,
+                                        "",GAME_TESTER_LINUX};
+};
+
 struct ACAreYouReadyText
 {
     string ready;
@@ -64,7 +84,9 @@ struct AutoChaseText
     //MENUS
     ACMainMenuText main_menu;
     ACConfigurationMenuText configuration_menu;
-    //GAMES
+    //CREDITS
+    ACCreditsText credits;
+    //GAME
     ACAreYouReadyText are_you_ready;
     ACPauseText pause;
     ACGameText game;

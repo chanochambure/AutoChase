@@ -55,6 +55,7 @@ void save_data()
 #include "MainMenu.h"
 #include "Game.h"
 #include "ConfigurationMenu.h"
+#include "Credits.h"
 
 void autochase_control()
 {
@@ -107,6 +108,7 @@ void autochase_control()
             }
             case AC_MAIN_MENU_CREDITS:
             {
+                start_ac_credits();
                 break;
             }
         }

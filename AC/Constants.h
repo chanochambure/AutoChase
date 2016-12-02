@@ -85,6 +85,23 @@
 #define AC_CONFIGURATION_MENU_DEMO_CAR_POS_X    20
 #define AC_CONFIGURATION_MENU_DEMO_CAR_POS_Y    200
 
+//CREDITS
+#define TOTAL_CREDITS_LINES                     23
+#define CREDIT_LINE_CREATED_BY                  7
+#define CREDIT_LINE_MUSIC_BY                    10
+#define CREDIT_LINE_DEVELOPER                   13
+#define CREDIT_LINE_TESTER                      16
+#define CREDIT_LINE_TESTER_WIN                  17
+#define CREDIT_LINE_TESTER_MAC                  19
+#define CREDIT_LINE_TESTER_LINUX                21
+
+#define GAME_CREATOR                            "Christian Renato Benavides Castillo"
+#define MUSIC_CREATOR                           "Christian Renato Benavides Castillo"
+#define GAME_DEVELOPER                          "Christian Renato Benavides Castillo"
+#define GAME_TESTER_WIN                         "Christian Renato Benavides Castillo"
+#define GAME_TESTER_MAC                         "Jord\u00E1n Raji Lazo Cahua"
+#define GAME_TESTER_LINUX                       "Sergio Alexis Cardenas Solis"
+
 //PLAYER
 #define TOTAL_PLAYER_SPRITES                        4
 #define DOWN_PLAYER_SPRITE                          0
@@ -125,7 +142,9 @@
 #define DATA_AC_PATH                                "Data/Save/data.acsf"
 //IMAGES
 #define BACKGROUND_MAIN_MENU_IMAGE_PATH             "Data/Image/Main Menu/background.png"
+#define BACKGROUND_CREDITS_IMAGE_PATH               "Data/Image/Credits/background.png"
 #define ARROW_MENU_IMAGE_PATH                       "Data/Image/arrow.png"
+#define LEXRIS_LOGIC_LOGO_PATH                      "Data/Image/LL_Logo.png"
 #define BACKGROUND_CONFIGRATION_MENU_IMAGE_PATH     "Data/Image/Configuration/background.png"
 #define CAR_TYPE_AUTO_IMAGE_PATH                    "Data/Image/Configuration/Cars/Auto.PNG"
 #define CAR_TYPE_AC_CAR_IMAGE_PATH                  "Data/Image/Configuration/Cars/AC_Car.PNG"

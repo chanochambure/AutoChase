@@ -33,6 +33,14 @@ void load_ES_AC_text()
     game.autochase_text.configuration_menu.colors[CAR_COLOR_YELLOW]="Amarillo";
     game.autochase_text.configuration_menu.controls_options[AC_ARROWS_CONTROLS_OPTION]="Teclas de Flechas";
     game.autochase_text.configuration_menu.controls_options[AC_WASD_CONTROLS_OPTION]="Teclas WASD";
+    //Credits
+    game.autochase_text.credits.credits[CREDIT_LINE_CREATED_BY]="Creado Por:";
+    game.autochase_text.credits.credits[CREDIT_LINE_DEVELOPER]="Desarrollado Por:";
+    game.autochase_text.credits.credits[CREDIT_LINE_MUSIC_BY]="M\u00FAsica:";
+    game.autochase_text.credits.credits[CREDIT_LINE_TESTER]="Testers:";
+    game.autochase_text.credits.credits[CREDIT_LINE_TESTER_MAC]="Testers en Mac:";
+    game.autochase_text.credits.credits[CREDIT_LINE_TESTER_WIN]="Testers en Windows:";
+    game.autochase_text.credits.credits[CREDIT_LINE_TESTER_LINUX]="Testers en Linux:";
     //Are You Ready
     game.autochase_text.are_you_ready.ready="\u00BFListos?";
     game.autochase_text.are_you_ready.go="\u00A1Fuera!";

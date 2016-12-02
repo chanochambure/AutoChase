@@ -9,6 +9,8 @@ struct LoadingImagesAC
     bool demo_car_image=false;
     bool ac_hud_image=false;
     bool ac_score_image=false;
+    bool lexris_logic_image=false;
+    bool background_credits_image=false;
     unsigned int check(bool debug=false)
     {
         #ifdef DEBUG_OPTION
@@ -79,6 +81,30 @@ struct LoadingImagesAC
             {
                 textlog->write_text("\t \t ERROR LOADING AC SCORE GAME IMAGE - ");
                 textlog->write_text(AC_SCORE_IMAGE_PATH);
+                textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(lexris_logic_image)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING LEXRIS LOGIC LOGO IMAGE - ");
+                textlog->write_text(LEXRIS_LOGIC_LOGO_PATH);
+                textlog->write_endl();
+            }
+            #endif // DEBUG_OPTION
+            ++total_errors;
+        }
+        if(background_credits_image)
+        {
+            #ifdef DEBUG_OPTION
+            if(debug)
+            {
+                textlog->write_text("\t \t ERROR LOADING BACKGROUND CREDITS IMAGE - ");
+                textlog->write_text(BACKGROUND_CREDITS_IMAGE_PATH);
                 textlog->write_endl();
             }
             #endif // DEBUG_OPTION
