@@ -15,6 +15,7 @@
 #define KEY_ENCRYPTER_CHANO     "587412369"
 #define KEY_ENCRYPTER_CHECHO    "sheylacorazon"
 #define KEY_ENCRYPTER_CHUJU     "sipiripipi"
+#define KEY_ENCRYPTER_RAJI      "soyunchucha"
 
 //FILES VALUES
 #define INTERFACE_OPTIONS_FILE_TOTAL_LINES      2

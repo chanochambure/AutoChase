@@ -48,15 +48,19 @@ void init_display()
 {
     screen=new LL_AL5::Display(global_screen_option_size_x,global_screen_option_size_y,
                                REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
-    screen->set_flag(global_screen_mode_option);
+    screen->set_display_mode(global_screen_mode_option);
     screen->set_title(game.title);
+    screen->create();
     screen->hide_cursor();
 }
 
 void destroy_display()
 {
     if(screen)
+    {
+        screen->destroy();
         delete(screen);
+    }
     screen=nullptr;
 }
 

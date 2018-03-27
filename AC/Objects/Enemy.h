@@ -9,7 +9,7 @@ class ACEnemy
     public:
         ACEnemy()
         {
-            _V_enemy.set_centering_option(true,true);
+            _V_enemy.set_anchor(0.5,0.5);
         }
         bool create_enemy(string enemy_path)
         {

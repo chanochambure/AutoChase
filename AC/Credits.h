@@ -21,8 +21,8 @@ class ACCredits
             _V_lexris_logic_logo.set_path(LEXRIS_LOGIC_LOGO_PATH);
             errors.auto_chase_errors.loading_images_ac.lexris_logic_image=!_V_lexris_logic_logo.load();
             _V_iterator=REAL_SIZE_Y_GAME+comic_long->get_size();
-            _V_logo.set_centering_option(true,false);
-            _V_lexris_logic_logo.set_centering_option(true,false);
+            _V_logo.set_anchor(0.5,0);
+            _V_lexris_logic_logo.set_anchor(0.5,0);
             _V_logo.set_scale_x(0.8);
             _V_logo.set_scale_y(0.8);
             _V_credit_line.set_flag(ALLEGRO_ALIGN_CENTER);

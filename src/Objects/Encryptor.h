@@ -13,6 +13,7 @@ void init_encryptor_files()
     encryptor_files->add_new_key(KEY_ENCRYPTER_CHANO);
     encryptor_files->add_new_key(KEY_ENCRYPTER_CHECHO);
     encryptor_files->add_new_key(KEY_ENCRYPTER_CHUJU);
+    encryptor_files->add_new_key(KEY_ENCRYPTER_RAJI);
 }
 
 void destroy_encryptor_files()

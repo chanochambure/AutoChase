@@ -13,7 +13,7 @@ class ACPlayer
     public:
         ACPlayer()
         {
-            _V_car.set_centering_option(true,true);
+            _V_car.set_anchor(0.5,0.5);
             _V_car.set_size(TOTAL_PLAYER_SPRITES);
         }
         void set_limits(float limit_x_1,float limit_x_2,float limit_y_1,float limit_y_2)

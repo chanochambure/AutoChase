@@ -20,6 +20,7 @@
     #include <LexRisLogic/Allegro5/Input.h>
     #include <LexRisLogic/Allegro5/Timer.h>
     #include <LexRisLogic/Allegro5/Color.h>
+    #include <LexRisLogic/Allegro5/Bitmap.h>
     #include <LexRisLogic/Allegro5/NativeDialog.h>
     #include <LexRisLogic/Allegro5/Mixer.h>
     #include <LexRisLogic/Allegro5/Text.h>

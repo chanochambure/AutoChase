@@ -13,7 +13,7 @@ class ACScore
         ACScore()
         {
             _V_score.set_path(AC_SCORE_IMAGE_PATH);
-            _V_score.set_centering_option(true,true);
+            _V_score.set_anchor(0.5,0.5);
         }
         void set_limits(float limit_x_1,float limit_x_2,float limit_y_1,float limit_y_2)
         {
