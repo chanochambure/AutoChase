@@ -20,7 +20,7 @@ class ACCredits
             errors.loading_images.logo_image=!_V_logo.load();
             _V_lexris_logic_logo.set_path(LEXRIS_LOGIC_LOGO_PATH);
             errors.auto_chase_errors.loading_images_ac.lexris_logic_image=!_V_lexris_logic_logo.load();
-            _V_iterator=REAL_SIZE_Y_GAME+comic_long->get_size();
+            _V_iterator=REAL_SIZE_Y_GAME+comic_long->get_height();
             _V_logo.set_anchor(0.5,0);
             _V_lexris_logic_logo.set_anchor(0.5,0);
             _V_logo.set_scale_x(0.8);
@@ -30,9 +30,9 @@ class ACCredits
             _V_credit_line.set_font(comic_normal);
             _V_logo.set_pos(_V_position_x,_V_iterator);
             _V_credit_line.set_pos(_V_position_x,
-                                   _V_iterator+_V_logo.get_size_y()*_V_logo.get_scale_y()+comic_long->get_size());
+                                   _V_iterator+_V_logo.get_size_y()*_V_logo.get_scale_y()+comic_long->get_height());
             _V_lexris_logic_logo.set_pos(_V_position_x,
-                                         _V_credit_line.get_pos_y()+comic_long->get_size()*(TOTAL_CREDITS_LINES+3));
+                                         _V_credit_line.get_pos_y()+comic_long->get_height()*(TOTAL_CREDITS_LINES+3));
         }
         bool load_status()
         {
@@ -42,7 +42,7 @@ class ACCredits
         }
         void move_selection_up_down(int num_of_moves)
         {
-            if(_V_iterator<REAL_SIZE_Y_GAME+comic_long->get_size())
+            if(_V_iterator<REAL_SIZE_Y_GAME+comic_long->get_height())
                 _V_iterator+=num_of_moves;
         }
         void up()
@@ -55,14 +55,14 @@ class ACCredits
         }
         bool status()
         {
-            return _V_lexris_logic_logo.get_pos_y()+_V_lexris_logic_logo.get_size_y()>-comic_long->get_size();
+            return _V_lexris_logic_logo.get_pos_y()+_V_lexris_logic_logo.get_size_y()>-comic_long->get_height();
         }
         void draw()
         {
             --_V_iterator;
             _V_logo.set_pos_y(_V_iterator);
-            _V_credit_line.set_pos_y(_V_iterator+_V_logo.get_size_y()*_V_logo.get_scale_y()+comic_long->get_size());
-            _V_lexris_logic_logo.set_pos_y(_V_credit_line.get_pos_y()+comic_long->get_size()*(TOTAL_CREDITS_LINES+3));
+            _V_credit_line.set_pos_y(_V_iterator+_V_logo.get_size_y()*_V_logo.get_scale_y()+comic_long->get_height());
+            _V_lexris_logic_logo.set_pos_y(_V_credit_line.get_pos_y()+comic_long->get_height()*(TOTAL_CREDITS_LINES+3));
             screen->clear_to_color(BLACK);
             screen->draw(&_V_background);
             screen->draw(&_V_logo);
@@ -72,7 +72,7 @@ class ACCredits
                     break;
                 _V_credit_line=game.autochase_text.credits.credits[i];
                 screen->draw(&_V_credit_line);
-                _V_credit_line.set_pos_y(_V_credit_line.get_pos_y()+comic_long->get_size());
+                _V_credit_line.set_pos_y(_V_credit_line.get_pos_y()+comic_long->get_height());
             }
             screen->draw(&_V_lexris_logic_logo);
             screen->refresh();
@@ -99,20 +99,21 @@ void start_ac_credits()
         ac_credits.error();
     else
     {
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         while(game_running and ac_credits.status())
         {
-            input->get_event();
+            LL_AL5::InputEvent event=input->get_event();
             if(input->get_display_status())
                 game_running=false;
-            if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_CANCEL) or
+               input->get_key_controller()->get_key_status(MENU_SELECT))
                 break;
-            if(input->get_timer_event())
+            if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
             {
-                if((*input)[MENU_UP])
+                if(input->get_key_controller()->get_key_status(MENU_UP))
                     ac_credits.up();
-                if((*input)[MENU_DOWN])
+                if(input->get_key_controller()->get_key_status(MENU_DOWN))
                     ac_credits.down();
                 ac_credits.draw();
             }

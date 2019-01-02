@@ -30,6 +30,7 @@ void init_objects()
     init_display();
     input->register_timer(*timer);
     input->register_display(*screen);
+    input->keyboard_on();
     init_fonts();
     mixer->set_volume(global_volume_option);
 }

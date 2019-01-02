@@ -10,16 +10,13 @@ void init_comic_font()
 {
     comic_small=new LL_AL5::Font();
     comic_small->set_path(COMIC_FONT_PATH);
-    comic_small->set_size(FONT_SIZE_SMALL);
-    errors.initializing_fonts.loading_comic_font=!comic_small->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_small->load_ttf_font(FONT_SIZE_SMALL);
     comic_normal=new LL_AL5::Font();
     comic_normal->set_path(COMIC_FONT_PATH);
-    comic_normal->set_size(FONT_SIZE_NORMAL);
-    errors.initializing_fonts.loading_comic_font=!comic_normal->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_normal->load_ttf_font(FONT_SIZE_NORMAL);
     comic_long=new LL_AL5::Font();
     comic_long->set_path(COMIC_FONT_PATH);
-    comic_long->set_size(FONT_SIZE_LONG);
-    errors.initializing_fonts.loading_comic_font=!comic_long->load_ttf_font();
+    errors.initializing_fonts.loading_comic_font=!comic_long->load_ttf_font(FONT_SIZE_LONG);
 }
 
 void init_fonts()
@@ -27,13 +24,6 @@ void init_fonts()
     init_comic_font();
     if(errors.initializing_fonts.check())
         game_running=false;
-}
-
-void refresh_fonts()
-{
-    errors.initializing_fonts.loading_comic_font=!comic_small->load_ttf_font();
-    errors.initializing_fonts.loading_comic_font=!comic_normal->load_ttf_font();
-    errors.initializing_fonts.loading_comic_font=!comic_long->load_ttf_font();
 }
 
 void destroy_fonts()

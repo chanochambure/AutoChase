@@ -10,7 +10,7 @@ int ac_controls=AC_ARROWS_CONTROLS_OPTION;
 
 void load_data()
 {
-    LL::FileStream file;
+    LL::TextFile file;
     file.set_path(DATA_AC_PATH);
     if(!(errors.auto_chase_errors.loading_data_ac.loading_data_file=!file.load()))
     {
@@ -39,7 +39,7 @@ void load_data()
 
 void save_data()
 {
-    LL::FileStream file;
+    LL::TextFile file;
     file.set_path(DATA_AC_PATH);
     file.insert_line(0,DATA_AC_TOTAL_DATA);
     file[0]=encryptor_files->encrypt(LL::to_string(ac_difficulty)+'$'+
@@ -72,8 +72,10 @@ void autochase_control()
     }
     else
     {
-        theme_audio.set_playmode(ALLEGRO_PLAYMODE_LOOP);
-        theme_audio.play();
+        theme_audio.create_instance();
+        theme_audio.attach_instance_to_mixer(0,*mixer);
+        theme_audio.set_playmode(0,ALLEGRO_PLAYMODE_LOOP);
+        theme_audio.play(0);
     }
     LL_AL5::Audio game_audio;
     game_audio.set_path(AC_GAME_AUDIO_PATH);
@@ -84,7 +86,11 @@ void autochase_control()
         game_running=false;
     }
     else
-        game_audio.set_playmode(ALLEGRO_PLAYMODE_LOOP);
+    {
+        game_audio.create_instance();
+        game_audio.attach_instance_to_mixer(0,*mixer);
+        game_audio.set_playmode(0,ALLEGRO_PLAYMODE_LOOP);
+    }
     ac_main_menu_option=AC_MAIN_MENU_PLAY_GAME;
     while(game_running and ac_main_menu_option!=AC_MAIN_MENU_EXIT_GAME)
     {
@@ -93,11 +99,11 @@ void autochase_control()
         {
             case AC_MAIN_MENU_PLAY_GAME:
             {
-                theme_audio.stop();
-                game_audio.play();
+                theme_audio.stop(0);
+                game_audio.play(0);
                 start_ac_game();
-                game_audio.stop();
-                theme_audio.play();
+                game_audio.stop(0);
+                theme_audio.play(0);
                 break;
             }
             case AC_MAIN_MENU_CONFIGURATION:

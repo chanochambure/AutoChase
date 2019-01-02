@@ -2,11 +2,11 @@
 #define INCLUDED_GAME_INPUT_H
 
 //Key Controls
-LL_AL5::KeyControl* menu_key_control;
+LL_AL5::KeyController* menu_key_control;
 
 void init_key_control()
 {
-    menu_key_control=new LL_AL5::KeyControl;
+    menu_key_control=new LL_AL5::KeyController;
     menu_key_control->add_key(MENU_LEFT,ALLEGRO_KEY_LEFT);
     menu_key_control->add_key(MENU_RIGHT,ALLEGRO_KEY_RIGHT);
     menu_key_control->add_key(MENU_UP,ALLEGRO_KEY_UP);
@@ -28,8 +28,8 @@ LL_AL5::Input* input=nullptr;
 void init_input()
 {
     input=new LL_AL5::Input;
-    input->keyboard_on();
-    input->set_key_control(menu_key_control);
+    input->create();
+    input->set_key_controller(menu_key_control);
 }
 
 void destroy_input()

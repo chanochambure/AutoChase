@@ -20,7 +20,7 @@ class LL_Logo
             if(load_status())
             {
                 screen->set_real_size(_V_logo.get_size_x(),_V_logo.get_size_y());
-                _V_logo.start();
+                _V_logo.start(*mixer);
             }
         }
         bool status()
@@ -55,17 +55,17 @@ void start_LL_Logo()
     else
     {
         loader->finish_load();
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         logo.start();
         while(game_running and logo.status())
         {
-            input->get_event();
+            LL_AL5::InputEvent event=input->get_event();
             if(input->get_display_status())
                 game_running=false;
-            if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_CANCEL) or input->get_key_controller()->get_key_status(MENU_SELECT))
                 break;
-            if(input->get_timer_event())
+            if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                 logo.draw();
         }
     }

@@ -19,14 +19,14 @@ class ACMainMenu
             _V_arrow.set_path(ARROW_MENU_IMAGE_PATH);
             errors.auto_chase_errors.loading_images_ac.arrow_menu_image=!_V_arrow.load();
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
-                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_size()));
+                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_height()));
             for(unsigned int i=0;i<AC_MAIN_MENU_TOTAL_OPTIONS;++i)
             {
                 _V_options[i].set_font(comic_long);
                 _V_options[i].set_color(BLACK);
                 _V_options[i].set_flag(ALLEGRO_ALIGN_RIGHT);
                 _V_options[i].set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
-                                      AC_MAIN_MENU_OPTIONS_POS_Y+(i*comic_long->get_size()));
+                                      AC_MAIN_MENU_OPTIONS_POS_Y+(i*comic_long->get_height()));
             }
             _V_options[AC_MAIN_MENU_PLAY_GAME]=game.autochase_text.main_menu.play_game;
             _V_options[AC_MAIN_MENU_CONFIGURATION]=game.autochase_text.main_menu.configuration;
@@ -52,7 +52,7 @@ class ACMainMenu
         {
             ac_main_menu_option=LL::mod(ac_main_menu_option+num_of_moves,AC_MAIN_MENU_TOTAL_OPTIONS);
             _V_arrow.set_pos(AC_MAIN_MENU_OPTIONS_POS_X,
-                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_size()));
+                        AC_MAIN_MENU_OPTIONS_POS_Y+(ac_main_menu_option*comic_long->get_height()));
         }
         void up()
         {
@@ -92,31 +92,31 @@ void start_ac_main_menu()
         ac_main_menu.error();
     else
     {
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         while(game_running)
         {
-            input->get_event();
+            LL_AL5::InputEvent event=input->get_event();
             if(input->get_display_status())
                 game_running=false;
-            if((*input)[MENU_UP])
+            if(input->get_key_controller()->get_key_status(MENU_UP))
             {
                 ac_main_menu.up();
-                (*input)[MENU_UP]=false;
+                input->get_key_controller()->get_key_status(MENU_UP)=false;
             }
-            if((*input)[MENU_DOWN])
+            if(input->get_key_controller()->get_key_status(MENU_DOWN))
             {
                 ac_main_menu.down();
-                (*input)[MENU_DOWN]=false;
+                input->get_key_controller()->get_key_status(MENU_DOWN)=false;
             }
-            if((*input)[MENU_CANCEL])
+            if(input->get_key_controller()->get_key_status(MENU_CANCEL))
             {
                 ac_main_menu_option=AC_MAIN_MENU_EXIT_GAME;
                 break;
             }
-            if((*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_SELECT))
                 break;
-            if(input->get_timer_event())
+            if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                 ac_main_menu.draw();
         }
     }

@@ -80,7 +80,7 @@ bool start_title_menu()
     else
     {
         loader->finish_load();
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         while(game_running)
         {
@@ -89,12 +89,11 @@ bool start_title_menu()
             #endif // GAME_DEMO
             if(input->get_event())
             {
-                if(input->get_display_status() or (*input)[MENU_CANCEL])
+                if(input->get_display_status() or input->get_key_controller()->get_key_status(MENU_CANCEL))
                     game_running=false;
-                if((*input)[MENU_SELECT])
+                if(input->get_key_controller()->get_key_status(MENU_SELECT))
                     return true;
-                if(input->get_timer_event())
-                    title.draw();
+                title.draw();
             }
         }
     }

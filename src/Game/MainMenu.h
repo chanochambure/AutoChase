@@ -23,7 +23,7 @@ class MainMenu
                 _V_options[i].set_font(comic_small);
                 _V_options[i].set_color(WHITE);
                 _V_options[i].set_flag(ALLEGRO_ALIGN_CENTER);
-                _V_options[i].set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(i*comic_small->get_size()));
+                _V_options[i].set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(i*comic_small->get_height()));
             }
             _V_options[MAIN_MENU_INIT_GAME]=game.main_menu.init_game;
             _V_options[MAIN_MENU_OPTIONS_GAME]=game.main_menu.options_game;
@@ -38,8 +38,8 @@ class MainMenu
             _V_controls=game.main_menu.controls;
             _V_controls.set_color(WHITE);
             _V_controls.set_flag(ALLEGRO_ALIGN_RIGHT);
-            _V_controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_size()*2),
-                             REAL_SIZE_Y_TITLE-(comic_small->get_size()*2));
+            _V_controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_height()*2),
+                                REAL_SIZE_Y_TITLE-(comic_small->get_height()*2));
         }
         bool load_status()
         {
@@ -84,26 +84,26 @@ void start_main_menu()
         main_menu.error();
     else
     {
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         while(game_running)
         {
-            input->get_event();
-            if(input->get_display_status() or (*input)[MENU_CANCEL])
+            LL_AL5::InputEvent event=input->get_event();
+            if(input->get_display_status() or input->get_key_controller()->get_key_status(MENU_CANCEL))
                 game_running=false;
-            if((*input)[MENU_UP])
+            if(input->get_key_controller()->get_key_status(MENU_UP))
             {
                 main_menu.up();
-                (*input)[MENU_UP]=false;
+                input->get_key_controller()->get_key_status(MENU_UP)=false;
             }
-            if((*input)[MENU_DOWN])
+            if(input->get_key_controller()->get_key_status(MENU_DOWN))
             {
                 main_menu.down();
-                (*input)[MENU_DOWN]=false;
+                input->get_key_controller()->get_key_status(MENU_DOWN)=false;
             }
-            if((*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_SELECT))
                 return;
-            if(input->get_timer_event())
+            if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                 main_menu.draw();
         }
         main_menu_option=MAIN_MENU_EXIT_GAME;

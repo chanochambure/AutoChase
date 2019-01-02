@@ -31,7 +31,7 @@ class ACEndGame
                 _V_options[i].set_font(comic_small);
                 _V_options[i].set_color(BLACK);
                 _V_options[i].set_flag(ALLEGRO_ALIGN_CENTER);
-                _V_options[i].set_pos(450,505+(i*comic_small->get_size()));
+                _V_options[i].set_pos(450,505+(i*comic_small->get_height()));
             }
             _V_options[END_NEW_GAME_OPTION]=game.autochase_text.end_game.new_game_option;
             _V_options[END_EXIT_GAME_OPTION]=game.autochase_text.end_game.exit_game_option;
@@ -50,7 +50,7 @@ class ACEndGame
 int start_ac_end_game()
 {
     ACEndGame ac_end_game;
-    input->clear_key_status();
+    input->get_key_controller()->clear_key_status();
     input->clear_events();
     ac_end_game.draw();
     while(game_running)
@@ -58,12 +58,12 @@ int start_ac_end_game()
         input->get_event();
         if(input->get_display_status())
             game_running=false;
-        if((*input)[GAME_PAUSE])
+        if(input->get_key_controller()->get_key_status(GAME_PAUSE))
             break;
-        if((*input)[GAME_EXIT])
+        if(input->get_key_controller()->get_key_status(GAME_EXIT))
             return END_EXIT_GAME_OPTION;
     }
-    input->clear_key_status();
+    input->get_key_controller()->clear_key_status();
     input->clear_events();
     return END_NEW_GAME_OPTION;
 }

@@ -64,7 +64,7 @@ class InterfaceOptionsMenu
             _V_title.set_pos(10,10);
             _V_line.set_color(WHITE);
             _V_line.set_filled_status(true);
-            _V_line.set_pos_y(_V_title.get_pos_y()+(comic_long->get_size()*2));
+            _V_line.set_pos_y(_V_title.get_pos_y()+(comic_long->get_height()*2));
             _V_line.set_size_x(REAL_SIZE_X_TITLE);
             _V_line.set_size_y(3);
             for(unsigned int i=0;i<INTERFACE_OPTIONS_MENU_TOTAL_OPTIONS;++i)
@@ -72,7 +72,7 @@ class InterfaceOptionsMenu
                 _V_options[i].set_font(comic_normal);
                 _V_options[i].set_color(WHITE);
                 _V_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                _V_options[i].set_pos(20,(2*REAL_SIZE_Y_TITLE/3)+(i*comic_normal->get_size()));
+                _V_options[i].set_pos(20,(2*REAL_SIZE_Y_TITLE/3)+(i*comic_normal->get_height()));
             }
             _V_options[INTERFACE_OPTIONS_MENU_DISPLAY_SIZE]=game.interface_options_menu.select_display_size;
             _V_options[INTERFACE_OPTIONS_MENU_DISPLAY_TYPE]=game.interface_options_menu.select_display_type;
@@ -105,7 +105,7 @@ class InterfaceOptionsMenu
                 _V_display_type_options[i].set_font(comic_small);
                 _V_display_type_options[i].set_color(WHITE);
                 _V_display_type_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                _V_display_type_options[i].set_pos(400+(i*200),(2*REAL_SIZE_Y_TITLE/3)+(comic_normal->get_size()));
+                _V_display_type_options[i].set_pos(400+(i*200),(2*REAL_SIZE_Y_TITLE/3)+(comic_normal->get_height()));
             }
             _V_display_type_options[0]=game.interface_options_menu.display_type_1;
             _V_display_type_options[1]=game.interface_options_menu.display_type_2;
@@ -113,19 +113,19 @@ class InterfaceOptionsMenu
             _V_volume_text.set_font(comic_small);
             _V_volume_text.set_color(WHITE);
             _V_volume_text.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_volume_text.set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(2*comic_normal->get_size()));
+            _V_volume_text.set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(2*comic_normal->get_height()));
             _V_volume_text="\u25C4        \u25BA";
             _V_volume_options.set_font(comic_small);
             _V_volume_options.set_color(WHITE);
             _V_volume_options.set_flag(ALLEGRO_ALIGN_CENTER);
-            _V_volume_options.set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(2*comic_normal->get_size()));
+            _V_volume_options.set_pos((REAL_SIZE_X_TITLE/2),(2*REAL_SIZE_Y_TITLE/3)+(2*comic_normal->get_height()));
             _V_volume_options=LL::to_string(_V_volume_option);
             for(unsigned int i=0;i<INTERFACE_OPTIONS_LANGUAGE_TOTAL_OPTIONS;++i)
             {
                 _V_language_options[i].set_font(comic_small);
                 _V_language_options[i].set_color(WHITE);
                 _V_language_options[i].set_flag(ALLEGRO_ALIGN_LEFT);
-                _V_language_options[i].set_pos(400+(i*200),(2*REAL_SIZE_Y_TITLE/3)+(3*comic_normal->get_size()));
+                _V_language_options[i].set_pos(400+(i*200),(2*REAL_SIZE_Y_TITLE/3)+(3*comic_normal->get_height()));
             }
             _V_language_options[0]=game.interface_options_menu.language_EN;
             _V_language_options[1]=game.interface_options_menu.language_ES;
@@ -140,8 +140,8 @@ class InterfaceOptionsMenu
             _V_controls=game.interface_options_menu.controls;
             _V_controls.set_color(WHITE);
             _V_controls.set_flag(ALLEGRO_ALIGN_RIGHT);
-            _V_controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_size()*2),
-                             REAL_SIZE_Y_TITLE-(comic_small->get_size()*2));
+            _V_controls.set_pos(REAL_SIZE_X_TITLE-(comic_small->get_height()*2),
+                             REAL_SIZE_Y_TITLE-(comic_small->get_height()*2));
         }
         bool load_status()
         {
@@ -261,7 +261,7 @@ class InterfaceOptionsMenu
                 has_language_changes=true;
             }
             input->clear_events();
-            input->clear_key_status();
+            input->get_key_controller()->clear_key_status();
         }
         void draw()
         {
@@ -297,45 +297,45 @@ bool start_interface_options_menu()
         interface_options_menu.error();
     else
     {
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         while(game_running)
         {
-            input->get_event();
+            LL_AL5::InputEvent event=input->get_event();
             if(input->get_display_status())
                 game_running=false;
-            if((*input)[MENU_CANCEL])
+            if(input->get_key_controller()->get_key_status(MENU_CANCEL))
                 break;
-            if((*input)[MENU_LEFT])
+            if(input->get_key_controller()->get_key_status(MENU_LEFT))
             {
                 interface_options_menu.left();
-                (*input)[MENU_LEFT]=false;
+                input->get_key_controller()->get_key_status(MENU_LEFT)=false;
             }
-            if((*input)[MENU_RIGHT])
+            if(input->get_key_controller()->get_key_status(MENU_RIGHT))
             {
                 interface_options_menu.right();
-                (*input)[MENU_RIGHT]=false;
+                input->get_key_controller()->get_key_status(MENU_RIGHT)=false;
             }
-            if((*input)[MENU_UP])
+            if(input->get_key_controller()->get_key_status(MENU_UP))
             {
                 interface_options_menu.up();
-                (*input)[MENU_UP]=false;
+                input->get_key_controller()->get_key_status(MENU_UP)=false;
             }
-            if((*input)[MENU_DOWN])
+            if(input->get_key_controller()->get_key_status(MENU_DOWN))
             {
                 interface_options_menu.down();
-                (*input)[MENU_DOWN]=false;
+                input->get_key_controller()->get_key_status(MENU_DOWN)=false;
             }
-            if((*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_SELECT))
             {
                 interface_options_menu.set_changes();
                 break;
             }
-            if(input->get_timer_event())
+            if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                 interface_options_menu.draw();
         }
     }
-    return (!(*input)[MENU_CANCEL]);
+    return !(input->get_key_controller()->get_key_status(MENU_CANCEL));
 }
 
 #endif // INCLUDED_GAME_INTERFACE_OPTIONS_MENU_H

@@ -41,17 +41,17 @@ class Loader
         }
         void init_load()
         {
-            input->clear_key_status();
+            input->get_key_controller()->clear_key_status();
             input->clear_events();
             _V_chrono.play();
             _V_status=0;
             while(game_running and _V_status<LOADER_FINAL_STATUS)
             {
                 _V_status=_V_chrono.get_time();
-                input->get_event();
+                LL_AL5::InputEvent event=input->get_event();
                 if(input->get_display_status())
                     game_running=false;
-                if(input->get_timer_event())
+                if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                     draw();
             }
             _V_status=LOADER_FINAL_STATUS;
@@ -59,18 +59,19 @@ class Loader
         }
         void finish_load()
         {
-            input->clear_key_status();
+            input->get_key_controller()->clear_key_status();
             input->clear_events();
             _V_chrono.play();
             _V_status=LOADER_FINAL_STATUS;
             while(game_running and _V_status>0)
             {
                 _V_status=LOADER_FINAL_STATUS-_V_chrono.get_time();
-                if(input->get_event())
+                LL_AL5::InputEvent event=input->get_event();
+                if(event)
                 {
                     if(input->get_display_status())
                         game_running=false;
-                    if(input->get_timer_event())
+                    if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                         draw();
                 }
             }

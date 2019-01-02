@@ -24,6 +24,7 @@
     #include <LexRisLogic/Allegro5/NativeDialog.h>
     #include <LexRisLogic/Allegro5/Mixer.h>
     #include <LexRisLogic/Allegro5/Text.h>
+    #include <LexRisLogic/Allegro5/Timer.h>
     #include <LexRisLogic/Allegro5/Primitives.h>
     #include <LexRisLogic/Allegro5/Audio.h>
     #include <LexRisLogic/Allegro5/Video.h>
@@ -33,7 +34,7 @@
 #include <LexRisLogic/Math.h>
 #include <LexRisLogic/Time.h>
 #include <LexRisLogic/Encryptor.h>
-#include <LexRisLogic/FileStream.h>
+#include <LexRisLogic/File.h>
 #include <LexRisLogic/StringSplitter.h>
 
 //HEADERS INCLUDE
@@ -69,7 +70,7 @@ LL::StringSplitter splitter;
 #include "../AC/Main.h"
 
 //FILE READER
-LL::FileStream interface_option_file;
+LL::TextFile interface_option_file;
 
 //INTERFACE OPTIONS
 void load_interface_options()
@@ -109,7 +110,7 @@ void load_interface_options()
 
 void save_interface_options()
 {
-    interface_option_file.clear_file();
+    interface_option_file.clear();
     interface_option_file.insert_line(0,2);
     interface_option_file[0]=encryptor_files->encrypt(LL::to_string(global_screen_option_size_x)+'$'+
                                                       LL::to_string(global_screen_option_size_y)+'$'+
@@ -135,10 +136,8 @@ void apply_language_options()
 void game_start()
 {
     screen->set_real_size(REAL_SIZE_X_GAME,REAL_SIZE_Y_GAME);
-    refresh_fonts();
     autochase_control();
     screen->set_real_size(REAL_SIZE_X_TITLE,REAL_SIZE_Y_TITLE);
-    refresh_fonts();
 }
 
 //CONFIGURATION

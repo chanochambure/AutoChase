@@ -9,7 +9,7 @@
 #include "Objects/Score.h"
 #include "Objects/Enemy.h"
 
-bool create_key_control(LL_AL5::KeyControl* key_control)
+bool create_key_control(LL_AL5::KeyController* key_control)
 {
     switch(ac_controls)
     {
@@ -301,26 +301,26 @@ void start_ac_game()
         ac_game.error();
     else
     {
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
-        LL_AL5::KeyControl game_key_control;
+        LL_AL5::KeyController game_key_control;
         if(!(errors.auto_chase_errors.game_errors_ac.create_key_control_status=!create_key_control(&game_key_control)))
         {
-            input->set_key_control(&game_key_control);
+            input->set_key_controller(&game_key_control);
             while(game_running and ac_game.status())
             {
                 start_are_you_ready();
                 ac_game.initializing_data();
                 while(game_running and ac_game.in_game())
                 {
-                    input->get_event();
+                    LL_AL5::InputEvent event=input->get_event();
                     if(input->get_display_status())
                         game_running=false;
-                    ac_game.set_up((*input)[GAME_UP]);
-                    ac_game.set_down((*input)[GAME_DOWN]);
-                    ac_game.set_left((*input)[GAME_LEFT]);
-                    ac_game.set_right((*input)[GAME_RIGHT]);
-                    if((*input)[GAME_PAUSE])
+                    ac_game.set_up(input->get_key_controller()->get_key_status(GAME_UP));
+                    ac_game.set_down(input->get_key_controller()->get_key_status(GAME_DOWN));
+                    ac_game.set_left(input->get_key_controller()->get_key_status(GAME_LEFT));
+                    ac_game.set_right(input->get_key_controller()->get_key_status(GAME_RIGHT));
+                    if(input->get_key_controller()->get_key_status(GAME_PAUSE))
                     {
                         switch(start_ac_pause())
                         {
@@ -336,7 +336,7 @@ void start_ac_game()
                             }
                         }
                     }
-                    if(input->get_timer_event())
+                    if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
                     {
                         ac_game.move_world();
                         ac_game.draw();
@@ -355,7 +355,7 @@ void start_ac_game()
                     }
                 }
             }
-            input->set_key_control(menu_key_control);
+            input->set_key_controller(menu_key_control);
         }
         else
         {

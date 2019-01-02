@@ -20,7 +20,7 @@ class Opening
             if(load_status())
             {
                 screen->set_real_size(_V_opening.get_size_x(),_V_opening.get_size_y());
-                _V_opening.start();
+                _V_opening.start(*mixer);
             }
         }
         bool status()
@@ -55,7 +55,7 @@ void start_Opening()
     else
     {
         loader->finish_load();
-        input->clear_key_status();
+        input->get_key_controller()->clear_key_status();
         input->clear_events();
         opening.start();
         while(game_running and opening.status())
@@ -63,10 +63,9 @@ void start_Opening()
             input->get_event();
             if(input->get_display_status())
                 game_running=false;
-            if((*input)[MENU_CANCEL] or (*input)[MENU_SELECT])
+            if(input->get_key_controller()->get_key_status(MENU_CANCEL) or input->get_key_controller()->get_key_status(MENU_SELECT))
                 break;
-            if(input->get_timer_event())
-                opening.draw();
+            opening.draw();
         }
     }
 }

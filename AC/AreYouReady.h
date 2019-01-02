@@ -42,17 +42,17 @@ class ACAreYouReady
 void start_are_you_ready()
 {
     ACAreYouReady ac_are_you_ready;
-    input->clear_key_status();
+    input->get_key_controller()->clear_key_status();
     input->clear_events();
     while(game_running and ac_are_you_ready.status())
     {
-        input->get_event();
+        LL_AL5::InputEvent event=input->get_event();
         if(input->get_display_status())
             game_running=false;
-        if(input->get_timer_event())
+        if(event.get_type()==LL_AL5::INPUT_EVENT_TIMER)
             ac_are_you_ready.draw();
     }
-    input->clear_key_status();
+    input->get_key_controller()->clear_key_status();
     input->clear_events();
 }
 

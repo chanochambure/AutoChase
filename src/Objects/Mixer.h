@@ -19,7 +19,6 @@ void init_mixer()
 {
     mixer=new LL_AL5::Mixer;
     mixer->create();
-    mixer->set_default_mixer();
 }
 
 void destroy_mixer()
